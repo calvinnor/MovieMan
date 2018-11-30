@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.calvinnor.movieman">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".app.Main"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -10,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/NoToolbarTheme.TranslucentBars">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

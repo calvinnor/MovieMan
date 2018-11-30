@@ -6,13 +6,86 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glLeft"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl35"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/glRight"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <ImageView
+        android:id="@+id/ivBackdrop"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1,2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@android:color/black"
+        tools:src="@drawable/ic_image"
+        tools:tint="@color/colorPrimary" />
+
+    <ImageView
+        android:id="@+id/ivPoster"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
+        app:layout_constraintEnd_toStartOf="@id/gl35"
+        app:layout_constraintStart_toEndOf="@id/glLeft"
+        app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
+        tools:srcCompat="@drawable/ic_image" />
+
     <TextView
+        android:id="@+id/tvTitle"
+        style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="@dimen/margin_medium"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+        app:layout_constraintStart_toEndOf="@id/gl35"
+        app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
+        tools:text="Fight Club" />
+
+    <TextView
+        android:id="@+id/tvOverviewTitle"
+        style="@style/TextAppearance.AppCompat.Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:text="@string/movie_details_overview"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_medium"
+        app:layout_constraintStart_toEndOf="@id/glLeft"
+        app:layout_constraintTop_toBottomOf="@id/ivPoster" />
+
+    <TextView
+        android:id="@+id/tvOverviewDesc"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_medium_small"
+        app:layout_constraintEnd_toEndOf="@id/glRight"
+        app:layout_constraintStart_toStartOf="@id/glLeft"
+        app:layout_constraintTop_toBottomOf="@id/tvOverviewTitle"
+        tools:text="This is some long overview text for the movie description." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
