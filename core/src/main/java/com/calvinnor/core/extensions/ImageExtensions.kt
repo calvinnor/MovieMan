@@ -1,4 +1,4 @@
-package com.calvinnor.movieman.core.extensions
+package com.calvinnor.core.extensions
 
 import android.widget.ImageView
 import com.bumptech.glide.Glide

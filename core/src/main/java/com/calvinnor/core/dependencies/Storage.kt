@@ -1,4 +1,4 @@
-package com.calvinnor.movieman.core.dependencies
+package com.calvinnor.core.dependencies
 
 import android.preference.PreferenceManager
 import org.koin.dsl.module.module

@@ -2,8 +2,8 @@ package com.calvinnor.movieman
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.calvinnor.movieman.core.extensions.ScaleType
-import com.calvinnor.movieman.core.extensions.setImage
+import com.calvinnor.core.extensions.ScaleType
+import com.calvinnor.core.extensions.setImage
 import com.calvinnor.movieman.data.Movie
 import com.calvinnor.movieman.data.remote.MovieWebService
 import kotlinx.android.synthetic.main.activity_main.*

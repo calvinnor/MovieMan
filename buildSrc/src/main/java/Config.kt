@@ -1,12 +1,23 @@
 object Plugins {
 
     const val androidApplication = "com.android.application"
+    const val androidLibrary = "com.android.library"
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
 
     const val gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+}
+
+object Config {
+
+    const val release_minifyEnabled = true
+}
+
+object Modules {
+
+    const val core = ":core"
 }
 
 object App {
@@ -57,7 +68,7 @@ object Versions {
     const val test_JUnit = "4.12"
 
     // Android Testing
-    const val androidTest_runner = "1.1.0"
+    const val androidTest_runner = "1.0.0"
     const val androidTest_espresso = "3.1.0"
 }
 
@@ -101,10 +112,10 @@ object Dependencies {
 
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"
-    const val test_JUnitRunner = "androidx.test.runner.AndroidJUnitRunner"
+    const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
 
     // Android Testing
-    const val androidTest_runner = "androidx.test:runner:${Versions.androidTest_runner}"
+    const val androidTest_runner = "androidx.test.ext:junit:${Versions.androidTest_runner}"
     const val androidTest_espresso = "androidx.test.espresso:espresso-core:${Versions.androidTest_espresso}"
 
 }
