@@ -1,4 +1,1 @@
-include(
-    ":app",
-    ":core"
-)
+include(*Modules.allModules)

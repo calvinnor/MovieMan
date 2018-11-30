@@ -1,0 +1,12 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.calvinnor.movie">
+
+    <application>
+
+        <activity
+            android:name=".details.view.MovieDetailsActivity"
+            android:theme="@style/NoToolbarTheme.TranslucentBars" />
+
+    </application>
+
+</manifest>

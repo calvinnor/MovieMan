@@ -1,6 +1,6 @@
-package com.calvinnor.movieman
+package com.calvinnor.movie.commons
 
-import com.calvinnor.movieman.data.remote.MovieWebService
+import com.calvinnor.movie.commons.data.remote.MovieWebService
 import org.koin.dsl.module.module
 import retrofit2.Retrofit
 import retrofit2.create

@@ -1,11 +1,12 @@
-package com.calvinnor.movieman
+package com.calvinnor.movie.details.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.setImage
-import com.calvinnor.movieman.data.Movie
-import com.calvinnor.movieman.data.remote.MovieWebService
+import com.calvinnor.movie.R
+import com.calvinnor.movie.commons.data.Movie
+import com.calvinnor.movie.commons.data.remote.MovieWebService
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +14,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
-class MainActivity : AppCompatActivity() {
+class MovieDetailsActivity : AppCompatActivity() {
 
     private val routineContext by lazy { CoroutineScope(Dispatchers.Main) }
 

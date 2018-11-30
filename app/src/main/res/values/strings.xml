@@ -1,7 +1,3 @@
 <resources>
     <string name="app_name">MovieMan</string>
-
-    <!-- Movie Details -->
-    <string name="movie_details_overview">Overview</string>
-
 </resources>

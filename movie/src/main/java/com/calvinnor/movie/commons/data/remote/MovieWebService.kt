@@ -1,6 +1,6 @@
-package com.calvinnor.movieman.data.remote
+package com.calvinnor.movie.commons.data.remote
 
-import com.calvinnor.movieman.data.Movie
+import com.calvinnor.movie.commons.data.Movie
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path

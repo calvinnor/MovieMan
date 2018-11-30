@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.androidApplication)
+    id(Plugins.androidFeature)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
@@ -13,15 +13,10 @@ android {
         minSdkVersion(App.minSdk)
         targetSdkVersion(App.targetSdk)
 
-        applicationId = App.appId
-        versionCode = App.appCode
-        versionName = App.appVersion
     }
 }
 
 dependencies {
 
     implementation(project(Modules.core))
-    implementation(project(Modules.movie))
-
 }

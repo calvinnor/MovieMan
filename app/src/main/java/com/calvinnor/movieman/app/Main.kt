@@ -1,7 +1,7 @@
 package com.calvinnor.movieman.app
 
 import com.calvinnor.core.application.CoreApp
-import com.calvinnor.movieman.movieModule
+import com.calvinnor.movie.commons.movieModule
 
 /**
  * Android's Application class.

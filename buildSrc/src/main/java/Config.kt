@@ -2,6 +2,8 @@ object Plugins {
 
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
+    const val androidFeature = "com.android.feature"
+
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
@@ -17,7 +19,11 @@ object Config {
 
 object Modules {
 
+    const val app = ":app"
     const val core = ":core"
+    const val movie = ":movie"
+
+    val allModules = arrayOf(app, core, movie)
 }
 
 object App {
