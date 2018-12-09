@@ -8,6 +8,8 @@ object Plugins {
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
 
+    const val dependencyUpdates = "com.github.ben-manes.versions"
+
     const val gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
     const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
 }
@@ -40,7 +42,8 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "3.3.0-rc01"
+    const val gradleTools = "3.3.0-rc02"
+    const val dependencyUpdates = "0.20.0"
 
     // Kotlin
     const val kotlinVersion = "1.3.10"
