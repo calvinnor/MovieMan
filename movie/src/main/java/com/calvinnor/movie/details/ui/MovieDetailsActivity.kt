@@ -1,33 +1,37 @@
-package com.calvinnor.movie.details.view
+package com.calvinnor.movie.details.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.setImage
+import com.calvinnor.core.ui.BaseActivity
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.data.Movie
 import com.calvinnor.movie.commons.data.remote.MovieWebService
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.android.synthetic.main.activity_movie_details.*
+import kotlinx.coroutines.*
 import org.koin.android.ext.android.inject
 
-class MovieDetailsActivity : AppCompatActivity() {
+class MovieDetailsActivity : BaseActivity() {
 
-    private val routineContext by lazy { CoroutineScope(Dispatchers.Main) }
+    override val contentLayout = R.layout.activity_movie_details
+
+    private val routineContext by lazy { CoroutineScope(parentJob + Dispatchers.Main) }
+    private val parentJob by lazy { Job() }
 
     private val movieWebService: MovieWebService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        routineContext.launch {
+        routineContext.launch(parentJob) {
             val movieData = withContext(Dispatchers.IO) { movieWebService.getMovie(movieId = "550").await() }
             setData(movieData)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        routineContext.coroutineContext.cancel()
     }
 
     private fun setData(movie: Movie) = with(movie) {

@@ -4,7 +4,7 @@
     <application>
 
         <activity
-            android:name=".details.view.MovieDetailsActivity"
+            android:name=".details.ui.MovieDetailsActivity"
             android:theme="@style/NoToolbarTheme.TranslucentBars" />
 
     </application>

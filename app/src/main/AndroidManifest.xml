@@ -12,7 +12,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.calvinnor.movie.details.view.MovieDetailsActivity"
+            android:name="com.calvinnor.movie.details.ui.MovieDetailsActivity"
             android:theme="@style/NoToolbarTheme.TranslucentBars">
 
             <intent-filter>
