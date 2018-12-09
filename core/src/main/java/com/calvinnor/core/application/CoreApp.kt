@@ -4,6 +4,7 @@ import android.app.Application
 import com.calvinnor.core.BuildConfig
 import com.calvinnor.core.dependencies.androidModule
 import com.calvinnor.core.dependencies.networkModule
+import com.calvinnor.core.dependencies.schedulerModule
 import com.calvinnor.core.dependencies.storageModule
 import com.facebook.stetho.Stetho
 import org.koin.android.ext.android.startKoin
@@ -29,7 +30,8 @@ abstract class CoreApp : Application() {
     private fun initialiseKoin() {
         startKoin(
             this, modules = listOf(
-                androidModule(this), networkModule, storageModule, *getFeatureModules()
+                androidModule(this), networkModule, storageModule, schedulerModule,
+                *getFeatureModules()
             )
         )
     }

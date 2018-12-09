@@ -1,6 +1,9 @@
 package com.calvinnor.movie.details.ui
 
 import android.os.Bundle
+import com.calvinnor.core.dispatchers.JobDispatcher
+import com.calvinnor.core.dispatchers.cancelJobs
+import com.calvinnor.core.dispatchers.onMain
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.setImage
 import com.calvinnor.core.ui.BaseActivity
@@ -8,30 +11,29 @@ import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.data.Movie
 import com.calvinnor.movie.commons.data.remote.MovieWebService
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.withContext
 import org.koin.android.ext.android.inject
 
 class MovieDetailsActivity : BaseActivity() {
 
     override val contentLayout = R.layout.activity_movie_details
 
-    private val routineContext by lazy { CoroutineScope(parentJob + Dispatchers.Main) }
-    private val parentJob by lazy { Job() }
-
+    private val jobDispatcher: JobDispatcher by inject()
     private val movieWebService: MovieWebService by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        routineContext.launch(parentJob) {
-            val movieData = withContext(Dispatchers.IO) { movieWebService.getMovie(movieId = "550").await() }
+        jobDispatcher.onMain {
+            val movieData =
+                withContext(jobDispatcher.dispatcher.io) { movieWebService.getMovie(movieId = "550").await() }
             setData(movieData)
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        routineContext.coroutineContext.cancel()
+        jobDispatcher.cancelJobs()
     }
 
     private fun setData(movie: Movie) = with(movie) {
