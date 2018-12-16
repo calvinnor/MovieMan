@@ -1,51 +1,66 @@
 package com.calvinnor.movie.details.ui
 
 import android.os.Bundle
-import com.calvinnor.core.dispatchers.JobDispatcher
-import com.calvinnor.core.dispatchers.cancelJobs
-import com.calvinnor.core.dispatchers.onMain
+import android.util.Log
+import androidx.core.view.isVisible
+import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.ScaleType
+import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.extensions.setImage
 import com.calvinnor.core.ui.BaseActivity
 import com.calvinnor.movie.R
-import com.calvinnor.movie.commons.data.Movie
-import com.calvinnor.movie.commons.data.remote.MovieWebService
+import com.calvinnor.movie.details.model.MovieDetailsUiModel
+import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.activity_movie_details.*
-import kotlinx.coroutines.withContext
-import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MovieDetailsActivity : BaseActivity() {
 
     override val contentLayout = R.layout.activity_movie_details
 
-    private val jobDispatcher: JobDispatcher by inject()
-    private val movieWebService: MovieWebService by inject()
+    private val viewModel: MovieDetailsViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        jobDispatcher.onMain {
-            val movieData =
-                withContext(jobDispatcher.dispatcher.io) { movieWebService.getMovie(movieId = "550").await() }
-            setData(movieData)
+        setupListeners()
+        fetchData()
+    }
+
+    private fun setupListeners() {
+        viewModel.movieDetails.observe(this) {
+            when (it) {
+                is Result.Loading -> showLoading(it.isLoading)
+                is Result.Success -> setData(it.data)
+                is Result.Failure -> showError(it.ex)
+            }
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        jobDispatcher.cancelJobs()
+    private fun fetchData() {
+        viewModel.getMovieDetails(movieId = "550")
     }
 
-    private fun setData(movie: Movie) = with(movie) {
+    private fun showError(ex: Throwable) {
+        // TODO
+    }
+
+    private fun showLoading(isLoading: Boolean) {
+        print("##### isLoading: $isLoading")
+        Log.e(TAG, )
+        cpbMovie.isVisible = isLoading
+    }
+
+    private fun setData(uiModel: MovieDetailsUiModel) = with(uiModel) {
         tvTitle.text = title
-        tvOverviewDesc.text = overview
+        tvOverviewDesc.text = description
         ivBackdrop.setImage(
-            imageUrl = "https://image.tmdb.org/t/p/w500$backdropPath",
+            imageUrl = backdropImage,
             scaleType = ScaleType.CENTER_CROP
         )
 
         ivPoster.setImage(
-            imageUrl = "https://image.tmdb.org/t/p/w500$posterPath",
+            imageUrl = posterImage,
             scaleType = ScaleType.FIT_CENTER
         )
     }
