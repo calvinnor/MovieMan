@@ -42,7 +42,7 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "3.3.0-rc02"
+    const val gradleTools = "3.3.0-rc03"
     const val dependencyUpdates = "0.20.0"
 
     // Kotlin
