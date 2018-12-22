@@ -53,6 +53,10 @@ object Versions {
     const val coreKtx = "1.0.1"
     const val constraintLayout = "1.1.3"
 
+    // ViewModel + LiveData
+    const val arch_viewModelLiveData = "2.0.0"
+    const val arch_Room = "2.1.0-alpha03"
+
     // Gson
     const val gson = "2.8.5"
     const val gsonRetrofitConverter = "2.4.0"
@@ -94,6 +98,14 @@ object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 
+    // ViewModel + Lifecycle
+    const val arch_ViewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.arch_viewModelLiveData}"
+
+    // Room
+    const val arch_Room = "androidx.room:room-runtime:${Versions.arch_Room}"
+    const val arch_RoomCoroutines = "androidx.room:room-coroutines:${Versions.arch_Room}"
+    const val kapt_Room = "androidx.room:room-compiler:${Versions.arch_Room}"
+
     // Gson
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
     const val gsonRetrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonRetrofitConverter}"
@@ -122,6 +134,8 @@ object Dependencies {
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
+    const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_viewModelLiveData}"
+    const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
 
     // Android Testing
     const val androidTest_runner = "androidx.test.ext:junit:${Versions.androidTest_runner}"
