@@ -2,6 +2,8 @@ package com.calvinnor.movieman.app
 
 import com.calvinnor.core.application.CoreApp
 import com.calvinnor.movie.commons.movieModule
+import com.calvinnor.movie.details.di.movieDetailsModule
+import com.calvinnor.movie.discover.di.discoverMoviesModule
 
 /**
  * Android's Application class.
@@ -9,5 +11,6 @@ import com.calvinnor.movie.commons.movieModule
  */
 class Main : CoreApp() {
 
-    override fun getFeatureModules() = arrayOf(movieModule)
+    override fun getFeatureModules() =
+        arrayOf(movieModule, movieDetailsModule, discoverMoviesModule)
 }

@@ -50,6 +50,8 @@ object Versions {
 
     // AndroidX
     const val appCompat = "1.0.2"
+    const val recyclerView = "1.0.0"
+    const val materialComponents = "1.0.0-rc01"
     const val coreKtx = "1.0.1"
     const val constraintLayout = "1.1.3"
 
@@ -97,6 +99,8 @@ object Dependencies {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val materialComponents = "com.google.android.material:material:${Versions.materialComponents}"
 
     // ViewModel + Lifecycle
     const val arch_ViewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.arch_viewModelLiveData}"

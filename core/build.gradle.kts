@@ -47,6 +47,8 @@ dependencies {
     api(Dependencies.appCompat)
     api(Dependencies.coreKtx)
     api(Dependencies.constraintLayout)
+    api(Dependencies.recyclerView)
+    api(Dependencies.materialComponents)
 
     // Architecture Components
     api(Dependencies.arch_ViewModelLiveData)

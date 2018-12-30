@@ -11,9 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name="com.calvinnor.movie.details.ui.MovieDetailsActivity"
-            android:theme="@style/NoToolbarTheme.TranslucentBars">
+        <activity android:name="com.calvinnor.movie.discover.ui.DiscoverMoviesActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -52,12 +52,15 @@
     <TextView
         android:id="@+id/tvTitle"
         style="@style/TextAppearance.AppCompat.Headline"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_medium"
+        android:ellipsize="end"
+        android:maxLines="@integer/max_lines_title"
         android:textColor="@color/text_white"
-        android:textSize="@dimen/text_large"
+        android:textSize="@dimen/text_medium"
         app:layout_constraintBottom_toBottomOf="@id/ivPoster"
+        app:layout_constraintEnd_toStartOf="@id/glRight"
         app:layout_constraintStart_toEndOf="@id/gl35"
         app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
         tools:text="Fight Club" />

@@ -7,6 +7,10 @@
             android:name=".details.ui.MovieDetailsActivity"
             android:theme="@style/NoToolbarTheme.TranslucentBars" />
 
+        <activity
+            android:name=".discover.ui.DiscoverMoviesActivity"
+            android:theme="@style/NoToolbarTheme" />
+
     </application>
 
 </manifest>

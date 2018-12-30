@@ -23,4 +23,22 @@
         <item name="android:windowTranslucentNavigation">true</item>
     </style>
 
+    <style name="RecyclerView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:scrollbars">none</item>
+    </style>
+
+    <style name="LinearVerticalRecyclerView" parent="RecyclerView">
+        <item name="layoutManager">androidx.recyclerview.widget.LinearLayoutManager</item>
+    </style>
+
+    <style name="LinearHorizontalRecyclerView" parent="LinearVerticalRecyclerView">
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ClickableView">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
 </resources>

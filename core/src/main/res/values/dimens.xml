@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Text Sizes -->
     <dimen name="text_large">24sp</dimen>
     <dimen name="text_medium">20sp</dimen>
     <dimen name="text_medium_small">18sp</dimen>
     <dimen name="text_small">16sp</dimen>
 
-    <dimen name="margin_small">8dp</dimen>
+    <!-- Margins -->
     <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_tiny">4dp</dimen>
 
 </resources>
