@@ -1,29 +1,34 @@
 package com.calvinnor.movie.details.ui
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.core.view.isVisible
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.extensions.setImage
-import com.calvinnor.core.ui.BaseActivity
+import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
-import kotlinx.android.synthetic.main.activity_movie_details.*
+import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MovieDetailsActivity : BaseActivity() {
+class MovieDetailsFragment : BaseFragment() {
 
-    override val contentLayout = R.layout.activity_movie_details
+    override val fragmentTag = TAG
 
+    override val layout = R.layout.fragment_movie_details
     private val viewModel: MovieDetailsViewModel by viewModel()
-    private val movieId by lazy { intent.extras.getString(KEY_MOVIE_ID) }
+    private val movieId by lazy {
+        arguments.let {
+            if (it == null) throw IllegalStateException("Need a movie ID!")
+            else it.getString(KEY_MOVIE_ID)
+        }
+    }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupListeners()
         fetchData()
@@ -72,12 +77,12 @@ class MovieDetailsActivity : BaseActivity() {
     }
 
     companion object {
+        const val TAG = "MovieDetailsFragment"
 
         private const val KEY_MOVIE_ID = "movie_id"
 
-        fun getIntent(context: Context, movieId: String) =
-            Intent(context, MovieDetailsActivity::class.java).apply {
-                putExtra(KEY_MOVIE_ID, movieId)
-            }
+        fun getBundle(movieId: String) = Bundle().apply {
+            putString(KEY_MOVIE_ID, movieId)
+        }
     }
 }

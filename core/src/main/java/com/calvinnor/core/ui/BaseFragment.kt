@@ -68,7 +68,7 @@ abstract class BaseFragment : Fragment() {
     private fun getInflatedView(inflater: LayoutInflater): View? {
         val activityLayout = layout
         return if (activityLayout == NO_LAYOUT) null
-        else inflater.inflate(layout, null, false)
+        else inflater.inflate(activityLayout, null, false)
     }
 
     protected fun startLoadingIndicator() {

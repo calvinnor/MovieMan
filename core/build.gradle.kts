@@ -56,6 +56,10 @@ dependencies {
     api(Dependencies.arch_RoomCoroutines)
     kapt(Dependencies.kapt_Room)
 
+    // Navigation
+    api(Dependencies.navigationFragment)
+    api(Dependencies.navigationUi)
+
     // Gson
     api(Dependencies.gson)
     implementation(Dependencies.gsonRetrofitConverter)

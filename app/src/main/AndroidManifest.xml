@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.calvinnor.movie.discover.ui.DiscoverMoviesActivity">
+        <activity android:name="com.calvinnor.movie.commons.ui.MoviesActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

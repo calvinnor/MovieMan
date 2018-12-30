@@ -1,13 +1,16 @@
 package com.calvinnor.movie.discover.ui
 
+import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.inflate
 import com.calvinnor.core.extensions.setImage
 import com.calvinnor.movie.R
-import com.calvinnor.movie.details.ui.MovieDetailsActivity
+import com.calvinnor.movie.details.ui.MovieDetailsFragment
 import com.calvinnor.movie.discover.model.MovieUiModel
 import kotlinx.android.synthetic.main.item_movie.view.*
 
@@ -38,7 +41,15 @@ class DiscoverMoviesAdapter : RecyclerView.Adapter<DiscoverMoviesAdapter.MovieVi
             tvTitle.text = uiModel.title
 
             clRoot.setOnClickListener {
-                context.startActivity(MovieDetailsActivity.getIntent(context, movieId = uiModel.id))
+
+                findNavController().navigate(object : NavDirections {
+
+                    override fun getArguments(): Bundle? =
+                        MovieDetailsFragment.getBundle(movieId = uiModel.id)
+
+                    override fun getActionId() = R.id.navigateToMovieDetails
+
+                })
             }
         }
     }

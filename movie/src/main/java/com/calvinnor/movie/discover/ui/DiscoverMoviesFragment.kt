@@ -1,23 +1,25 @@
 package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
+import android.view.View
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.observe
-import com.calvinnor.core.ui.BaseActivity
+import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
 import com.calvinnor.movie.discover.viewmodel.DiscoverMoviesViewModel
-import kotlinx.android.synthetic.main.activity_discover_movies.*
+import kotlinx.android.synthetic.main.fragment_discover_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiscoverMoviesActivity : BaseActivity() {
+class DiscoverMoviesFragment : BaseFragment() {
 
-    override val contentLayout = R.layout.activity_discover_movies
+    override val fragmentTag = TAG
+    override val layout = R.layout.fragment_discover_movies
 
     private val viewModel: DiscoverMoviesViewModel by viewModel()
     private val discoverMoviesAdapter = DiscoverMoviesAdapter()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupAdapter()
         setupListeners()
@@ -53,5 +55,9 @@ class DiscoverMoviesActivity : BaseActivity() {
 
     private fun showLoading(isLoading: Boolean) {
         // TODO
+    }
+
+    companion object {
+        const val TAG = "DiscoverMoviesFragment"
     }
 }

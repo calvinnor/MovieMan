@@ -7,11 +7,15 @@ object Plugins {
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
+    const val safeArgs = "androidx.navigation.safeargs"
 
     const val dependencyUpdates = "com.github.ben-manes.versions"
 
-    const val gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
-    const val gradleKotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val plugin_gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
+    const val plugin_gradleKotlin =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val plugin_safeArgs =
+        "android.arch.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
 }
 
 object Config {
@@ -47,6 +51,10 @@ object Versions {
 
     // Kotlin
     const val kotlinVersion = "1.3.10"
+
+    // Android
+    // TODO: Migrate to AndroidX
+    const val navigationComponent = "1.0.0-alpha09"
 
     // AndroidX
     const val appCompat = "1.0.2"
@@ -98,25 +106,37 @@ object Dependencies {
     // AndroidX
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-    const val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    const val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val materialComponents = "com.google.android.material:material:${Versions.materialComponents}"
+    const val materialComponents =
+        "com.google.android.material:material:${Versions.materialComponents}"
 
     // ViewModel + Lifecycle
-    const val arch_ViewModelLiveData = "androidx.lifecycle:lifecycle-extensions:${Versions.arch_viewModelLiveData}"
+    const val arch_ViewModelLiveData =
+        "androidx.lifecycle:lifecycle-extensions:${Versions.arch_viewModelLiveData}"
 
     // Room
     const val arch_Room = "androidx.room:room-runtime:${Versions.arch_Room}"
     const val arch_RoomCoroutines = "androidx.room:room-coroutines:${Versions.arch_Room}"
     const val kapt_Room = "androidx.room:room-compiler:${Versions.arch_Room}"
 
+    // Navigation
+    const val navigationFragment =
+        "android.arch.navigation:navigation-fragment-ktx:${Versions.navigationComponent}"
+    const val navigationUi =
+        "android.arch.navigation:navigation-ui-ktx:${Versions.navigationComponent}"
+
     // Gson
     const val gson = "com.google.code.gson:gson:${Versions.gson}"
-    const val gsonRetrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.gsonRetrofitConverter}"
+    const val gsonRetrofitConverter =
+        "com.squareup.retrofit2:converter-gson:${Versions.gsonRetrofitConverter}"
 
     // Coroutines
-    const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    const val coroutinesCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    const val coroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     // Retrofit
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -143,6 +163,7 @@ object Dependencies {
 
     // Android Testing
     const val androidTest_runner = "androidx.test.ext:junit:${Versions.androidTest_runner}"
-    const val androidTest_espresso = "androidx.test.espresso:espresso-core:${Versions.androidTest_espresso}"
+    const val androidTest_espresso =
+        "androidx.test.espresso:espresso-core:${Versions.androidTest_espresso}"
 
 }
