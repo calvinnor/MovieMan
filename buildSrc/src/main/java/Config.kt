@@ -62,6 +62,7 @@ object Versions {
     const val materialComponents = "1.0.0-rc01"
     const val coreKtx = "1.0.1"
     const val constraintLayout = "1.1.3"
+    const val palette = "1.0.0"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.0.0"
@@ -111,6 +112,7 @@ object Dependencies {
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val materialComponents =
         "com.google.android.material:material:${Versions.materialComponents}"
+    const val palette = "androidx.palette:palette:${Versions.palette}"
 
     // ViewModel + Lifecycle
     const val arch_ViewModelLiveData =

@@ -49,6 +49,7 @@ dependencies {
     api(Dependencies.constraintLayout)
     api(Dependencies.recyclerView)
     api(Dependencies.materialComponents)
+    api(Dependencies.palette)
 
     // Architecture Components
     api(Dependencies.arch_ViewModelLiveData)
