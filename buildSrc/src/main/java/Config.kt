@@ -50,7 +50,7 @@ object Versions {
     const val dependencyUpdates = "0.20.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.10"
+    const val kotlinVersion = "1.3.11"
 
     // Android
     // TODO: Migrate to AndroidX
@@ -70,10 +70,10 @@ object Versions {
 
     // Gson
     const val gson = "2.8.5"
-    const val gsonRetrofitConverter = "2.4.0"
+    const val gsonRetrofitConverter = "2.5.0"
 
     // Coroutines
-    const val coroutines = "1.0.1"
+    const val coroutines = "1.1.0"
 
     // Retrofit
     const val retrofit = "2.5.0"
@@ -92,8 +92,8 @@ object Versions {
     const val test_JUnit = "4.12"
 
     // Android Testing
-    const val androidTest_runner = "1.0.0"
-    const val androidTest_espresso = "3.1.0"
+    const val androidTest_runner = "1.1.0"
+    const val androidTest_espresso = "3.1.1"
 }
 
 object Dependencies {
