@@ -1,9 +1,7 @@
 package com.calvinnor.movie.discover.ui
 
-import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.calvinnor.core.extensions.ScaleType
@@ -42,14 +40,10 @@ class DiscoverMoviesAdapter : RecyclerView.Adapter<DiscoverMoviesAdapter.MovieVi
 
             clRoot.setOnClickListener {
 
-                findNavController().navigate(object : NavDirections {
-
-                    override fun getArguments(): Bundle? =
-                        MovieDetailsFragment.getBundle(movieId = uiModel.id)
-
-                    override fun getActionId() = R.id.navigateToMovieDetails
-
-                })
+                findNavController().navigate(
+                    R.id.navigateToMovieDetails,
+                    MovieDetailsFragment.getBundle(movieId = uiModel.id)
+                )
             }
         }
     }
