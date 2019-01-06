@@ -8,6 +8,15 @@ plugins {
 android {
     compileSdkVersion(App.compileSdk)
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = rootProject.file("app/keys/debug.jks")
+            storePassword = "debug123"
+            keyAlias = "debug"
+            keyPassword = "debug123"
+        }
+    }
+
     defaultConfig {
 
         minSdkVersion(App.minSdk)
@@ -16,6 +25,14 @@ android {
         applicationId = App.appId
         versionCode = App.appCode
         versionName = App.appVersion
+    }
+
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
     }
 }
 
