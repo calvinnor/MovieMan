@@ -2,6 +2,7 @@ package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.ui.BaseFragment
@@ -54,7 +55,8 @@ class DiscoverMoviesFragment : BaseFragment() {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        // TODO
+        cpbDiscover.isVisible = isLoading
+        rvDiscover.isVisible = !isLoading
     }
 
     companion object {

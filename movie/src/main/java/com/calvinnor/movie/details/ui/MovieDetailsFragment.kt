@@ -86,7 +86,7 @@ class MovieDetailsFragment : BaseFragment() {
         Palette.from(bitmap).generate { palette ->
             palette?.getDarkVibrantColor(ContextCompat.getColor(context!!, R.color.black_65))?.let {
                 fadeColors(from = ContextCompat.getColor(context!!, R.color.black_65), to = it) {
-                    nsvParent.setBackgroundColor(it)
+                    nsvParent?.setBackgroundColor(it)
                 }
             }
         }

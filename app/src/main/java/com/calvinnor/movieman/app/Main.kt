@@ -1,7 +1,9 @@
 package com.calvinnor.movieman.app
 
 import com.calvinnor.core.application.CoreApp
-import com.calvinnor.movie.commons.movieModule
+import com.calvinnor.data.AppDb
+import com.calvinnor.data.util.daoModule
+import com.calvinnor.data.util.webServiceModule
 import com.calvinnor.movie.details.di.movieDetailsModule
 import com.calvinnor.movie.discover.di.discoverMoviesModule
 
@@ -12,5 +14,10 @@ import com.calvinnor.movie.discover.di.discoverMoviesModule
 class Main : CoreApp() {
 
     override fun getFeatureModules() =
-        arrayOf(movieModule, movieDetailsModule, discoverMoviesModule)
+        arrayOf(discoverMoviesModule, movieDetailsModule)
+
+    override fun getDataModules() = arrayOf(
+        daoModule(AppDb.getDatabase(applicationContext)),
+        webServiceModule
+    )
 }

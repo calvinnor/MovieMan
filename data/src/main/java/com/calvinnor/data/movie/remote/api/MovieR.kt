@@ -1,8 +1,8 @@
-package com.calvinnor.movie.commons.data
+package com.calvinnor.data.movie.remote.api
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieR(
     @SerializedName("adult") val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("belongs_to_collection") val belongsToCollection: Any?,

@@ -1,7 +1,7 @@
-package com.calvinnor.movie.commons.data.remote
+package com.calvinnor.data.movie.remote
 
-import com.calvinnor.movie.commons.data.Movie
-import com.calvinnor.movie.commons.data.MovieListingEnvelope
+import com.calvinnor.data.movie.remote.api.MovieListingEnvelope
+import com.calvinnor.data.movie.remote.api.MovieR
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,7 +12,7 @@ interface MovieWebService {
     fun getMovie(
         @Path("movieId") movieId: String
 
-    ): Deferred<Movie>
+    ): Deferred<MovieR>
 
     @GET("/3/discover/movie?sort_by=popularity.desc")
     fun discoverPopularMovies(): Deferred<MovieListingEnvelope>

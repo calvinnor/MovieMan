@@ -53,9 +53,6 @@ dependencies {
 
     // Architecture Components
     api(Dependencies.arch_ViewModelLiveData)
-    api(Dependencies.arch_Room)
-    api(Dependencies.arch_RoomCoroutines)
-    kapt(Dependencies.kapt_Room)
 
     // Navigation
     api(Dependencies.navigationFragment)
@@ -88,7 +85,6 @@ dependencies {
     // Testing
     testImplementation(Dependencies.test_JUnit)
     testImplementation(Dependencies.test_LiveData)
-    testImplementation(Dependencies.test_Room)
 
     // Android Testing
     androidTestImplementation(Dependencies.androidTest_runner)

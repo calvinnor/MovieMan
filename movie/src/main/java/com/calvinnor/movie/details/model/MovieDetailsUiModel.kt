@@ -1,6 +1,8 @@
 package com.calvinnor.movie.details.model
 
-import com.calvinnor.movie.commons.data.Movie
+import com.calvinnor.data.movie.local.entities.MovieL
+import com.calvinnor.data.movie.remote.api.MovieR
+import com.calvinnor.movie.commons.business.buildImagePath
 
 data class MovieDetailsUiModel(
     val title: String,
@@ -10,10 +12,17 @@ data class MovieDetailsUiModel(
 
 ) {
 
-    constructor(movie: Movie) : this(
+    constructor(movie: MovieR) : this(
         title = movie.title,
         description = movie.overview,
-        backdropImage = "https://image.tmdb.org/t/p/w500${movie.backdropPath}",
-        posterImage = "https://image.tmdb.org/t/p/w500${movie.posterPath}"
+        backdropImage = buildImagePath(movie.backdropPath),
+        posterImage = buildImagePath(movie.posterPath)
+    )
+
+    constructor(movie: MovieL) : this(
+        title = movie.title,
+        description = movie.overview,
+        backdropImage = buildImagePath(movie.backdropPath),
+        posterImage = buildImagePath(movie.posterPath)
     )
 }

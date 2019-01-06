@@ -31,10 +31,16 @@ abstract class CoreApp : Application() {
         startKoin(
             this, modules = listOf(
                 androidModule(this), networkModule, storageModule, schedulerModule,
+                *getDataModules(),
                 *getFeatureModules()
             )
         )
     }
+
+    /**
+     * Return the modules for Data (Dao, WebServices)
+     */
+    abstract fun getDataModules(): Array<Module>
 
     /**
      * Return a list of feature modules for Koin to pick up.

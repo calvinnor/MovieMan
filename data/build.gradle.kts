@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.androidApplication)
+    id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
@@ -13,17 +13,21 @@ android {
         minSdkVersion(App.minSdk)
         targetSdkVersion(App.targetSdk)
 
-        applicationId = App.appId
-        versionCode = App.appCode
-        versionName = App.appVersion
+        testInstrumentationRunner = Dependencies.test_JUnitRunner
     }
 }
 
 dependencies {
+    implementation(fileTree(Dependencies.jarLibs))
 
     implementation(project(Modules.core))
-    implementation(project(Modules.data))
 
-    implementation(project(Modules.movie))
+    // Room
+    api(Dependencies.arch_Room)
+    api(Dependencies.arch_RoomCoroutines)
+    kapt(Dependencies.kapt_Room)
+
+    // Testing
+    testImplementation(Dependencies.test_Room)
 
 }

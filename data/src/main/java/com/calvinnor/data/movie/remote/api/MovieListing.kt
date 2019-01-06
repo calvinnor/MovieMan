@@ -1,4 +1,4 @@
-package com.calvinnor.movie.commons.data
+package com.calvinnor.data.movie.remote.api
 
 import com.google.gson.annotations.SerializedName
 

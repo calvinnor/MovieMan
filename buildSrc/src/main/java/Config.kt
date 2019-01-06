@@ -27,9 +27,10 @@ object Modules {
 
     const val app = ":app"
     const val core = ":core"
+    const val data = ":data"
     const val movie = ":movie"
 
-    val allModules = arrayOf(app, core, movie)
+    val allModules = arrayOf(app, core, data, movie)
 }
 
 object App {

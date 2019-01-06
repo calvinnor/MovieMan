@@ -1,7 +1,7 @@
 package com.calvinnor.movie.details.domain
 
 import com.calvinnor.core.networking.callApi
-import com.calvinnor.movie.commons.data.remote.MovieWebService
+import com.calvinnor.data.movie.remote.MovieWebService
 
 class MovieDetailsRemote(
     private val movieWebService: MovieWebService

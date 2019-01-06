@@ -12,7 +12,7 @@ import android.animation.ValueAnimator
  * @param to: The final color
  * @param update: Function which will receive color updates.
  */
-fun fadeColors(from: Int, to: Int, update: (color: Int) -> Any) {
+fun fadeColors(from: Int, to: Int, update: (color: Int) -> Unit) {
     if (from == to) return
     ValueAnimator.ofInt(from, to).apply {
         setEvaluator(ArgbEvaluator())

@@ -1,6 +1,7 @@
 package com.calvinnor.movie.discover.model
 
-import com.calvinnor.movie.commons.data.MovieListing
+import com.calvinnor.data.movie.remote.api.MovieListing
+import com.calvinnor.movie.commons.business.buildImagePath
 
 data class MovieUiModel(
     val id: String,
@@ -13,7 +14,7 @@ data class MovieUiModel(
     constructor(movie: MovieListing) : this(
         id = movie.id.toString(),
         title = movie.title,
-        backdropImage = "https://image.tmdb.org/t/p/w500${movie.backdropPath}",
+        backdropImage = buildImagePath(movie.backdropPath),
         releaseDate = movie.releaseDate
     )
 }
