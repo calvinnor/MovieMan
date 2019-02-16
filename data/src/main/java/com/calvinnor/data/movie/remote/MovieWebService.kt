@@ -5,6 +5,7 @@ import com.calvinnor.data.movie.remote.api.MovieR
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieWebService {
 
@@ -15,5 +16,8 @@ interface MovieWebService {
     ): Deferred<MovieR>
 
     @GET("/3/discover/movie?sort_by=popularity.desc")
-    fun discoverPopularMovies(): Deferred<MovieListingEnvelope>
+    fun discoverPopularMovies(
+        @Query("page") requestPage: Int
+
+    ): Deferred<MovieListingEnvelope>
 }

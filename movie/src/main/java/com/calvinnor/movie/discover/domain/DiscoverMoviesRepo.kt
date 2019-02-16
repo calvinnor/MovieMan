@@ -2,6 +2,7 @@ package com.calvinnor.movie.discover.domain
 
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.networking.ApiResult
+import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.movie.discover.model.MovieUiModel
 
 class DiscoverMoviesRepo(
@@ -9,11 +10,29 @@ class DiscoverMoviesRepo(
 
 ) : DiscoverMoviesC.Repository {
 
-    override suspend fun getPopularMovies(): Result<List<MovieUiModel>> {
-        return remote.getPopularMovies().let {
-            when (it) {
-                is ApiResult.Success -> Result.Success(it.result.results.map { MovieUiModel(it) })
-                is ApiResult.Failure -> Result.Failure(it.ex)
+    private var currentPage: Int = 0
+    private var dataItems: MutableList<MovieUiModel> = mutableListOf()
+
+    override suspend fun getPopularMovies(offset: Long): Result<Pagination.Result<MovieUiModel>> {
+        return remote.getPopularMovies(currentPage + 1).let { apiResult ->
+            when (apiResult) {
+
+                is ApiResult.Success -> {
+                    val movieUiModels = apiResult.result.results.map { MovieUiModel(it) }
+
+                    currentPage = apiResult.result.page
+                    dataItems.addAll(movieUiModels)
+
+                    // Post Pagination Success
+                    Result.Success(
+                        Pagination.Result.Append(
+                            allElements = dataItems,
+                            newPage = movieUiModels
+                        )
+                    )
+                }
+
+                is ApiResult.Failure -> Result.Failure(apiResult.ex)
             }
         }
     }

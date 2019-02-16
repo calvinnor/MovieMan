@@ -1,5 +1,6 @@
 package com.calvinnor.movie.discover.model
 
+import com.calvinnor.core.pagination.PaginatedItem
 import com.calvinnor.data.movie.remote.api.MovieListing
 import com.calvinnor.movie.commons.business.buildImagePath
 
@@ -9,7 +10,7 @@ data class MovieUiModel(
     val backdropImage: String,
     val releaseDate: String
 
-) {
+) : PaginatedItem {
 
     constructor(movie: MovieListing) : this(
         id = movie.id.toString(),

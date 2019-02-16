@@ -2,22 +2,23 @@ package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.observe
+import com.calvinnor.core.pagination.Pagination
+import com.calvinnor.core.pagination.PaginationListener
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
 import com.calvinnor.movie.discover.viewmodel.DiscoverMoviesViewModel
 import kotlinx.android.synthetic.main.fragment_discover_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiscoverMoviesFragment : BaseFragment() {
+class DiscoverMoviesFragment : BaseFragment(), PaginationListener {
 
     override val fragmentTag = TAG
     override val layout = R.layout.fragment_discover_movies
 
     private val viewModel: DiscoverMoviesViewModel by viewModel()
-    private val discoverMoviesAdapter = DiscoverMoviesAdapter()
+    private val discoverMoviesAdapter = DiscoverMoviesAdapter(this)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +28,10 @@ class DiscoverMoviesFragment : BaseFragment() {
         fetchData()
     }
 
+    override fun onNewRequest(request: Pagination.Request) {
+        viewModel.getMoreMovies()
+    }
+
     private fun setupAdapter() {
         rvDiscover.adapter = discoverMoviesAdapter
     }
@@ -34,11 +39,9 @@ class DiscoverMoviesFragment : BaseFragment() {
     private fun setupListeners() {
         viewModel.discoverMovies.observe(this) {
             when (it) {
-                is Result.Loading -> showLoading(true)
 
                 is Result.Success -> {
-                    showLoading(false)
-                    discoverMoviesAdapter.setItems(it.data)
+                    discoverMoviesAdapter.setResult(it.data)
                 }
 
                 is Result.Failure -> showError(it.ex)
@@ -47,16 +50,11 @@ class DiscoverMoviesFragment : BaseFragment() {
     }
 
     private fun fetchData() {
-        viewModel.getMovieDetails()
+        viewModel.getMovies()
     }
 
     private fun showError(ex: Throwable) {
         // TODO
-    }
-
-    private fun showLoading(isLoading: Boolean) {
-        cpbDiscover.isVisible = isLoading
-        rvDiscover.isVisible = !isLoading
     }
 
     companion object {
