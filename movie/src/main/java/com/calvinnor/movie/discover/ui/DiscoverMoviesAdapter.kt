@@ -8,7 +8,7 @@ import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.inflate
 import com.calvinnor.core.extensions.setImage
 import com.calvinnor.movie.R
-import com.calvinnor.movie.details.ui.MovieDetailsFragment
+import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
 import com.calvinnor.movie.discover.model.MovieUiModel
 import kotlinx.android.synthetic.main.item_movie.view.*
 
@@ -42,8 +42,7 @@ class DiscoverMoviesAdapter : RecyclerView.Adapter<DiscoverMoviesAdapter.MovieVi
 
                 findNavController().navigate(
                     R.id.navigateToMovieDetails,
-                    MovieDetailsFragment.getBundle(movieId = uiModel.id)
-                )
+                    MovieDetailsFragmentArgs(movieId = uiModel.id).toBundle())
             }
         }
     }

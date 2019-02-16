@@ -6,6 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.isVisible
+import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.ScaleType
@@ -25,12 +26,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     override val layout = R.layout.fragment_movie_details
     private val viewModel: MovieDetailsViewModel by viewModel()
-    private val movieId by lazy {
-        arguments.let {
-            if (it == null) throw IllegalStateException("Need a movie ID!")
-            else it.getString(KEY_MOVIE_ID)
-        }
-    }
+    private val navArgs: MovieDetailsFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,7 +51,7 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun fetchData() {
-        viewModel.getMovieDetails(movieId = movieId)
+        viewModel.getMovieDetails(movieId = navArgs.movieId)
     }
 
     private fun showError(ex: Throwable) {
@@ -94,11 +90,5 @@ class MovieDetailsFragment : BaseFragment() {
 
     companion object {
         const val TAG = "MovieDetailsFragment"
-
-        private const val KEY_MOVIE_ID = "movie_id"
-
-        fun getBundle(movieId: String) = Bundle().apply {
-            putString(KEY_MOVIE_ID, movieId)
-        }
     }
 }

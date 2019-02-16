@@ -3,6 +3,7 @@ plugins {
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
+    id(Plugins.safeArgs)
 }
 
 android {

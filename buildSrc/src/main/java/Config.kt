@@ -7,7 +7,7 @@ object Plugins {
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
-    const val safeArgs = "androidx.navigation.safeargs"
+    const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
     const val dependencyUpdates = "com.github.ben-manes.versions"
 
@@ -47,15 +47,15 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "3.3.0-rc03"
+    const val gradleTools = "3.3.1"
     const val dependencyUpdates = "0.20.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.11"
+    const val kotlinVersion = "1.3.21"
 
     // Android
     // TODO: Migrate to AndroidX
-    const val navigationComponent = "1.0.0-alpha09"
+    const val navigationComponent = "1.0.0-beta02"
 
     // AndroidX
     const val appCompat = "1.0.2"
@@ -74,7 +74,7 @@ object Versions {
     const val gsonRetrofitConverter = "2.5.0"
 
     // Coroutines
-    const val coroutines = "1.1.0"
+    const val coroutines = "1.1.1"
 
     // Retrofit
     const val retrofit = "2.5.0"
