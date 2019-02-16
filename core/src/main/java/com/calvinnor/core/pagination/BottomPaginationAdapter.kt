@@ -2,6 +2,7 @@ package com.calvinnor.core.pagination
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.calvinnor.core.utils.DiffUtilCallback
 
 /**
  * The [BottomPaginationAdapter] class provides an implementation to manage bottom data
@@ -40,11 +41,10 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
             is Pagination.Result.Replace -> replaceAll(result.newElements)
 
             is Pagination.Result.Append -> {
-                if (dataItems.isEmpty()) replaceAll(result.allElements)
-                else addItemsAtBottom(result.newPage)
+                diffResult(result).dispatchUpdatesTo(this)
+                dataItems.clear(); dataItems.addAll(result.allElements)
             }
         }
-
     }
 
     /**
@@ -61,6 +61,11 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
      * Override this method to bind a ViewHolder
      */
     abstract fun onBindVH(holder: PaginationViewHolder, position: Int)
+
+    /**
+     * Override this method to provide a comparator for IDs
+     */
+    abstract fun areItemsSame(oldItem: DataItem, newItem: DataItem): Boolean
 
     // Returning +1 to show the Loader
     final override fun getItemCount() = dataItems.count() + 1
@@ -103,17 +108,6 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
         dataItems.clear(); notifyDataSetChanged()
     }
 
-    /**
-     * Appends the provided list at the bottom of the [RecyclerView]
-     *
-     * @param newList The list containing new elements for the [RecyclerView]
-     */
-    private fun addItemsAtBottom(newList: List<DataItem>) {
-        val currentSize = dataItems.size
-        dataItems.addAll(newList)
-        notifyItemRangeInserted(currentSize, dataItems.size)
-    }
-
     private fun handlePagination(position: Int) {
         if (onBottomRequested) return
 
@@ -122,6 +116,19 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
             onBottomReached(dataItems[dataItems.count() - 1], dataItems.count())
         }
     }
+
+    private fun diffResult(result: Pagination.Result.Append<DataItem>) = object :
+        DiffUtilCallback<DataItem>(oldList = dataItems, newList = result.allElements) {
+
+        override fun areItemsTheSame(
+            oldItemPosition: Int,
+            newItemPosition: Int
+        ) = areItemsSame(
+            dataItems[oldItemPosition],
+            result.allElements[newItemPosition]
+        )
+
+    }.getResult()
 
     /**
      * To be called when the last item of the [RecyclerView]'s data adapter is bounded to

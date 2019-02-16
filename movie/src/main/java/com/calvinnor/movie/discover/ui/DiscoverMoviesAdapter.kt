@@ -25,6 +25,9 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
         if (holder is MovieViewHolder) holder.bind(dataItems[position])
     }
 
+    override fun areItemsSame(oldItem: MovieUiModel, newItem: MovieUiModel) =
+        oldItem.id == newItem.id
+
     class MovieViewHolder(rootView: View) : PaginationViewHolder(rootView) {
 
         fun bind(uiModel: MovieUiModel) = with(itemView) {
