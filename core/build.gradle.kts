@@ -45,11 +45,18 @@ dependencies {
 
     // AndroidX
     api(Dependencies.appCompat)
-    api(Dependencies.coreKtx)
     api(Dependencies.constraintLayout)
     api(Dependencies.recyclerView)
     api(Dependencies.materialComponents)
     api(Dependencies.palette)
+
+    // KTX
+    api(Dependencies.ktx_Core)
+    api(Dependencies.ktx_Fragment)
+    api(Dependencies.ktx_Palette)
+    api(Dependencies.ktx_Collections)
+    api(Dependencies.ktx_LifecycleViewModel)
+    api(Dependencies.ktx_ReactiveStreams)
 
     // Architecture Components
     api(Dependencies.arch_ViewModelLiveData)

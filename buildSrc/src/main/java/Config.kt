@@ -57,7 +57,6 @@ object Versions {
     const val appCompat = "1.0.2"
     const val recyclerView = "1.0.0"
     const val materialComponents = "1.0.0-rc01"
-    const val coreKtx = "1.0.1"
     const val constraintLayout = "1.1.3"
     const val palette = "1.0.0"
     const val navigationComponent = "1.0.0-rc02"
@@ -86,6 +85,14 @@ object Versions {
     // Koin
     const val koin = "1.0.2"
 
+    // KTX
+    const val ktx_Core = "1.0.0"
+    const val ktx_Fragment = ktx_Core
+    const val ktx_Palette = ktx_Core
+    const val ktx_Collections = ktx_Core
+    const val ktx_LifecycleViewModel = "2.0.0"
+    const val ktx_ReactiveStreams = ktx_LifecycleViewModel
+
     // Testing
     const val test_JUnit = "4.12"
 
@@ -107,7 +114,6 @@ object Dependencies {
 
     // AndroidX
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
@@ -158,6 +164,16 @@ object Dependencies {
     const val koinAndroidX = "org.koin:koin-androidx-scope:${Versions.koin}"
     const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
 
+    // KTX
+    const val ktx_Core = "androidx.core:core-ktx:${Versions.ktx_Core}"
+    const val ktx_Fragment = "androidx.fragment:fragment-ktx:${Versions.ktx_Fragment}"
+    const val ktx_Palette = "androidx.palette:palette-ktx:${Versions.ktx_Palette}"
+    const val ktx_Collections = "androidx.collection:collection-ktx:${Versions.ktx_Collections}"
+    const val ktx_LifecycleViewModel =
+        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ktx_LifecycleViewModel}"
+    const val ktx_ReactiveStreams =
+        "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.ktx_ReactiveStreams}"
+
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
@@ -165,7 +181,8 @@ object Dependencies {
     const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
 
     // Mockito
-    const val test_MockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
+    const val test_MockitoKotlin =
+        "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
 
     // Android Testing
     const val androidTest_runner = "androidx.test.ext:junit:${Versions.androidTest_runner}"
