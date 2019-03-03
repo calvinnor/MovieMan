@@ -3,7 +3,7 @@ package com.calvinnor.core.domain
 sealed class Result<out T> {
 
     /** Denotes that we are loading something **/
-    data class Loading<T>(val isLoading: Boolean) : Result<T>()
+    data class Loading<T>(val isLoading: Boolean = true) : Result<T>()
 
     /** Denotes that we have data **/
     data class Success<T>(val data: T) : Result<T>()
