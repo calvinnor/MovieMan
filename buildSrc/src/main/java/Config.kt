@@ -48,14 +48,10 @@ object Versions {
 
     // Gradle
     const val gradleTools = "3.3.1"
-    const val dependencyUpdates = "0.20.0"
+    const val dependencyUpdates = "0.21.0"
 
     // Kotlin
     const val kotlinVersion = "1.3.21"
-
-    // Android
-    // TODO: Migrate to AndroidX
-    const val navigationComponent = "1.0.0-beta02"
 
     // AndroidX
     const val appCompat = "1.0.2"
@@ -64,10 +60,11 @@ object Versions {
     const val coreKtx = "1.0.1"
     const val constraintLayout = "1.1.3"
     const val palette = "1.0.0"
+    const val navigationComponent = "1.0.0-rc02"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.0.0"
-    const val arch_Room = "2.1.0-alpha03"
+    const val arch_Room = "2.1.0-alpha04"
 
     // Gson
     const val gson = "2.8.5"
@@ -84,13 +81,16 @@ object Versions {
     const val stetho = "1.5.0"
 
     // Glide
-    const val glide = "4.8.0"
+    const val glide = "4.9.0"
 
     // Koin
     const val koin = "1.0.2"
 
     // Testing
     const val test_JUnit = "4.12"
+
+    // Mockito
+    const val mockitoKotlin = "2.1.0"
 
     // Android Testing
     const val androidTest_runner = "1.1.0"
@@ -163,6 +163,9 @@ object Dependencies {
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
     const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_viewModelLiveData}"
     const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
+
+    // Mockito
+    const val test_MockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"
 
     // Android Testing
     const val androidTest_runner = "androidx.test.ext:junit:${Versions.androidTest_runner}"
