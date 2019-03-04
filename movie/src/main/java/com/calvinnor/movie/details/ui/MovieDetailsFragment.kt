@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.ScaleType
 import com.calvinnor.core.extensions.observe
+import com.calvinnor.core.extensions.setDimensions
 import com.calvinnor.core.extensions.setImage
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
@@ -19,6 +21,7 @@ import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.roundToInt
 
 class MovieDetailsFragment : BaseFragment() {
 
@@ -31,8 +34,14 @@ class MovieDetailsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setPosterHeight()
         setupListeners()
         fetchData()
+    }
+
+    /* Avoid "Overview" title jumping while poster image loads */
+    private fun setPosterHeight() = ivPoster.doOnPreDraw {
+        it.setDimensions(newHeight = (it.measuredWidth * ASPECT_RATIO).roundToInt())
     }
 
     private fun setupListeners() {
@@ -102,5 +111,7 @@ class MovieDetailsFragment : BaseFragment() {
 
     companion object {
         const val TAG = "MovieDetailsFragment"
+
+        private const val ASPECT_RATIO = 1.5
     }
 }

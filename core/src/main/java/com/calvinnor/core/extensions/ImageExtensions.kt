@@ -5,6 +5,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
@@ -13,6 +14,7 @@ import com.bumptech.glide.request.target.Target
 fun ImageView.setImage(
     imageUrl: String,
     scaleType: ScaleType = ScaleType.FIT_CENTER,
+    fadeIn: Boolean = true,
     onSuccess: (drawable: Drawable) -> Unit = {},
     onFailure: () -> Unit = {}
 
@@ -25,6 +27,9 @@ fun ImageView.setImage(
                 ScaleType.CENTER_CROP -> RequestOptions.centerCropTransform()
             }
         )
+        .apply {
+            if (fadeIn) transition(DrawableTransitionOptions.withCrossFade())
+        }
         .addListener(object : RequestListener<Drawable> {
 
             override fun onLoadFailed(
