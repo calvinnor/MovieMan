@@ -2,15 +2,16 @@ package com.calvinnor.core.dependencies
 
 import com.calvinnor.core.BuildConfig
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.google.gson.Gson
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import org.koin.dsl.module.module
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 
 private const val BASE_URL = "baseUrl"
 private const val USE_INTERCEPTOR = "useInterceptor"
@@ -51,11 +52,11 @@ val networkModule = module {
         }.build()
     }
 
-    /** Gson **/
-    single { Gson() }
+    /** Moshi **/
+    single { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
 
-    /** Gson parsing for Retrofit **/
-    single<Converter.Factory> { GsonConverterFactory.create(get()) }
+    /** Moshi parsing for Retrofit **/
+    single<Converter.Factory> { MoshiConverterFactory.create(get()) }
 
     /** Retrofit **/
     single<Retrofit> {

@@ -65,9 +65,9 @@ object Versions {
     const val arch_viewModelLiveData = "2.0.0"
     const val arch_Room = "2.1.0-alpha04"
 
-    // Gson
-    const val gson = "2.8.5"
-    const val gsonRetrofitConverter = "2.5.0"
+    // Moshi
+    const val moshi = "1.8.0"
+    const val moshiRetrofitConverter = "2.5.0"
 
     // Coroutines
     const val coroutines = "1.1.1"
@@ -136,10 +136,11 @@ object Dependencies {
     const val navigationUi =
         "android.arch.navigation:navigation-ui-ktx:${Versions.navigationComponent}"
 
-    // Gson
-    const val gson = "com.google.code.gson:gson:${Versions.gson}"
-    const val gsonRetrofitConverter =
-        "com.squareup.retrofit2:converter-gson:${Versions.gsonRetrofitConverter}"
+    // Moshi
+    const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
+    const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:${Versions.moshi}"
+    const val moshiRetrofitConverter =
+        "com.squareup.retrofit2:converter-moshi:${Versions.moshiRetrofitConverter}"
 
     // Coroutines
     const val coroutinesCore =

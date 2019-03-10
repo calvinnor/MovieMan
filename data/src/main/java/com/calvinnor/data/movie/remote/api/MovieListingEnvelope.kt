@@ -1,11 +1,10 @@
 package com.calvinnor.data.movie.remote.api
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 data class MovieListingEnvelope(
-    @SerializedName("page") val page: Int,
-    @SerializedName("total_results") val totalResults: Long,
-    @SerializedName("total_pages") val totalPages: Long,
-    @SerializedName("results") val results: List<MovieListing>
-
+    @Json(name = "page") val page: Int,
+    @Json(name = "total_results") val totalResults: Long,
+    @Json(name = "total_pages") val totalPages: Long,
+    @Json(name = "results") val results: List<MovieListing>
 )
