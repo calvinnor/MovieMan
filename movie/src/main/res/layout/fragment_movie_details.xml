@@ -45,7 +45,7 @@
             android:id="@+id/ivBackdrop"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="1,2"
+            app:layout_constraintDimensionRatio="@string/aspect_ratio_movie_backdrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
