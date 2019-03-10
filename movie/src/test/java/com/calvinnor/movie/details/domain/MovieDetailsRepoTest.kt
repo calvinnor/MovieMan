@@ -120,13 +120,15 @@ class MovieDetailsRepoTest {
 
     companion object {
 
+        private val TEST_DATE = Date()
+
         private val TEST_REMOTE_MOVIE = MovieR(
             id = 2,
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
             posterPath = "https://kotlinlang.org/poster.png",
-            releaseDate = Date()
+            releaseDate = TEST_DATE
         )
 
         private val TEST_LOCAL_MOVIE = MovieL(
@@ -135,7 +137,7 @@ class MovieDetailsRepoTest {
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
             posterPath = "https://kotlinlang.org/poster.png",
-            releaseDate = Date()
+            releaseDate = TEST_DATE
         )
 
         private val TEST_EXCEPTION = NoDataException()
