@@ -20,4 +20,8 @@
     <dimen name="padding_small">4dp</dimen>
     <dimen name="padding_tiny">2dp</dimen>
 
+    <!-- Line Spacing -->
+    <dimen name="line_spacing_small">2dp</dimen>
+    <dimen name="line_spacing_tiny">1.5dp</dimen>
+
 </resources>

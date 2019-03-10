@@ -11,6 +11,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.util.*
 
 /**
  * Tests the interaction between Local layer and Room.
@@ -76,7 +77,8 @@ class MovieDetailsLocalTest {
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
-            posterPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"
+            posterPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
+            releaseDate = Date()
         )
 
         private val TEST_EXCEPTION = NoDataException()

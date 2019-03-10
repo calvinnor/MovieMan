@@ -5,6 +5,9 @@ import com.squareup.moshi.ToJson
 import java.text.SimpleDateFormat
 import java.util.*
 
+private const val DATE_TIME_FORMAT = "yyyy-MM-dd"
+private val dateFormat = SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH)
+
 /**
  * Converts to / from Date Format yyyy-MM-dd
  *
@@ -13,13 +16,15 @@ import java.util.*
 class DateTimeAdapter {
 
     @ToJson
-    fun toJson(date: Date): String = dateFormat.format(date)
+    fun toJson(date: Date): String = dateToString(date)
 
     @FromJson
-    fun fromJson(dateStr: String): Date = dateFormat.parse(dateStr)
+    fun fromJson(date: String): Date = stringToDate(date)
 
     companion object {
-        private const val DATE_TIME_FORMAT = "yyyy-MM-dd"
-        private val dateFormat = SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH)
+
+        fun dateToString(date: Date): String = dateFormat.format(date)
+
+        fun stringToDate(date: String): Date = dateFormat.parse(date)
     }
 }

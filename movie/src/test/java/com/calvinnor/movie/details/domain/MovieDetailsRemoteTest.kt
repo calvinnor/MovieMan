@@ -12,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import java.io.IOException
+import java.util.*
 
 /**
  * Tests the interaction between Remote & WebService layer.
@@ -69,7 +70,8 @@ class MovieDetailsRemoteTest {
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
-            posterPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"
+            posterPath = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
+            releaseDate = Date()
         )
 
         private val NETWORK_EXCEPTION by lazy { IOException("Bad Network") }

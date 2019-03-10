@@ -117,7 +117,8 @@ class MovieDetailsViewModelTest {
             title = "Hello World",
             description = "A new program written in Kotlin emerges",
             backdropImage = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
-            posterImage = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"
+            posterImage = "https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png",
+            releaseYear = "2019"
         )
 
         private val TEST_EXCEPTION = NoDataException()

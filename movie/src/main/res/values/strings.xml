@@ -4,5 +4,6 @@
     <!-- Movie Details -->
     <string name="movie_details_overview">Overview</string>
     <string name="title_movie">Module Title</string>
+    <string name="movie_details_year">(%1$s)</string>
 
 </resources>

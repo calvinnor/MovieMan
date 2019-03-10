@@ -5,6 +5,7 @@ import com.calvinnor.data.movie.remote.api.MovieR
 import com.calvinnor.movie.commons.business.buildImagePath
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.util.*
 
 /**
  * Tests the conversion from Local / Remote models to UiModels
@@ -26,6 +27,9 @@ class MovieDetailsUiModelTest {
             buildImagePath("https://kotlinlang.org/poster.png"),
             remoteUiModel.posterImage
         )
+        assertEquals(
+            "2019", remoteUiModel.releaseYear
+        )
     }
 
     @Test
@@ -43,16 +47,22 @@ class MovieDetailsUiModelTest {
             buildImagePath("https://kotlinlang.org/poster.png"),
             localUiModel.posterImage
         )
+        assertEquals(
+            "2019", localUiModel.releaseYear
+        )
     }
 
     companion object {
+
+        private val TEST_DATE = Calendar.getInstance().apply { set(Calendar.YEAR, 2019) }.time
 
         private val TEST_REMOTE_MOVIE = MovieR(
             id = 2,
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
-            posterPath = "https://kotlinlang.org/poster.png"
+            posterPath = "https://kotlinlang.org/poster.png",
+            releaseDate = TEST_DATE
         )
 
         private val TEST_LOCAL_MOVIE = MovieL(
@@ -60,7 +70,9 @@ class MovieDetailsUiModelTest {
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
-            posterPath = "https://kotlinlang.org/poster.png"
+            posterPath = "https://kotlinlang.org/poster.png",
+            releaseDate = TEST_DATE
         )
+
     }
 }

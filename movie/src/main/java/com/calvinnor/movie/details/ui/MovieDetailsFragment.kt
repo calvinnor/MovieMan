@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewAnimationUtils
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
+import androidx.core.text.bold
+import androidx.core.text.buildSpannedString
+import androidx.core.text.color
+import androidx.core.text.scale
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.calvinnor.core.domain.Result
-import com.calvinnor.core.extensions.ScaleType
-import com.calvinnor.core.extensions.observe
-import com.calvinnor.core.extensions.setDimensions
-import com.calvinnor.core.extensions.setImage
+import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
@@ -73,7 +74,7 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun setData(uiModel: MovieDetailsUiModel) = with(uiModel) {
-        tvTitle.text = title
+        tvTitle.text = buildTitleWithReleaseDate(uiModel)
         tvOverviewDesc.text = description
         ivBackdrop.setImage(
             imageUrl = backdropImage,
@@ -110,9 +111,25 @@ class MovieDetailsFragment : BaseFragment() {
             .start()
     }
 
+    private fun buildTitleWithReleaseDate(uiModel: MovieDetailsUiModel) = buildSpannedString {
+        // Title is bold
+        bold { append(uiModel.title) }
+
+        // Space after the title
+        append(" ")
+
+        // Release year is secondary color, with 80% size
+        scale(RELEASE_YEAR_RELATIVE_SIZE) {
+            color(colorFrom(R.color.text_secondary)) {
+                append(getString(R.string.movie_details_year, uiModel.releaseYear))
+            }
+        }
+    }
+
     companion object {
         const val TAG = "MovieDetailsFragment"
 
         private const val ASPECT_RATIO = 1.5
+        private const val RELEASE_YEAR_RELATIVE_SIZE = 0.8f
     }
 }

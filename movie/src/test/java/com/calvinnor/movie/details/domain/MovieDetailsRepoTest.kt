@@ -10,6 +10,7 @@ import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import java.util.*
 
 /**
  * Tests the interaction between Repo, Local & Remote.
@@ -124,7 +125,8 @@ class MovieDetailsRepoTest {
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
-            posterPath = "https://kotlinlang.org/poster.png"
+            posterPath = "https://kotlinlang.org/poster.png",
+            releaseDate = Date()
         )
 
         private val TEST_LOCAL_MOVIE = MovieL(
@@ -132,7 +134,8 @@ class MovieDetailsRepoTest {
             title = "Hello World",
             overview = "A new program written in Kotlin emerges",
             backdropPath = "https://kotlinlang.org/backdrop.png",
-            posterPath = "https://kotlinlang.org/poster.png"
+            posterPath = "https://kotlinlang.org/poster.png",
+            releaseDate = Date()
         )
 
         private val TEST_EXCEPTION = NoDataException()
