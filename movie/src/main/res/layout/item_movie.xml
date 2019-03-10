@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/margin_small"
-    android:layout_marginTop="@dimen/margin_tiny"
-    android:layout_marginEnd="@dimen/margin_small"
-    android:layout_marginBottom="@dimen/margin_tiny"
+    android:layout_marginStart="@dimen/margin_medium"
+    android:layout_marginTop="@dimen/margin_small"
+    android:layout_marginEnd="@dimen/margin_medium"
+    android:layout_marginBottom="@dimen/margin_small"
     tools:showIn="@layout/fragment_discover_movies">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,24 +32,30 @@
             android:layout_height="wrap_content"
             android:background="@color/black_full"
             android:orientation="vertical"
-            android:padding="@dimen/padding_small_medium"
+            android:padding="@dimen/padding_medium_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ivBackdrop">
 
             <TextView
                 android:id="@+id/tvTitle"
-                style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_dark_faded"
+                android:ellipsize="end"
                 android:maxLines="@integer/max_lines_title"
                 android:textColor="@color/text_primary"
                 android:textSize="@dimen/text_medium_small"
-                app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
-                app:layout_constraintEnd_toEndOf="@id/ivBackdrop"
-                app:layout_constraintStart_toStartOf="@id/ivBackdrop"
+                android:textStyle="bold"
                 tools:text="Fight Club" />
+
+            <TextView
+                android:id="@+id/tvRelease"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_tiny"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_small"
+                tools:text="January 3, 2017" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

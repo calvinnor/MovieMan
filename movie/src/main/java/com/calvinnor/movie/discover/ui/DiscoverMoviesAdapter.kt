@@ -33,6 +33,7 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
         fun bind(uiModel: MovieUiModel) = with(itemView) {
             ivBackdrop.setImage(uiModel.backdropImage, scaleType = ScaleType.CENTER_CROP)
             tvTitle.text = uiModel.title
+            tvRelease.text = uiModel.releaseDate
 
             clRoot.setOnClickListener {
 

@@ -1,6 +1,7 @@
 package com.calvinnor.core.dependencies
 
 import com.calvinnor.core.BuildConfig
+import com.calvinnor.core.networking.adapters.DateTimeAdapter
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
@@ -53,7 +54,12 @@ val networkModule = module {
     }
 
     /** Moshi **/
-    single { Moshi.Builder().add(KotlinJsonAdapterFactory()).build() }
+    single {
+        Moshi.Builder()
+            .add(KotlinJsonAdapterFactory())
+            .add(DateTimeAdapter())
+            .build()
+    }
 
     /** Moshi parsing for Retrofit **/
     single<Converter.Factory> { MoshiConverterFactory.create(get()) }
