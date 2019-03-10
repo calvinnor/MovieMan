@@ -78,7 +78,8 @@ class MovieDetailsFragment : BaseFragment() {
         ivBackdrop.setImage(
             imageUrl = backdropImage,
             scaleType = ScaleType.CENTER_CROP,
-            onSuccess = { extractDarkColorAndCircularReveal(it.toBitmap()) }
+            onSuccess = { extractDarkColorAndCircularReveal(it.toBitmap()) },
+            fadeIn = false
         )
 
         ivPoster.setImage(

@@ -4,8 +4,13 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#01D277</color>
 
-    <color name="text_white">#F3F3F3</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_hint">#80FFFFFF</color>
+    <color name="text_disabled">@color/text_hint</color>
 
+    <color name="black_full">@android:color/black</color>
     <color name="black_65">#A6000000</color>
+    <color name="dark_grey">#212121</color>
 
 </resources>

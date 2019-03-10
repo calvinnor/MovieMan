@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:paddingTop="@dimen/padding_tiny"
-    android:paddingBottom="@dimen/padding_tiny">
+    android:paddingBottom="@dimen/padding_tiny"
+    tools:context=".commons.ui.MoviesActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDiscover"
