@@ -27,10 +27,9 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
      * @param result The result from data sources. Also includes the type of O/p to perform.
      */
     fun setResult(result: Pagination.Result<DataItem>) {
-        clearState()
 
         // Notify that we've removed the Loader
-        notifyItemRemoved(itemCount)
+        notifyItemRemoved(itemCount - 1)
 
         when (result) {
 
@@ -41,10 +40,19 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
             is Pagination.Result.Replace -> replaceAll(result.newElements)
 
             is Pagination.Result.Append -> {
-                diffResult(result).dispatchUpdatesTo(this)
-                dataItems.clear(); dataItems.addAll(result.allElements)
+                when {
+                    dataItems.isEmpty() -> replaceAll(result.allElements)
+                    onBottomRequested -> addItemsAtBottom(result.newPage)
+
+                    else -> { // Let DiffUtil handle this
+                        diffResult(result).dispatchUpdatesTo(this)
+                        dataItems.clear(); dataItems.addAll(result.allElements)
+                    }
+                }
             }
         }
+
+        clearState()
     }
 
     /**
@@ -106,6 +114,17 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
 
     private fun clearAllItems() {
         dataItems.clear(); notifyDataSetChanged()
+    }
+
+    /**
+     * Appends the provided list at the bottom of the [RecyclerView]
+     *
+     * @param newList The list containing new elements for the [RecyclerView]
+     */
+    private fun addItemsAtBottom(newList: List<DataItem>) {
+        val currentSize = dataItems.size
+        dataItems.addAll(newList)
+        notifyItemRangeInserted(currentSize, dataItems.size)
     }
 
     private fun handlePagination(position: Int) {
