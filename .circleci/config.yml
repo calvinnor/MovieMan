@@ -39,7 +39,15 @@ jobs:
           when: always
 
       - store_test_results:
-                path: ~/test-results
+          path: ~/test-results
 
       - store_artifacts:
-                path: ~/test-results/junit
+          path: ~/test-results/junit
+
+      - run:
+          name: Release Build
+          command: ./gradlew clean app:assembleRelease --no-daemon --stacktrace
+
+      - store_artifacts:
+          path: app/build/outputs/apk/
+          destination: apks/
