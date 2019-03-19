@@ -8,6 +8,7 @@ jobs:
       JVM_OPTS: -Xmx3200m
     steps:
       - checkout
+
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
       #      - run:
@@ -16,19 +17,29 @@ jobs:
       - run:
           name: Approve license for build tools
           command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
+
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
+
       - run:
           name: Run Tests
           command: ./gradlew lint test
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ 
-          path: app/build/reports
-          destination: reports
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
+
+      - run:
+          name: Save test results
+          command: |
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
+          when: always
+
+      - store_test_results:
+                path: ~/test-results
+
+      - store_artifacts:
+                path: ~/test-results/junit
