@@ -15,16 +15,6 @@ android {
 
         testInstrumentationRunner = Dependencies.test_JUnitRunner
 
-        /* To create an API key, go to "https://www.themoviedb.org/settings/api" after creating an account */
-        /* Create a Properties.kt file in buildSrc/src/main/java/ and paste the following code:
-
-        object TMDB {
-            const val BASE_URL = "https://api.themoviedb.org/"
-            const val API_KEY = "yourApiKeyGoesHere"
-        }
-
-        */
-
         buildConfigField("String", "API_KEY", "\"${TMDB.API_KEY}\"")
         buildConfigField("String", "BASE_URL", "\"${TMDB.BASE_URL}\"")
     }
