@@ -15,6 +15,13 @@ android {
             keyAlias = "debug"
             keyPassword = "debug123"
         }
+
+        create("release") {
+            storeFile = rootProject.file("app/keys/release.jks")
+            storePassword = System.getenv("MM_PASSWORD")
+            keyAlias = System.getenv("MM_ALIAS")
+            keyPassword = System.getenv("MM_PASSWORD")
+        }
     }
 
     defaultConfig {
@@ -32,6 +39,15 @@ android {
             signingConfig = signingConfigs.getByName("debug")
             applicationIdSuffix = ".debug"
             versionNameSuffix = "-debug"
+
+            isMinifyEnabled = Config.debug_minifyEnabled
+        }
+
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+
+            isMinifyEnabled = Config.release_minifyEnabled
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 }

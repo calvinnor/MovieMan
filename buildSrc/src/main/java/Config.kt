@@ -21,6 +21,7 @@ object Plugins {
 object Config {
 
     const val release_minifyEnabled = true
+    const val debug_minifyEnabled = false
 }
 
 object Modules {
