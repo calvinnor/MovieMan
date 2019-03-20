@@ -5,8 +5,8 @@ import com.calvinnor.movie.details.domain.MovieDetailsLocal
 import com.calvinnor.movie.details.domain.MovieDetailsRemote
 import com.calvinnor.movie.details.domain.MovieDetailsRepo
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 val movieDetailsModule = module {
 

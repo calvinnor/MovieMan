@@ -84,7 +84,7 @@ object Versions {
     const val glide = "4.9.0"
 
     // Koin
-    const val koin = "1.0.2"
+    const val koin = "2.0.0-beta-4"
 
     // KTX
     const val ktx_Core = "1.0.0"

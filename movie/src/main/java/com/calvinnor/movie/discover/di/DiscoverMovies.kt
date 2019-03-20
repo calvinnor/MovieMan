@@ -4,8 +4,8 @@ import com.calvinnor.movie.discover.domain.DiscoverMoviesC
 import com.calvinnor.movie.discover.domain.DiscoverMoviesRemote
 import com.calvinnor.movie.discover.domain.DiscoverMoviesRepo
 import com.calvinnor.movie.discover.viewmodel.DiscoverMoviesViewModel
-import org.koin.androidx.viewmodel.ext.koin.viewModel
-import org.koin.dsl.module.module
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
 val discoverMoviesModule = module {
 

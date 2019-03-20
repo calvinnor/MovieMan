@@ -8,7 +8,8 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import org.koin.dsl.module.module
+import org.koin.core.qualifier.StringQualifier
+import org.koin.dsl.module
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
@@ -28,13 +29,13 @@ val networkModule = module {
     single<Interceptor> { StethoInterceptor() }
 
     /** Base URL for Retrofit **/
-    single(name = BASE_URL) { BuildConfig.BASE_URL }
+    single(qualifier = StringQualifier(BASE_URL)) { BuildConfig.BASE_URL }
 
     /** Use the Stetho interceptor **/
-    single(name = USE_INTERCEPTOR) { BuildConfig.DEBUG }
+    single(qualifier = StringQualifier(USE_INTERCEPTOR)) { BuildConfig.DEBUG }
 
     /** OkHttp client for Retrofit **/
-    single<OkHttpClient> {
+    single {
         OkHttpClient.Builder().apply {
             addInterceptor { chain ->
                 val originalRequest = chain.request()
@@ -48,7 +49,7 @@ val networkModule = module {
                 )
             }
 
-            if (get(name = USE_INTERCEPTOR)) addNetworkInterceptor(get())
+            if (get(qualifier = StringQualifier(USE_INTERCEPTOR))) addNetworkInterceptor(get())
 
         }.build()
     }
@@ -65,9 +66,9 @@ val networkModule = module {
     single<Converter.Factory> { MoshiConverterFactory.create(get()) }
 
     /** Retrofit **/
-    single<Retrofit> {
+    single {
         Retrofit.Builder().apply {
-            baseUrl(get<String>(name = BASE_URL))
+            baseUrl(get<String>(qualifier = StringQualifier(BASE_URL)))
             client(get())
             addCallAdapterFactory(get())
             addConverterFactory(get())

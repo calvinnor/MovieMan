@@ -1,7 +1,7 @@
 package com.calvinnor.core.dependencies
 
 import android.content.Context
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 fun androidModule(context: Context) = module {
 

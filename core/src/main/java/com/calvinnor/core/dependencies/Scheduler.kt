@@ -6,7 +6,7 @@ import com.calvinnor.core.dispatchers.JobDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 val schedulerModule = module {
 
