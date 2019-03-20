@@ -57,7 +57,6 @@ dependencies {
 
     // Moshi
     api(Dependencies.moshi)
-    api(Dependencies.moshiKotlin)
     implementation(Dependencies.moshiRetrofitConverter)
 
     // Coroutines

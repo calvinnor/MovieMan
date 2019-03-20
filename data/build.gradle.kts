@@ -27,6 +27,9 @@ dependencies {
     api(Dependencies.arch_RoomCoroutines)
     kapt(Dependencies.kapt_Room)
 
+    // Moshi Codegen
+    kapt(Dependencies.moshiKotlin)
+
     // Testing
     testImplementation(Dependencies.test_Room)
 

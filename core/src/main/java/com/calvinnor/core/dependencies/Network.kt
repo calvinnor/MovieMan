@@ -5,7 +5,6 @@ import com.calvinnor.core.networking.adapters.DateTimeAdapter
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import org.koin.core.qualifier.StringQualifier
@@ -57,7 +56,6 @@ val networkModule = module {
     /** Moshi **/
     single {
         Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
             .add(DateTimeAdapter())
             .build()
     }
