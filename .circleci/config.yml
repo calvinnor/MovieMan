@@ -1,36 +1,48 @@
 version: 2
+
 jobs:
+
   build:
+
     working_directory: ~/code
+
     docker:
-      - image: circleci/android:api-25-alpha
+      - image: circleci/android:api-28
+
     environment:
       JVM_OPTS: -Xmx3200m
+
     steps:
+
+      # Checkout the codebase
       - checkout
 
+      # Gradle Sync Cache - Dependencies
       - restore_cache:
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
-      #      - run:
-      #         name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-      #         command: sudo chmod +x ./gradlew
+
+      # Approve Android Studio SDK Licenses
       - run:
           name: Approve license for build tools
           command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
 
+      # Gradle Sync
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
 
+      # Save Cache for future builds
       - save_cache:
           paths:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
 
+      # Run all Unit Tests
       - run:
           name: Run Tests
           command: ./gradlew lint test
 
+      # Create Test Results directory
       - run:
           name: Save test results
           command: |
@@ -38,16 +50,57 @@ jobs:
             find . -type f -regex ".*/build/test-results/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
 
+      # Save Test Results for analysis
       - store_test_results:
           path: ~/test-results
 
       - store_artifacts:
           path: ~/test-results/junit
 
+      # Gradle Build Release
       - run:
           name: Release Build
           command: ./gradlew clean app:assembleRelease --no-daemon --stacktrace
 
+      # Create APK Directory for persistence
+      - run:
+          name: Create Artifacts Directory
+          command: |
+            mkdir -p ~/apk/
+          when: always
+
+      # Store APK artifacts in the "apk" folder
       - store_artifacts:
-          path: app/build/outputs/apk/
-          destination: apks/
+          path: app/build/outputs/apk/release/app-release.apk
+          destination: apk/app-release.apk
+
+      # Persist the contents of the "artifacts" folder for the Deploy job
+      - persist_to_workspace:
+          root: app/build/outputs/apk/release
+          paths:
+            - app-release.apk
+
+
+  deploy:
+
+
+    docker:
+      - image: 'cibuilds/github:0.10'
+
+    steps:
+      - attach_workspace: {at: app/build/outputs/apk/release}
+      - run: {name: 'Publish Release on GitHub', command: "VERSION=\"0.1\"\nghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} app/build/outputs/apk/release/app-release.apk\n"}
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy:
+          filters:
+            branches:
+              only:
+                - develop
+
+          requires:
+            - build
