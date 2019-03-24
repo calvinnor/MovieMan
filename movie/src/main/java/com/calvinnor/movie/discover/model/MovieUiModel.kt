@@ -16,7 +16,7 @@ data class MovieUiModel(
     constructor(movie: MovieListing) : this(
         id = movie.id.toString(),
         title = movie.title,
-        backdropImage = buildImagePath(movie.backdropPath),
+        backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
         releaseDate = movie.releaseDate.toReadableDate()
     )
 }

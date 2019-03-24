@@ -5,4 +5,7 @@ package com.calvinnor.movie.commons.business
  *
  * TODO: Figure out the actual dimensions based on device.
  */
-fun buildImagePath(relativePath: String) = "https://image.tmdb.org/t/p/w780$relativePath"
+fun buildImagePath(relativePath: String?) =
+    if (relativePath.isNullOrEmpty()) null
+    else "https://image.tmdb.org/t/p/w780$relativePath"
+

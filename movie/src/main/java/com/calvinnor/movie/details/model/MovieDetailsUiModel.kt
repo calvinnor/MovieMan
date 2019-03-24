@@ -17,16 +17,16 @@ data class MovieDetailsUiModel(
     constructor(movie: MovieR) : this(
         title = movie.title,
         description = movie.overview,
-        backdropImage = buildImagePath(movie.backdropPath),
-        posterImage = buildImagePath(movie.posterPath),
+        backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
+        posterImage = buildImagePath(movie.posterPath).orEmpty(),
         releaseYear = movie.releaseDate.yearAsString()
     )
 
     constructor(movie: MovieL) : this(
         title = movie.title,
         description = movie.overview,
-        backdropImage = buildImagePath(movie.backdropPath),
-        posterImage = buildImagePath(movie.posterPath),
+        backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
+        posterImage = buildImagePath(movie.posterPath).orEmpty(),
         releaseYear = movie.releaseDate.yearAsString()
     )
 }

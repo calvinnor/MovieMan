@@ -80,6 +80,7 @@ class MovieDetailsFragment : BaseFragment() {
             imageUrl = backdropImage,
             scaleType = ScaleType.CENTER_CROP,
             onSuccess = { extractDarkColorAndCircularReveal(it.toBitmap()) },
+            onFailure = { ivBackdrop.defaultImage() },
             fadeIn = false
         )
 

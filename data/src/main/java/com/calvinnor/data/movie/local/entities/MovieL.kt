@@ -20,7 +20,7 @@ data class MovieL(
         id = movie.id,
         title = movie.title,
         overview = movie.overview,
-        backdropPath = movie.backdropPath,
+        backdropPath = movie.backdropPath.orEmpty(),
         posterPath = movie.posterPath,
         releaseDate = movie.releaseDate
     )
