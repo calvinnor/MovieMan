@@ -8,6 +8,7 @@ object Plugins {
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
     const val plugin_GoogleServices = "com.google.gms.google-services"
+    const val plugin_fabric = "io.fabric"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
     const val dependencyUpdates = "com.github.ben-manes.versions"
@@ -15,9 +16,11 @@ object Plugins {
     const val plugin_gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
     const val plugin_gradleKotlin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-    const val plugin_gradleGoogleServices = "com.google.gms:google-services:${Versions.plugin_Firebase}"
+    const val plugin_gradleGoogleServices =
+        "com.google.gms:google-services:${Versions.plugin_Firebase}"
     const val plugin_safeArgs =
         "android.arch.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
+    const val plugin_fabricGradle = "io.fabric.tools:gradle:${Versions.plugin_fabricCrashlytics}"
 }
 
 object Config {
@@ -99,6 +102,10 @@ object Versions {
     // Firebase
     const val plugin_Firebase = "4.0.1"
     const val deps_Firebase = "16.0.1"
+
+    // Crashlytics
+    const val plugin_fabricCrashlytics = "1.26.1"
+    const val deps_fabricCrashlytics = "2.9.9"
 
     // Testing
     const val test_JUnit = "4.12"
@@ -184,6 +191,10 @@ object Dependencies {
 
     // Firebase
     const val firebase_Core = "com.google.firebase:firebase-core:${Versions.deps_Firebase}"
+
+    // Crashlytics
+    const val firebase_Crashlytics =
+        "com.crashlytics.sdk.android:crashlytics:${Versions.deps_fabricCrashlytics}"
 
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"

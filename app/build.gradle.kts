@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.androidApplication)
+    id(Plugins.plugin_fabric)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
@@ -61,6 +62,7 @@ dependencies {
 
     // Dependencies
     implementation(Dependencies.firebase_Core)
+    implementation(Dependencies.firebase_Crashlytics)
 
 }
 
