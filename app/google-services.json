@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "380634135103",
+    "firebase_url": "https://movieman-android.firebaseio.com",
+    "project_id": "movieman-android",
+    "storage_bucket": "movieman-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380634135103:android:9d26e24d04004bff",
+        "android_client_info": {
+          "package_name": "com.calvinnor.movieman"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380634135103-ciks1aok4dn867lq2eglg7ivqts6eoq7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDtY6GRwdh8KyIpJyDHvMom7WrPZ6iWts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380634135103-ciks1aok4dn867lq2eglg7ivqts6eoq7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

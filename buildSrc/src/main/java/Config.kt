@@ -7,6 +7,7 @@ object Plugins {
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
+    const val plugin_GoogleServices = "com.google.gms.google-services"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
     const val dependencyUpdates = "com.github.ben-manes.versions"
@@ -14,6 +15,7 @@ object Plugins {
     const val plugin_gradleTools = "com.android.tools.build:gradle:${Versions.gradleTools}"
     const val plugin_gradleKotlin =
         "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val plugin_gradleGoogleServices = "com.google.gms:google-services:${Versions.plugin_Firebase}"
     const val plugin_safeArgs =
         "android.arch.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
 }
@@ -93,6 +95,10 @@ object Versions {
     const val ktx_Collections = ktx_Core
     const val ktx_LifecycleViewModel = "2.0.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
+
+    // Firebase
+    const val plugin_Firebase = "4.0.1"
+    const val deps_Firebase = "16.0.1"
 
     // Testing
     const val test_JUnit = "4.12"
@@ -175,6 +181,9 @@ object Dependencies {
         "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.ktx_LifecycleViewModel}"
     const val ktx_ReactiveStreams =
         "androidx.lifecycle:lifecycle-reactivestreams-ktx:${Versions.ktx_ReactiveStreams}"
+
+    // Firebase
+    const val firebase_Core = "com.google.firebase:firebase-core:${Versions.deps_Firebase}"
 
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"

@@ -59,4 +59,10 @@ dependencies {
 
     implementation(project(Modules.movie))
 
+    // Dependencies
+    implementation(Dependencies.firebase_Core)
+
 }
+
+// Must be at EOF
+apply(plugin = Plugins.plugin_GoogleServices)

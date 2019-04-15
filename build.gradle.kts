@@ -14,6 +14,7 @@ buildscript {
     dependencies {
         classpath(Plugins.plugin_gradleTools)
         classpath(Plugins.plugin_gradleKotlin)
+        classpath(Plugins.plugin_gradleGoogleServices)
         classpath(Plugins.plugin_safeArgs)
     }
 }
