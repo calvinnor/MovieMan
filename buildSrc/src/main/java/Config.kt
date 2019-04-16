@@ -76,7 +76,7 @@ object Versions {
     const val moshiRetrofitConverter = "2.5.0"
 
     // Coroutines
-    const val coroutines = "1.2.0"
+    const val coroutines = "1.1.1"
 
     // Retrofit
     const val retrofit = "2.5.0"
