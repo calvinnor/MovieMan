@@ -57,15 +57,15 @@ object Versions {
     const val dependencyUpdates = "0.21.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.21"
+    const val kotlinVersion = "1.3.30"
 
     // AndroidX
     const val appCompat = "1.0.2"
     const val recyclerView = "1.0.0"
-    const val materialComponents = "1.0.0-rc01"
+    const val materialComponents = "1.0.0"
     const val constraintLayout = "1.1.3"
     const val palette = "1.0.0"
-    const val navigationComponent = "1.0.0-rc02"
+    const val navigationComponent = "1.0.0"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.0.0"
@@ -76,20 +76,20 @@ object Versions {
     const val moshiRetrofitConverter = "2.5.0"
 
     // Coroutines
-    const val coroutines = "1.1.1"
+    const val coroutines = "1.2.0"
 
     // Retrofit
     const val retrofit = "2.5.0"
     const val retrofitCoroutinesAdapter = "0.9.2"
 
     // Stetho
-    const val stetho = "1.5.0"
+    const val stetho = "1.5.1"
 
     // Glide
     const val glide = "4.9.0"
 
     // Koin
-    const val koin = "2.0.0-beta-4"
+    const val koin = "2.0.0-rc-3"
 
     // KTX
     const val ktx_Core = "1.0.0"
@@ -100,11 +100,11 @@ object Versions {
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.0.1"
-    const val deps_Firebase = "16.0.1"
+    const val plugin_Firebase = "4.2.0"
+    const val deps_Firebase = "16.0.8"
 
     // Crashlytics
-    const val plugin_fabricCrashlytics = "1.26.1"
+    const val plugin_fabricCrashlytics = "1.28.1"
     const val deps_fabricCrashlytics = "2.9.9"
 
     // Testing

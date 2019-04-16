@@ -51,6 +51,11 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
+
+    // Coroutines 1.2.0 Build Error
+    packagingOptions {
+        pickFirst("META-INF/atomicfu.kotlin_module")
+    }
 }
 
 dependencies {
