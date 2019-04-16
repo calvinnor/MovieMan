@@ -14,7 +14,7 @@ val schedulerModule = module {
     single<Dispatcher> { AppDispatcher() }
 
     /** A Job for performing work. Exceptions in child Jobs do not cancel all Jobs **/
-    factory { SupervisorJob() }
+    factory<Job> { SupervisorJob() }
 
     /** A CoroutineScope with a Parent Job. A new scope is created per screen **/
     factory { CoroutineScope(context = get<Job>()) }
