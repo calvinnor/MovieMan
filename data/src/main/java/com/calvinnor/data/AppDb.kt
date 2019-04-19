@@ -27,15 +27,26 @@ abstract class AppDb : RoomDatabase() {
             if (sInstance == null) {
                 synchronized(this) {
                     if (sInstance == null)
-                        sInstance = Room.databaseBuilder(
-                            context,
-                            AppDb::class.java,
-                            DATABASE_NAME
-                        ).build()
+                        sInstance = buildDatabase(context, AppDb::class.java, DATABASE_NAME).build()
                 }
             }
 
             return sInstance as AppDb
+        }
+
+        private fun <T : RoomDatabase> buildDatabase(
+            context: Context,
+            dbClass: Class<T>,
+            databaseName: String,
+            inMemory: Boolean = false
+
+        ): Builder<T> {
+
+            // In Memory
+            return if (inMemory) Room.inMemoryDatabaseBuilder(context, dbClass)
+
+            // Persistent
+            else Room.databaseBuilder(context, dbClass, databaseName)
         }
     }
 

@@ -6,6 +6,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.transaction
 
 /**
  * Base Activity to inherit from.
@@ -41,11 +42,10 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param fragment    The fragment to place.
      */
     protected fun replaceFragment(@IdRes containerId: Int, fragment: BaseFragment, addToBackStack: Boolean) {
-        supportFragmentManager.beginTransaction().apply {
+        supportFragmentManager.transaction {
             replace(containerId, fragment, fragment.fragmentTag)
             if (addToBackStack) addToBackStack(null)
-
-        }.commit()
+        }
     }
 
     /**
