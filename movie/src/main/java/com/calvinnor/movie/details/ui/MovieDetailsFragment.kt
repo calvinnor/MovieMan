@@ -46,7 +46,7 @@ class MovieDetailsFragment : BaseFragment() {
     }
 
     private fun setupListeners() {
-        viewModel.movieDetails.observe(this) {
+        observe(viewModel.movieDetails) {
             when (it) {
                 is Result.Loading -> showLoading(true)
 

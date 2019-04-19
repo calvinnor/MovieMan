@@ -40,8 +40,8 @@ fun <T> MutableLiveData<Result<T>>.postResult(result: Result<T>) = postValue(res
 /**
  * Wrapper over the LiveData observe for using Lambdas.
  */
-inline fun <T> LiveData<T>.observe(
-    lifecycleOwner: LifecycleOwner,
+inline fun <T> LifecycleOwner.observe(
+    liveData: LiveData<T>,
     crossinline codeBlock: (data: T) -> Unit
 
-) = observe(lifecycleOwner, Observer { codeBlock(it) })
+) = liveData.observe(this, Observer { codeBlock(it) })

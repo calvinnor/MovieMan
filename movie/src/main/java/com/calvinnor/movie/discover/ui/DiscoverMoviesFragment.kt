@@ -37,7 +37,7 @@ class DiscoverMoviesFragment : BaseFragment(), PaginationListener {
     }
 
     private fun setupListeners() {
-        viewModel.discoverMovies.observe(this) {
+        observe(viewModel.discoverMovies) {
             when (it) {
 
                 is Result.Success -> {
