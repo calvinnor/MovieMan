@@ -33,6 +33,9 @@ android {
         applicationId = App.appId
         versionCode = App.appCode
         versionName = App.appVersion
+
+        // Rename APKs to "movieman-versionName-variantName"
+        setProperty("archivesBaseName", "movieman-${defaultConfig.versionName}")
     }
 
     buildTypes {
