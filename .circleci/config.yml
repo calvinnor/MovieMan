@@ -69,16 +69,23 @@ jobs:
             mkdir -p ~/apk/
           when: always
 
+      # Get the APK's name
+      - run:
+          name: Get APK Name
+          command: |
+            raw_file_name=`find 'app/build/outputs/apk/release' -type f -name 'movieman-*-release.apk' -printf '%f'`
+            echo 'export APK_FILE_NAME="$raw_file_name"' >> $BASH_ENV
+
       # Store APK artifacts in the "apk" folder
       - store_artifacts:
-          path: app/build/outputs/apk/release/app-release.apk
-          destination: apk/app-release.apk
+          path: app/build/outputs/apk/release/${APK_FILE_NAME}
+          destination: apk/movieman-release.apk
 
       # Persist the contents of the "artifacts" folder for the Deploy job
       - persist_to_workspace:
           root: app/build/outputs/apk/release
           paths:
-            - app-release.apk
+            - ${APK_FILE_NAME}
 
 
   deploy:
@@ -89,7 +96,28 @@ jobs:
 
     steps:
       - attach_workspace: {at: app/build/outputs/apk/release}
-      - run: {name: 'Publish Release on GitHub', command: "VERSION=\"0.1\"\nghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} app/build/outputs/apk/release/app-release.apk\n"}
+      - run:
+          name: Publish Release on GitHub
+          command: |
+
+            # Get the raw file generated from Gradle
+            raw_file_name=`find 'app/build/outputs/apk/release' -type f -name 'movieman-*-release.apk' -printf '%f'`
+
+            # Strip "movieman-" prefix
+            filename_without_prefix=${raw_file_name#"movieman-"}
+
+            # Strip "-release.apk" suffix to get the version
+            movieman_version=${filename_without_prefix%"-release.apk"}
+
+            # GitHub Version
+            VERSION=$movieman_version
+
+            # File Absolute Path
+            ABSOLUTE_FILE_PATH="app/build/outputs/apk/release/$raw_file_name"
+
+            # Push to GitHub
+            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} ABSOLUTE_FILE_PATH
+
 
 workflows:
   version: 2
