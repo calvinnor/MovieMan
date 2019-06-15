@@ -38,22 +38,16 @@ abstract class CoreApp : Application() {
             // Set the Android Context
             androidContext(this@CoreApp)
 
-            modules(
-                androidModule, networkModule, storageModule, schedulerModule,
-                *getDataModules(),
-                *getFeatureModules()
-            )
+            modules(listOf(*defaultModules(), *getDataModules()))
         }
     }
+
+    private fun defaultModules(): Array<Module> =
+        arrayOf(androidModule, networkModule, storageModule, schedulerModule)
 
     /**
      * Return the modules for Data (Dao, WebServices)
      */
     abstract fun getDataModules(): Array<Module>
-
-    /**
-     * Return a list of feature modules for Koin to pick up.
-     */
-    abstract fun getFeatureModules(): Array<Module>
 
 }

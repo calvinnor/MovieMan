@@ -8,6 +8,7 @@ import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.pagination.PaginationListener
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
+import com.calvinnor.movie.discover.di.DiscoverMoviesModule
 import com.calvinnor.movie.discover.viewmodel.DiscoverMoviesViewModel
 import kotlinx.android.synthetic.main.fragment_discover_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -19,6 +20,10 @@ class DiscoverMoviesFragment : BaseFragment(), PaginationListener {
 
     private val viewModel: DiscoverMoviesViewModel by viewModel()
     private val discoverMoviesAdapter = DiscoverMoviesAdapter(this)
+
+    init {
+        DiscoverMoviesModule.load()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

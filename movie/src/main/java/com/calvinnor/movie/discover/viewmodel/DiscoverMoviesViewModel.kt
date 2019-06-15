@@ -11,6 +11,7 @@ import com.calvinnor.core.extensions.postLoading
 import com.calvinnor.core.extensions.postResult
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.viewmodel.BaseViewModel
+import com.calvinnor.movie.discover.di.DiscoverMoviesModule
 import com.calvinnor.movie.discover.domain.DiscoverMoviesC
 import com.calvinnor.movie.discover.model.MovieUiModel
 
@@ -38,6 +39,7 @@ class DiscoverMoviesViewModel(
     }
 
     override fun onCleared() {
+        DiscoverMoviesModule.unload()
         jobDispatcher.cancelJobs()
         super.onCleared()
     }

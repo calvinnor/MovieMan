@@ -57,7 +57,7 @@ object Versions {
     const val dependencyUpdates = "0.21.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.30"
+    const val kotlinVersion = "1.3.31"
 
     // AndroidX
     const val appCompat = "1.0.2"
@@ -69,7 +69,8 @@ object Versions {
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.0.0"
-    const val arch_Room = "2.1.0-alpha04"
+    const val arch_Room = "2.1.0"
+    const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
     const val moshi = "1.8.0"
@@ -89,23 +90,23 @@ object Versions {
     const val glide = "4.9.0"
 
     // Koin
-    const val koin = "2.0.0-rc-3"
+    const val koin = "2.0.1"
 
     // KTX
-    const val ktx_Core = "1.0.0"
-    const val ktx_Fragment = ktx_Core
-    const val ktx_Palette = ktx_Core
-    const val ktx_Collections = ktx_Core
+    const val ktx_Core = "1.0.2"
+    const val ktx_Fragment = "1.0.0"
+    const val ktx_Palette = "1.0.0"
+    const val ktx_Collections = "1.1.0"
     const val ktx_LifecycleViewModel = "2.0.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
     const val plugin_Firebase = "4.2.0"
-    const val deps_Firebase = "16.0.8"
+    const val deps_Firebase = "16.0.9"
 
     // Crashlytics
-    const val plugin_fabricCrashlytics = "1.28.1"
-    const val deps_fabricCrashlytics = "2.9.9"
+    const val plugin_fabricCrashlytics = "1.29.0"
+    const val deps_fabricCrashlytics = "2.10.1"
 
     // Testing
     const val test_JUnit = "4.12"
@@ -114,8 +115,8 @@ object Versions {
     const val mockitoKotlin = "2.1.0"
 
     // Android Testing
-    const val androidTest_runner = "1.1.0"
-    const val androidTest_espresso = "3.1.1"
+    const val androidTest_runner = "1.1.1"
+    const val androidTest_espresso = "3.2.0"
 }
 
 object Dependencies {
@@ -141,7 +142,7 @@ object Dependencies {
 
     // Room
     const val arch_Room = "androidx.room:room-runtime:${Versions.arch_Room}"
-    const val arch_RoomCoroutines = "androidx.room:room-coroutines:${Versions.arch_Room}"
+    const val arch_RoomCoroutines = "androidx.room:room-coroutines:${Versions.arch_RoomCoroutines}"
     const val kapt_Room = "androidx.room:room-compiler:${Versions.arch_Room}"
 
     // Navigation
