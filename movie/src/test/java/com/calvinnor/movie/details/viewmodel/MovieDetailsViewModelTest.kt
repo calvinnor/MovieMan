@@ -7,7 +7,7 @@ import com.calvinnor.core.exceptions.NoDataException
 import com.calvinnor.core.testing.buildTestingDispatcher
 import com.calvinnor.movie.details.domain.MovieDetailsC
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
-import com.calvinnor.movie.discover.model.MovieUiModel
+import com.calvinnor.movie.commons.model.MovieUiModel
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals

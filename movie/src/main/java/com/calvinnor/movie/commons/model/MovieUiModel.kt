@@ -1,4 +1,4 @@
-package com.calvinnor.movie.discover.model
+package com.calvinnor.movie.commons.model
 
 import com.calvinnor.core.extensions.toReadableDate
 import com.calvinnor.core.pagination.PaginatedItem
