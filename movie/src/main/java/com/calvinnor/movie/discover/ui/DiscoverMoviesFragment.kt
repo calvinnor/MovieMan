@@ -60,6 +60,10 @@ class DiscoverMoviesFragment : BaseFragment(), PaginationListener {
         observe(viewModel.discoverMovies) {
             when (it) {
 
+                is Result.Loading -> {
+                    discoverMoviesAdapter.showLoading()
+                }
+
                 is Result.Success -> {
                     discoverMoviesAdapter.setResult(it.data)
                 }

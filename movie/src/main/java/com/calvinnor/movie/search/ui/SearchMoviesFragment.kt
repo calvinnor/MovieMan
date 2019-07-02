@@ -57,6 +57,10 @@ class SearchMoviesFragment : BaseFragment(), PaginationListener {
         observe(viewModel.searchMovies) {
             when (it) {
 
+                is Result.Loading -> {
+                    searchMoviesAdapter.showLoading()
+                }
+
                 is Result.Success -> {
                     searchMoviesAdapter.setResult(it.data)
                 }
