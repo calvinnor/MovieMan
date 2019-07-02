@@ -20,4 +20,12 @@ interface MovieWebService {
         @Query("page") requestPage: Int
 
     ): Deferred<MovieListingEnvelope>
+
+    @GET("/3/search/movie")
+    fun searchMovies(
+        @Query("query") searchQuery: String,
+        @Query("page") requestPage: Int
+
+    ): Deferred<MovieListingEnvelope>
+
 }

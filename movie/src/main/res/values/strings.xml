@@ -6,4 +6,10 @@
     <string name="title_movie">Module Title</string>
     <string name="movie_details_year">(%1$s)</string>
 
+    <!-- Discover -->
+    <string name="title_discover">Discover</string>
+
+    <!-- Search -->
+    <string name="hint_search_movies">Type a movie…</string>
+
 </resources>

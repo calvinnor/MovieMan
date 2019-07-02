@@ -10,6 +10,7 @@ import com.calvinnor.core.extensions.hasValue
 import com.calvinnor.core.extensions.postLoading
 import com.calvinnor.core.extensions.postResult
 import com.calvinnor.core.viewmodel.BaseViewModel
+import com.calvinnor.movie.details.di.DetailsModule
 import com.calvinnor.movie.details.domain.MovieDetailsC
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 
@@ -34,6 +35,7 @@ class MovieDetailsViewModel(
     }
 
     override fun onCleared() {
+        DetailsModule.unload()
         jobDispatcher.cancelJobs()
         super.onCleared()
     }

@@ -11,8 +11,9 @@ import com.calvinnor.core.extensions.postLoading
 import com.calvinnor.core.extensions.postResult
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.viewmodel.BaseViewModel
+import com.calvinnor.movie.discover.di.DiscoverMoviesModule
 import com.calvinnor.movie.discover.domain.DiscoverMoviesC
-import com.calvinnor.movie.discover.model.MovieUiModel
+import com.calvinnor.movie.commons.model.MovieUiModel
 
 class DiscoverMoviesViewModel(
     private val discoverRepo: DiscoverMoviesC.Repository,
@@ -30,14 +31,15 @@ class DiscoverMoviesViewModel(
         getMoreMovies()
     }
 
-    fun getMoreMovies(offset: Long = 0L) {
+    fun getMoreMovies() {
         _discoverMovies.postLoading(true)
         jobDispatcher.onIo {
-            _discoverMovies.postResult(discoverRepo.getPopularMovies(offset = offset))
+            _discoverMovies.postResult(discoverRepo.getPopularMovies())
         }
     }
 
     override fun onCleared() {
+        DiscoverMoviesModule.unload()
         jobDispatcher.cancelJobs()
         super.onCleared()
     }

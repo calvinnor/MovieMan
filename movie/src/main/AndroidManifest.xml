@@ -4,7 +4,7 @@
     <application>
 
         <activity
-            android:name=".commons.ui.MoviesActivity"
+            android:name=".commons.ui.HomeActivity"
             android:theme="@style/NoToolbarTheme.TranslucentBars" />
 
     </application>

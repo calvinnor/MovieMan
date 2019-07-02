@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_movie_details"
+    app:startDestination="@id/movieDetailsFragment">
+
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.calvinnor.movie.details.ui.MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details">
+
+        <argument
+            android:name="movieId"
+            app:argType="string" />
+
+    </fragment>
+
+</navigation>
