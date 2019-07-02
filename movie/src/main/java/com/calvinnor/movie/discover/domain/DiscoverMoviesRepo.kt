@@ -3,7 +3,7 @@ package com.calvinnor.movie.discover.domain
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.networking.ApiResult
 import com.calvinnor.core.pagination.Pagination
-import com.calvinnor.movie.discover.model.MovieUiModel
+import com.calvinnor.movie.commons.model.MovieUiModel
 
 class DiscoverMoviesRepo(
     private val remote: DiscoverMoviesC.Remote
@@ -13,7 +13,7 @@ class DiscoverMoviesRepo(
     private var currentPage: Int = 0
     private var dataItems: MutableList<MovieUiModel> = mutableListOf()
 
-    override suspend fun getPopularMovies(offset: Long): Result<Pagination.Result<MovieUiModel>> {
+    override suspend fun getPopularMovies(): Result<Pagination.Result<MovieUiModel>> {
         return remote.getPopularMovies(currentPage + 1).let { apiResult ->
             when (apiResult) {
 

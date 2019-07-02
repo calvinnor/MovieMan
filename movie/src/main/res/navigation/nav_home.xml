@@ -5,25 +5,21 @@
     android:id="@+id/nav_movie"
     app:startDestination="@id/discoverMovies">
 
+    <include app:graph="@navigation/nav_search" />
+    <include app:graph="@navigation/nav_movie_details" />
+
     <fragment
         android:id="@+id/discoverMovies"
         android:name="com.calvinnor.movie.discover.ui.DiscoverMoviesFragment"
         tools:layout="@layout/fragment_discover_movies">
 
         <action
-            android:id="@+id/navigateToMovieDetails"
-            app:destination="@id/movieDetailsFragment" />
+            android:id="@+id/navigateToSearch"
+            app:destination="@id/nav_search" />
 
-    </fragment>
-
-    <fragment
-        android:id="@+id/movieDetailsFragment"
-        android:name="com.calvinnor.movie.details.ui.MovieDetailsFragment"
-        tools:layout="@layout/fragment_movie_details">
-
-        <argument
-            android:name="movieId"
-            app:argType="string" />
+        <action
+            android:id="@+id/navigateFromHomeToMovieDetails"
+            app:destination="@id/nav_movie_details" />
 
     </fragment>
 

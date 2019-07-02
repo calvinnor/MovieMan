@@ -20,6 +20,7 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
     protected val dataItems: MutableList<DataItem> = mutableListOf()
 
     private var onBottomRequested = false
+    private var isLoading = false
 
     /**
      * Set a result page on this adapter.
@@ -27,9 +28,7 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
      * @param result The result from data sources. Also includes the type of O/p to perform.
      */
     fun setResult(result: Pagination.Result<DataItem>) {
-
-        // Notify that we've removed the Loader
-        notifyItemRemoved(itemCount - 1)
+        showLoading(showLoader = false)
 
         when (result) {
 
@@ -56,6 +55,30 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
     }
 
     /**
+     * Call when we need to show a Loading ProgressBar at the bottom of items.
+     *
+     * @param showLoader Whether we should show / hide the Loader
+     */
+    fun showLoading(showLoader: Boolean = true) {
+        if (isLoading == showLoader) return
+
+        // Cache value before assign, so we can run logic over it
+        val wasLoading = isLoading
+        isLoading = showLoader
+
+        if (wasLoading && !showLoader) {
+
+            // Notify that we've removed the Loader
+            notifyItemRemoved(loaderPosition)
+
+        } else if (!wasLoading && showLoader) {
+
+            // Notify that we've added the Loader
+            notifyItemInserted(loaderPosition)
+        }
+    }
+
+    /**
      * Override this method to provide custom View Types.
      */
     open fun getItemType(position: Int) = super.getItemViewType(position)
@@ -76,10 +99,10 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
     abstract fun areItemsSame(oldItem: DataItem, newItem: DataItem): Boolean
 
     // Returning +1 to show the Loader
-    final override fun getItemCount() = dataItems.count() + 1
+    final override fun getItemCount() = if (isLoading) dataItems.count() + 1 else dataItems.count()
 
     final override fun getItemViewType(position: Int): Int {
-        return if (position == dataItems.size) ITEM_TYPE_LOADER
+        return if (position == loaderPosition) ITEM_TYPE_LOADER
         else getItemType(position)
     }
 
@@ -156,6 +179,12 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
     open fun onBottomReached(lastItem: DataItem, offset: Int) {
         listener.onNewRequest(Pagination.Request(offset = offset.toLong()))
     }
+
+    /**
+     * Wrapper value on dataItems, for the Loader Position (+1 of size)
+     */
+    private val loaderPosition
+        get() = dataItems.size
 
     companion object {
         private const val ADVANCE_ITEM_CALLBACK = 3

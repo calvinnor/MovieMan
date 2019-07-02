@@ -41,7 +41,10 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param containerId The container to replace.
      * @param fragment    The fragment to place.
      */
-    protected fun replaceFragment(@IdRes containerId: Int, fragment: BaseFragment, addToBackStack: Boolean) {
+    protected fun replaceFragment(
+        @IdRes containerId: Int, fragment: BaseFragment,
+        addToBackStack: Boolean
+    ) {
         supportFragmentManager.transaction {
             replace(containerId, fragment, fragment.fragmentTag)
             if (addToBackStack) addToBackStack(null)
