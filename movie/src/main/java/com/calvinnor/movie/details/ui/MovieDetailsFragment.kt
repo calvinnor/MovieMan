@@ -12,6 +12,7 @@ import androidx.core.text.color
 import androidx.core.text.scale
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.calvinnor.core.domain.Result
@@ -41,6 +42,7 @@ class MovieDetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setPosterHeight()
+        setupForInsets()
         setupListeners()
         fetchData()
     }
@@ -48,6 +50,17 @@ class MovieDetailsFragment : BaseFragment() {
     /* Avoid "Overview" title jumping while poster image loads */
     private fun setPosterHeight() = ivPoster.doOnPreDraw {
         it.setDimensions(newHeight = (it.measuredWidth * ASPECT_RATIO).roundToInt())
+    }
+
+    private fun setupForInsets() {
+        nsvParent.setOnApplyWindowInsetsListener { v, insets ->
+            vNavigationBarScrollSpace.updateLayoutParams {
+                height = insets.systemWindowInsetBottom
+            }
+            return@setOnApplyWindowInsetsListener insets
+        }
+
+        nsvParent.requestApplyInsets()
     }
 
     private fun setupListeners() {
