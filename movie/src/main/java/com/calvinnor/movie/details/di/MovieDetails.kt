@@ -14,7 +14,7 @@ import org.koin.dsl.module
 /**
  * Dependency Injection module for Movie Details
  */
-object DetailsModule : BaseModule {
+object MovieDetailsModule : BaseModule {
     override fun load() = loadKoinModules(movieDetailsModule)
     override fun unload() = unloadKoinModules(movieDetailsModule)
 }

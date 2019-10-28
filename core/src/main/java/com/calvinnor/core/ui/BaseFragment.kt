@@ -1,7 +1,9 @@
 package com.calvinnor.core.ui
 
 import android.os.Bundle
-import android.view.*
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.annotation.MenuRes
 import androidx.fragment.app.Fragment
@@ -11,19 +13,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
  * Base Fragment to inherit from.
  * All common code and abstraction goes here.
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
 
     companion object {
-        private const val NO_LAYOUT = -1
+        private const val NO_LAYOUT = 0
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-        return getInflatedView(inflater)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) loadDependencies()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,12 +34,6 @@ abstract class BaseFragment : Fragment() {
         if (this.menu == NO_LAYOUT) return
         inflater.inflate(this.menu, menu)
     }
-
-    /**
-     * Override this method to provide a fragment layout.
-     */
-    @LayoutRes
-    protected open val layout = NO_LAYOUT
 
     /**
      * Override this value to provide a Menu.
@@ -65,17 +57,11 @@ abstract class BaseFragment : Fragment() {
      */
     open fun onRestoreInstanceState(savedInstanceState: Bundle) {}
 
-    private fun getInflatedView(inflater: LayoutInflater): View? {
-        val activityLayout = layout
-        return if (activityLayout == NO_LAYOUT) null
-        else inflater.inflate(activityLayout, null, false)
-    }
+    /**
+     * Override this method to load Dependency Modules.
+     *
+     * Only called once in the Persistent Lifecycle.
+     */
+    open fun loadDependencies() {}
 
-    protected fun startLoadingIndicator() {
-        refreshIndicator?.isRefreshing = true
-    }
-
-    protected fun stopLoadingIndicator() {
-        refreshIndicator?.isRefreshing = false
-    }
 }

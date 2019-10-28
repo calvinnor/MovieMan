@@ -19,24 +19,21 @@ import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
-import com.calvinnor.movie.details.di.DetailsModule
+import com.calvinnor.movie.details.di.MovieDetailsModule
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
-class MovieDetailsFragment : BaseFragment() {
+class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     override val fragmentTag = TAG
 
-    override val layout = R.layout.fragment_movie_details
     private val viewModel: MovieDetailsViewModel by viewModel()
     private val navArgs: MovieDetailsFragmentArgs by navArgs()
 
-    init {
-        DetailsModule.load()
-    }
+    override fun loadDependencies() = MovieDetailsModule.load()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
