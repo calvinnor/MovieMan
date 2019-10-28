@@ -32,9 +32,9 @@ abstract class BaseFragment : Fragment() {
         if (savedInstanceState != null) onRestoreInstanceState(savedInstanceState)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         if (this.menu == NO_LAYOUT) return
-        inflater?.inflate(this.menu, menu)
+        inflater.inflate(this.menu, menu)
     }
 
     /**
