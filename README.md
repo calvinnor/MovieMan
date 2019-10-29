@@ -37,6 +37,20 @@ Downloads:
 
 Download the latest APK [here](https://github.com/CalvinNor/MovieMan/releases/download/0.1/app-release.apk) or browse releases on [Releases](https://github.com/CalvinNor/MovieMan/releases)
 
+Build Instructions:
+=====
+
+1. Clone the Project
+
+2. Grab an API key from TMDB and add 'TMDB_API_KEY' to your Environment variables. Instructions can be found in **Properties.kt**
+
+3. Add the following to your Environment variables after generating a keystore. Or optionally, remove the signing config from app's **build.gradle.kts**
+	1. MM_PASSWORD
+   	2. MM_ALIAS
+   	3. MM_PASSWORD
+
+4. Gradle Sync and Rebuild
+
 Design Decisions & Dependencies:
 =====
 

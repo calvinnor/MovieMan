@@ -54,13 +54,13 @@ object Versions {
 
     // Gradle
     const val gradleTools = "3.3.1"
-    const val dependencyUpdates = "0.21.0"
+    const val dependencyUpdates = "0.27.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.31"
+    const val kotlinVersion = "1.3.50"
 
     // AndroidX
-    const val appCompat = "1.0.2"
+    const val appCompat = "1.1.0"
     const val recyclerView = "1.0.0"
     const val materialComponents = "1.0.0"
     const val constraintLayout = "1.1.3"
@@ -68,16 +68,16 @@ object Versions {
     const val navigationComponent = "1.0.0"
 
     // ViewModel + LiveData
-    const val arch_viewModelLiveData = "2.0.0"
-    const val arch_Room = "2.1.0"
+    const val arch_viewModelLiveData = "2.1.0"
+    const val arch_Room = "2.2.1"
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
     const val moshi = "1.8.0"
-    const val moshiRetrofitConverter = "2.5.0"
+    const val moshiRetrofitConverter = "2.6.2"
 
     // Coroutines
-    const val coroutines = "1.1.1"
+    const val coroutines = "1.3.2"
 
     // Retrofit
     const val retrofit = "2.5.0"
@@ -87,7 +87,7 @@ object Versions {
     const val stetho = "1.5.1"
 
     // Glide
-    const val glide = "4.9.0"
+    const val glide = "4.10.0"
 
     // Koin
     const val koin = "2.0.1"
@@ -97,15 +97,15 @@ object Versions {
     const val ktx_Fragment = "1.0.0"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
-    const val ktx_LifecycleViewModel = "2.0.0"
+    const val ktx_LifecycleViewModel = "2.1.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.2.0"
-    const val deps_Firebase = "16.0.9"
+    const val plugin_Firebase = "4.3.2"
+    const val deps_Firebase = "17.2.1"
 
     // Crashlytics
-    const val plugin_fabricCrashlytics = "1.29.0"
+    const val plugin_fabricCrashlytics = "1.31.2"
     const val deps_fabricCrashlytics = "2.10.1"
 
     // Testing
@@ -158,8 +158,6 @@ object Dependencies {
         "com.squareup.retrofit2:converter-moshi:${Versions.moshiRetrofitConverter}"
 
     // Coroutines
-    const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
@@ -202,6 +200,8 @@ object Dependencies {
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
     const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_viewModelLiveData}"
     const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
+    const val test_coRoutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 
     // Mockito
     const val test_MockitoKotlin =

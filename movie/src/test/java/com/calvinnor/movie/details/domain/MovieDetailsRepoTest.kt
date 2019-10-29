@@ -2,11 +2,12 @@ package com.calvinnor.movie.details.domain
 
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.exceptions.NoDataException
-import com.calvinnor.core.networking.ApiResult
+import com.calvinnor.core.networking.DataResult
 import com.calvinnor.data.movie.local.entities.MovieL
 import com.calvinnor.data.movie.remote.api.MovieR
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.nhaarman.mockitokotlin2.*
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -29,14 +30,15 @@ class MovieDetailsRepoTest {
         mockMovieCachedLocally()
 
         // When we call Repo
-        val movieData = repo.getMovieDetails("2")
+        repo.getMovieDetails("2").collect {
 
-        // Then we get a Success
-        assert(movieData is Result.Success<MovieDetailsUiModel>)
+            // Then we get a Success
+            assert(it is Result.Success<MovieDetailsUiModel>)
 
-        // with the correct data
-        if (movieData is Result.Success<MovieDetailsUiModel>)
-            assertEquals(MovieDetailsUiModel(TEST_LOCAL_MOVIE), movieData.data)
+            // with the correct data
+            if (it is Result.Success<MovieDetailsUiModel>)
+                assertEquals(MovieDetailsUiModel(TEST_LOCAL_MOVIE), it.data)
+        }
     }
 
     @Test
@@ -58,17 +60,18 @@ class MovieDetailsRepoTest {
         mockRemoteMovieSucces()
 
         // When we call Repo
-        val movieData = repo.getMovieDetails("2")
+        repo.getMovieDetails("2").collect {
 
-        // Then Remote is called
-        verify(remote).getMovieDetails("2")
+            // Then Remote is called
+            verify(remote).getMovieDetails("2")
 
-        // and Success is returned
-        assert(movieData is Result.Success<MovieDetailsUiModel>)
+            // and Success is returned
+            assert(it is Result.Success<MovieDetailsUiModel>)
 
-        // with the correct data
-        if (movieData is Result.Success<MovieDetailsUiModel>)
-            assertEquals(MovieDetailsUiModel(TEST_REMOTE_MOVIE), movieData.data)
+            // with the correct data
+            if (it is Result.Success<MovieDetailsUiModel>)
+                assertEquals(MovieDetailsUiModel(TEST_REMOTE_MOVIE), it.data)
+        }
     }
 
     @Test
@@ -77,13 +80,14 @@ class MovieDetailsRepoTest {
         mockRemoteMovieSucces()
 
         // When we call Repo
-        repo.getMovieDetails("2")
+        repo.getMovieDetails("2").collect {
 
-        // Then Remote is called
-        verify(remote).getMovieDetails("2")
+            // Then Remote is called
+            verify(remote).getMovieDetails("2")
 
-        // And result is saved
-        verify(local).saveMovieDetails(TEST_LOCAL_MOVIE)
+            // And result is saved
+            verify(local).saveMovieDetails(TEST_LOCAL_MOVIE)
+        }
     }
 
     @Test
@@ -92,30 +96,31 @@ class MovieDetailsRepoTest {
         mockRemoteMovieFailure()
 
         // When we call Repo
-        val movieData = repo.getMovieDetails("2")
+        repo.getMovieDetails("2").collect {
 
-        // Then we get a Failure
-        assert(movieData is Result.Failure)
+            // Then we get a Failure
+            assert(it is Result.Failure)
 
-        // with the correct exception
-        if (movieData is Result.Failure)
-            assertEquals(TEST_EXCEPTION, movieData.ex)
+            // with the correct exception
+            if (it is Result.Failure)
+                assertEquals(TEST_EXCEPTION, it.ex)
+        }
     }
 
     private fun mockMovieCachedLocally() = runBlocking {
-        whenever(local.getMovieDetails("2")) doReturn (Result.Success(TEST_LOCAL_MOVIE))
+        whenever(local.getMovieDetails("2")) doReturn (DataResult.Success(TEST_LOCAL_MOVIE))
     }
 
     private fun mockMovieNotCachedLocally() = runBlocking {
-        whenever(local.getMovieDetails("2")) doReturn (Result.Failure(TEST_EXCEPTION))
+        whenever(local.getMovieDetails("2")) doReturn (DataResult.Failure(TEST_EXCEPTION))
     }
 
     private fun mockRemoteMovieSucces() = runBlocking {
-        whenever(remote.getMovieDetails("2")) doReturn (ApiResult.Success(TEST_REMOTE_MOVIE))
+        whenever(remote.getMovieDetails("2")) doReturn (DataResult.Success(TEST_REMOTE_MOVIE))
     }
 
     private fun mockRemoteMovieFailure() = runBlocking {
-        whenever(remote.getMovieDetails("2")) doReturn (ApiResult.Failure(TEST_EXCEPTION))
+        whenever(remote.getMovieDetails("2")) doReturn (DataResult.Failure(TEST_EXCEPTION))
     }
 
     companion object {

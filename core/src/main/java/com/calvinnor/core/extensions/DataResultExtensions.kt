@@ -1,7 +1,7 @@
 package com.calvinnor.core.extensions
 
-import com.calvinnor.core.domain.Result
 import com.calvinnor.core.exceptions.NoDataException
+import com.calvinnor.core.networking.DataResult
 
 /**
  * Convert a Nullable object into a Result.
@@ -11,7 +11,7 @@ import com.calvinnor.core.exceptions.NoDataException
  *
  * @param exception The exception to throw if null.
  */
-fun <T> T?.toResult(exception: Throwable = NoDataException()): Result<T> = let {
-    if (it == null) Result.Failure(exception)
-    else Result.Success(it)
+fun <T> T?.toDataResult(exception: Throwable = NoDataException()): DataResult<T> = let {
+    if (it == null) DataResult.Failure(exception)
+    else DataResult.Success(it)
 }

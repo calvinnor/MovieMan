@@ -15,17 +15,14 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.fragment_discover_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiscoverMoviesFragment : BaseFragment(), PaginationListener {
+class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies), PaginationListener {
 
     override val fragmentTag = TAG
-    override val layout = R.layout.fragment_discover_movies
 
     private val viewModel: DiscoverMoviesViewModel by viewModel()
     private val discoverMoviesAdapter = DiscoverMoviesAdapter(this)
 
-    init {
-        DiscoverMoviesModule.load()
-    }
+    override fun loadDependencies() = DiscoverMoviesModule.load()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

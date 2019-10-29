@@ -2,24 +2,23 @@ package com.calvinnor.movie.discover.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.calvinnor.core.dispatchers.JobDispatcher
-import com.calvinnor.core.dispatchers.cancelJobs
-import com.calvinnor.core.dispatchers.onIo
+import com.calvinnor.core.dispatchers.Dispatcher
 import com.calvinnor.core.domain.Result
+import com.calvinnor.core.extensions.collectOn
+import com.calvinnor.core.extensions.flowOnBack
 import com.calvinnor.core.extensions.hasValue
-import com.calvinnor.core.extensions.postLoading
-import com.calvinnor.core.extensions.postResult
+import com.calvinnor.core.extensions.setLoading
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.viewmodel.BaseViewModel
+import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.discover.di.DiscoverMoviesModule
 import com.calvinnor.movie.discover.domain.DiscoverMoviesC
-import com.calvinnor.movie.commons.model.MovieUiModel
 
 class DiscoverMoviesViewModel(
     private val discoverRepo: DiscoverMoviesC.Repository,
-    private val jobDispatcher: JobDispatcher
+    private val dispatcher: Dispatcher
 
-) : BaseViewModel() {
+) : BaseViewModel(dispatcher) {
 
     private val _discoverMovies = MutableLiveData<Result<Pagination.Result<MovieUiModel>>>()
 
@@ -32,15 +31,16 @@ class DiscoverMoviesViewModel(
     }
 
     fun getMoreMovies() {
-        _discoverMovies.postLoading(true)
-        jobDispatcher.onIo {
-            _discoverMovies.postResult(discoverRepo.getPopularMovies())
+        _discoverMovies.setLoading(postValue = true)
+        launchOnMain {
+            discoverRepo.getPopularMovies()
+                .flowOnBack(dispatcher)
+                .collectOn(_discoverMovies)
         }
     }
 
     override fun onCleared() {
         DiscoverMoviesModule.unload()
-        jobDispatcher.cancelJobs()
         super.onCleared()
     }
 }

@@ -14,10 +14,9 @@ import com.calvinnor.movie.search.viewmodel.SearchMoviesViewModel
 import kotlinx.android.synthetic.main.fragment_search_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchMoviesFragment : BaseFragment(), PaginationListener {
+class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), PaginationListener {
 
     override val fragmentTag = TAG
-    override val layout = R.layout.fragment_search_movies
 
     private val viewModel: SearchMoviesViewModel by viewModel()
     private val searchMoviesAdapter = SearchMoviesAdapter(this)

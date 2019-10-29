@@ -14,7 +14,7 @@ import org.koin.dsl.module
 /**
  * Dependency Injection module for Movie Details
  */
-object DetailsModule : BaseModule {
+object MovieDetailsModule : BaseModule {
     override fun load() = loadKoinModules(movieDetailsModule)
     override fun unload() = unloadKoinModules(movieDetailsModule)
 }
@@ -27,6 +27,6 @@ private val movieDetailsModule = module {
 
     factory<MovieDetailsC.Repository> { MovieDetailsRepo(local = get(), remote = get()) }
 
-    viewModel { MovieDetailsViewModel(jobDispatcher = get(), movieRepo = get()) }
+    viewModel { MovieDetailsViewModel(dispatcher = get(), movieRepo = get()) }
 
 }

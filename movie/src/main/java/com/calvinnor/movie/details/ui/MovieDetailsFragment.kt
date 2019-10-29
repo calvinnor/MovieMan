@@ -12,35 +12,34 @@ import androidx.core.text.color
 import androidx.core.text.scale
 import androidx.core.view.doOnPreDraw
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
-import com.calvinnor.movie.details.di.DetailsModule
+import com.calvinnor.movie.details.di.MovieDetailsModule
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
-class MovieDetailsFragment : BaseFragment() {
+class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     override val fragmentTag = TAG
 
-    override val layout = R.layout.fragment_movie_details
     private val viewModel: MovieDetailsViewModel by viewModel()
     private val navArgs: MovieDetailsFragmentArgs by navArgs()
 
-    init {
-        DetailsModule.load()
-    }
+    override fun loadDependencies() = MovieDetailsModule.load()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setPosterHeight()
+        setupForInsets()
         setupListeners()
         fetchData()
     }
@@ -48,6 +47,17 @@ class MovieDetailsFragment : BaseFragment() {
     /* Avoid "Overview" title jumping while poster image loads */
     private fun setPosterHeight() = ivPoster.doOnPreDraw {
         it.setDimensions(newHeight = (it.measuredWidth * ASPECT_RATIO).roundToInt())
+    }
+
+    private fun setupForInsets() {
+        nsvParent.setOnApplyWindowInsetsListener { v, insets ->
+            vNavigationBarScrollSpace.updateLayoutParams {
+                height = insets.systemWindowInsetBottom
+            }
+            return@setOnApplyWindowInsetsListener insets
+        }
+
+        nsvParent.requestApplyInsets()
     }
 
     private fun setupListeners() {

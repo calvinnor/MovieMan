@@ -75,3 +75,14 @@
 -keepclassmembers class kotlin.Metadata {
     public <methods>;
 }
+
+
+##### Coroutines + Flows #####
+
+-keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
+-keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
+
+-keep class kotlinx.coroutines.android.AndroidExceptionPreHandler
+-keep class kotlinx.coroutines.android.AndroidDispatcherFactory
+
+-dontwarn kotlinx.coroutines.flow.**inlined**

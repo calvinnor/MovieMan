@@ -2,6 +2,7 @@ package com.calvinnor.movie.details.domain
 
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.exceptions.NoDataException
+import com.calvinnor.core.networking.DataResult
 import com.calvinnor.data.movie.local.dao.MovieDao
 import com.calvinnor.data.movie.local.entities.MovieL
 import com.nhaarman.mockitokotlin2.doReturn
@@ -31,10 +32,10 @@ class MovieDetailsLocalTest {
         val movieData = local.getMovieDetails("2")
 
         // Then we get a Success
-        assert(movieData is Result.Success<MovieL>)
+        assert(movieData is DataResult.Success<MovieL>)
 
         // with the correct data
-        if (movieData is Result.Success<MovieL>)
+        if (movieData is DataResult.Success<MovieL>)
             assertEquals(TEST_MOVIE, movieData.data)
     }
 
@@ -46,10 +47,10 @@ class MovieDetailsLocalTest {
         val movieData = local.getMovieDetails("2")
 
         // Then we get a failure
-        assert(movieData is Result.Failure<MovieL>)
+        assert(movieData is DataResult.Failure<MovieL>)
 
         // with the correct exception
-        if (movieData is Result.Failure<MovieL>)
+        if (movieData is DataResult.Failure<MovieL>)
             assertEquals(TEST_EXCEPTION, movieData.ex)
     }
 

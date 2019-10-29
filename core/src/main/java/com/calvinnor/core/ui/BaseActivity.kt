@@ -12,12 +12,11 @@ import androidx.fragment.app.transaction
  * Base Activity to inherit from.
  * All common code and abstraction layer goes in here.
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity(@LayoutRes layoutId: Int) : AppCompatActivity(layoutId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setupLayout()
         setupToolbar()
 
         // Add the root fragment only on first launch
@@ -52,14 +51,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
-     * Override this value to provide an activity layout.
-     *
-     * @return The layout resource ID.
-     */
-    @LayoutRes
-    protected open val contentLayout = NO_LAYOUT
-
-    /**
      * Override this value to provide a root fragment.
      *
      * @return The BaseFragment instance to inflate.
@@ -82,17 +73,12 @@ abstract class BaseActivity : AppCompatActivity() {
     @MenuRes
     protected open val menuLayout = NO_LAYOUT
 
-    private fun setupLayout() {
-        if (contentLayout == NO_LAYOUT) return
-        setContentView(contentLayout)
-    }
-
     private fun setupToolbar() {
         title = toolbarTitle
     }
 
     private fun addRootFragment() {
-        if (contentLayout == NO_LAYOUT) return
+        if (fragmentContainer == NO_LAYOUT) return
         val fragment = fragment ?: return
 
         replaceFragment(fragmentContainer, fragment, false)
@@ -109,6 +95,6 @@ abstract class BaseActivity : AppCompatActivity() {
     protected open fun setupFragment(fragment: BaseFragment) {}
 
     companion object {
-        private const val NO_LAYOUT = -1
+        private const val NO_LAYOUT = 0
     }
 }

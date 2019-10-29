@@ -1,9 +1,12 @@
 package com.calvinnor.movie.search.domain
 
 import com.calvinnor.core.domain.Result
-import com.calvinnor.core.networking.ApiResult
+import com.calvinnor.core.extensions.emitFailure
+import com.calvinnor.core.extensions.emitSuccess
+import com.calvinnor.core.networking.DataResult
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.movie.commons.model.MovieUiModel
+import kotlinx.coroutines.flow.flow
 
 class SearchMoviesRepo(
     private val remote: SearchMoviesC.Remote
@@ -13,50 +16,37 @@ class SearchMoviesRepo(
     private var currentPage: Int = DEFAULT_PAGE
     private var dataItems: MutableList<MovieUiModel> = mutableListOf()
 
-    override suspend fun searchMovies(
-        searchQuery: String,
-        isNewSearch: Boolean
-    ): Result<Pagination.Result<MovieUiModel>> {
+    override suspend fun searchMovies(searchQuery: String, isNewSearch: Boolean) =
+        flow<Result<Pagination.Result<MovieUiModel>>> {
+            if (isNewSearch) {
+                currentPage = DEFAULT_PAGE
+                dataItems.clear()
+            }
 
-        if (isNewSearch) {
-            currentPage = DEFAULT_PAGE
-            dataItems.clear()
-        }
+            when (val apiResult =
+                remote.searchMovies(searchQuery = searchQuery, requestPage = currentPage + 1)) {
 
-        return remote.searchMovies(
-            searchQuery = searchQuery,
-            requestPage = currentPage + 1
-        ).let { apiResult ->
+                is DataResult.Success -> {
+                    val movieUiModels = apiResult.data.results.map { MovieUiModel(it) }
 
-            when (apiResult) {
-
-                is ApiResult.Success -> {
-                    val movieUiModels = apiResult.result.results.map { MovieUiModel(it) }
-
-                    currentPage = apiResult.result.page
+                    currentPage = apiResult.data.page
                     dataItems.addAll(movieUiModels)
 
-                    // If a new search, replace all elements with the new page
-                    if (isNewSearch)
-                        Result.Success(
-                            Pagination.Result.Replace(
-                                newElements = dataItems
-                            )
-                        )
+                    emitSuccess(
 
-                    // Else just append the new elements
-                    else
-                        Result.Success(
-                            Pagination.Result.Append(
-                                allElements = dataItems, newPage = movieUiModels
-                            )
+                        // If a new search, replace all elements with the new page
+                        if (isNewSearch) Pagination.Result.Replace(newElements = dataItems)
+
+                        // Else just append the new elements
+                        else Pagination.Result.Append(
+                            allElements = dataItems, newPage = movieUiModels
                         )
+                    )
                 }
 
-                is ApiResult.Failure -> Result.Failure(apiResult.ex)
+                is DataResult.Failure -> emitFailure(apiResult.ex)
             }
         }
-    }
 
     companion object {
         private const val DEFAULT_PAGE = 0

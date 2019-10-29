@@ -24,6 +24,6 @@ val searchMoviesModule = module {
 
     factory<SearchMoviesC.Repository> { SearchMoviesRepo(remote = get()) }
 
-    viewModel { SearchMoviesViewModel(jobDispatcher = get(), searchRepo = get()) }
+    viewModel { SearchMoviesViewModel(dispatcher = get(), searchRepo = get()) }
 
 }
