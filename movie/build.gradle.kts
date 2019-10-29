@@ -27,6 +27,7 @@ dependencies {
     // Testing
     testImplementation(Dependencies.test_JUnit)
     testImplementation(Dependencies.test_LiveData)
+    testImplementation(Dependencies.test_coRoutines)
     testImplementation(Dependencies.test_MockitoKotlin)
 
     // Android Testing

@@ -97,7 +97,7 @@ object Versions {
     const val ktx_Fragment = "1.0.0"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
-    const val ktx_LifecycleViewModel = "2.0.0"
+    const val ktx_LifecycleViewModel = "2.1.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
@@ -202,6 +202,8 @@ object Dependencies {
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
     const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_viewModelLiveData}"
     const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
+    const val test_coRoutines =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
 
     // Mockito
     const val test_MockitoKotlin =

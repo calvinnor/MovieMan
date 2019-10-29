@@ -5,14 +5,14 @@ import kotlinx.coroutines.Deferred
 /**
  * Wrapper utility for an API call.
  *
- * This will wrap around the call, and if successful, return the Success ApiResult.
- * Else, will return ApiResult.Failure with the exception.
+ * This will wrap around the call, and if successful, return the Success DataResult.
+ * Else, will return DataResult.Failure with the exception.
  */
-suspend fun <T> callApi(deferredApi: Deferred<T>): ApiResult<T> {
+suspend fun <T> callApi(deferredApi: Deferred<T>): DataResult<T> {
     return try {
-        ApiResult.Success(deferredApi.await())
+        DataResult.Success(deferredApi.await())
 
     } catch (ex: Exception) {
-        ApiResult.Failure(ex)
+        DataResult.Failure(ex)
     }
 }

@@ -4,12 +4,15 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.exceptions.NoDataException
-import com.calvinnor.core.testing.buildTestingDispatcher
+import com.calvinnor.core.extensions.emitFailure
+import com.calvinnor.core.extensions.emitSuccess
+import com.calvinnor.core.testing.TestingDispatcher
+import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.details.domain.MovieDetailsC
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
-import com.calvinnor.movie.commons.model.MovieUiModel
 import com.nhaarman.mockitokotlin2.*
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -28,7 +31,7 @@ class MovieDetailsViewModelTest {
     private val observer: Observer<Result<MovieDetailsUiModel>> = mock()
     private val repo: MovieDetailsC.Repository = mock()
 
-    private val viewModel = MovieDetailsViewModel(repo, buildTestingDispatcher())
+    private val viewModel = MovieDetailsViewModel(repo, TestingDispatcher())
 
     @Test
     fun whenGetMovieDetails_thenLoadingIsEmitted() {
@@ -63,7 +66,7 @@ class MovieDetailsViewModelTest {
 
     @Test
     fun whenGetMovieDetails_andHasData_thenLoadingIsNotEmitted() {
-        runBlocking {
+        runBlockingTest {
             mockRepoSuccess()
 
             // Observe the LiveData
@@ -103,12 +106,12 @@ class MovieDetailsViewModelTest {
         assertEquals(Result.Failure<MovieUiModel>(TEST_EXCEPTION), viewModel.movieDetails.value)
     }
 
-    private fun mockRepoSuccess() = runBlocking {
-        whenever(repo.getMovieDetails("2")) doReturn (Result.Success(TEST_UI_MODEL))
+    private fun mockRepoSuccess() = runBlockingTest {
+        whenever(repo.getMovieDetails("2")) doReturn flow { emitSuccess(TEST_UI_MODEL) }
     }
 
-    private fun mockRepoFailure() = runBlocking {
-        whenever(repo.getMovieDetails("2")) doReturn (Result.Failure(TEST_EXCEPTION))
+    private fun mockRepoFailure() = runBlockingTest {
+        whenever(repo.getMovieDetails("2")) doReturn flow { emitFailure(TEST_EXCEPTION) }
     }
 
     companion object {

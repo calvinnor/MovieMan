@@ -27,6 +27,6 @@ private val movieDetailsModule = module {
 
     factory<MovieDetailsC.Repository> { MovieDetailsRepo(local = get(), remote = get()) }
 
-    viewModel { MovieDetailsViewModel(jobDispatcher = get(), movieRepo = get()) }
+    viewModel { MovieDetailsViewModel(dispatcher = get(), movieRepo = get()) }
 
 }

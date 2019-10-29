@@ -17,25 +17,25 @@ fun LiveData<*>.isEmpty() = value == null
 fun LiveData<*>.hasValue() = !isEmpty()
 
 /**
- * Post a Loading State on this LiveData.
+ * Checks if the Result LiveData is not idle
+ * i.e. it is loading something, or contains a result
  */
-fun <T> MutableLiveData<Result<T>>.postLoading(isLoading: Boolean) =
-    postValue(Result.Loading(isLoading))
+fun <T> LiveData<Result<T>>.isNotIdle() =
+    hasValue() && (value is Result.Loading || value is Result.Success)
 
 /**
- * Post a Success with Data on this LiveData.
+ * Set a Loading State on this LiveData.
+ *
+ * @param isLoading The Result Loading boolean
+ * @param postValue Whether the value should be set (same thread) or posted
  */
-fun <T> MutableLiveData<Result<T>>.postSuccess(data: T) = postValue(Result.Success(data))
-
-/**
- * Post a Failure with exception on this LiveData.
- */
-fun <T> MutableLiveData<Result<T>>.postFailure(ex: Throwable) = postValue(Result.Failure(ex))
-
-/**
- * Post a Result on this LiveData.
- */
-fun <T> MutableLiveData<Result<T>>.postResult(result: Result<T>) = postValue(result)
+fun <T> MutableLiveData<Result<T>>.setLoading(
+    isLoading: Boolean = true,
+    postValue: Boolean = false
+) {
+    if (postValue) postValue(Result.Loading(isLoading))
+    else value = Result.Loading(isLoading)
+}
 
 /**
  * Wrapper over the LiveData observe for using Lambdas.

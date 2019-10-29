@@ -24,6 +24,6 @@ private val discoverMoviesModule = module {
 
     factory<DiscoverMoviesC.Repository> { DiscoverMoviesRepo(remote = get()) }
 
-    viewModel { DiscoverMoviesViewModel(jobDispatcher = get(), discoverRepo = get()) }
+    viewModel { DiscoverMoviesViewModel(dispatcher = get(), discoverRepo = get()) }
 
 }

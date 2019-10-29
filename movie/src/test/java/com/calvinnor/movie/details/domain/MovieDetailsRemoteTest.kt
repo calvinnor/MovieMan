@@ -1,6 +1,6 @@
 package com.calvinnor.movie.details.domain
 
-import com.calvinnor.core.networking.ApiResult
+import com.calvinnor.core.networking.DataResult
 import com.calvinnor.data.movie.remote.MovieWebService
 import com.calvinnor.data.movie.remote.api.MovieR
 import com.nhaarman.mockitokotlin2.doReturn
@@ -17,7 +17,7 @@ import java.util.*
 /**
  * Tests the interaction between Remote & WebService layer.
  *
- * Tests the results from Remote functions via [ApiResult]
+ * Tests the results from Remote functions via [DataResult]
  */
 class MovieDetailsRemoteTest {
 
@@ -32,11 +32,11 @@ class MovieDetailsRemoteTest {
         val apiResult = remote.getMovieDetails("2")
 
         // Then we get a Success
-        assert(apiResult is ApiResult.Success<MovieR>)
+        assert(apiResult is DataResult.Success<MovieR>)
 
         // With the correct data
-        if (apiResult is ApiResult.Success<MovieR>)
-            assertEquals(TEST_MOVIE, apiResult.result)
+        if (apiResult is DataResult.Success<MovieR>)
+            assertEquals(TEST_MOVIE, apiResult.data)
     }
 
     // TODO: Find how to mock an Exception throw
@@ -48,10 +48,10 @@ class MovieDetailsRemoteTest {
         val apiResult = remote.getMovieDetails("2")
 
         // Then we get a Failure
-        assert(apiResult is ApiResult.Failure)
+        assert(apiResult is DataResult.Failure)
 
         // With the correct exception
-        if (apiResult is ApiResult.Failure)
+        if (apiResult is DataResult.Failure)
             assertEquals(IOException("Bad Network"), apiResult.ex)
     }
 
