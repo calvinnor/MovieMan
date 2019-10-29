@@ -60,7 +60,6 @@ dependencies {
     implementation(Dependencies.moshiRetrofitConverter)
 
     // Coroutines
-    api(Dependencies.coroutinesCore)
     api(Dependencies.coroutinesAndroid)
 
     // Retrofit
