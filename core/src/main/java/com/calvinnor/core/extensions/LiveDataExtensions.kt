@@ -23,6 +23,8 @@ fun LiveData<*>.hasValue() = !isEmpty()
 fun <T> LiveData<Result<T>>.isNotIdle() =
     hasValue() && (value is Result.Loading || value is Result.Success)
 
+fun <T> LiveData<Result<T>>.isLoading() = hasValue() && value is Result.Loading
+
 /**
  * Set a Loading State on this LiveData.
  *
