@@ -73,14 +73,14 @@ object Versions {
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.8.0"
+    const val moshi = "1.9.1"
     const val moshiRetrofitConverter = "2.6.2"
 
     // Coroutines
     const val coroutines = "1.3.2"
 
     // Retrofit
-    const val retrofit = "2.5.0"
+    const val retrofit = "2.6.2"
     const val retrofitCoroutinesAdapter = "0.9.2"
 
     // Stetho

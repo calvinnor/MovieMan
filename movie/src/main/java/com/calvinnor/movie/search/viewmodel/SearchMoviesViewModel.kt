@@ -30,7 +30,7 @@ class SearchMoviesViewModel(
     }
 
     fun paginateMovies(searchQuery: String) {
-        _searchMovies.setLoading()
+        _searchMovies.setLoading(postValue = true)
         searchMoviesIntl(searchQuery, isNewSearch = false)
     }
 

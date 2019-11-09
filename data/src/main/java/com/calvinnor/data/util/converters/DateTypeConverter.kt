@@ -12,9 +12,9 @@ import java.util.*
 class DateTypeConverter {
 
     @TypeConverter
-    fun dateToString(date: Date): String = DateTimeAdapter.dateToString(date)
+    fun dateToString(date: Date?): String = DateTimeAdapter.dateToString(date)
 
     @TypeConverter
-    fun stringToDate(date: String): Date = DateTimeAdapter.stringToDate(date)
+    fun stringToDate(date: String): Date? = DateTimeAdapter.stringToDate(date)
 
 }

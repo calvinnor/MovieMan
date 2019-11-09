@@ -1,6 +1,7 @@
 package com.calvinnor.movie.search.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import com.calvinnor.core.domain.Result

@@ -2,6 +2,7 @@ package com.calvinnor.movie.commons.model
 
 import com.calvinnor.core.extensions.toReadableDate
 import com.calvinnor.core.pagination.PaginatedItem
+import com.calvinnor.core.utils.emptyString
 import com.calvinnor.data.movie.remote.api.MovieListing
 import com.calvinnor.movie.commons.business.buildImagePath
 
@@ -17,6 +18,6 @@ data class MovieUiModel(
         id = movie.id.toString(),
         title = movie.title,
         backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
-        releaseDate = movie.releaseDate.toReadableDate()
+        releaseDate = movie.releaseDate?.toReadableDate() ?: emptyString()
     )
 }
