@@ -6,6 +6,7 @@ import com.calvinnor.core.dispatchers.Dispatcher
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.collectOn
 import com.calvinnor.core.extensions.flowOnBack
+import com.calvinnor.core.extensions.isLoading
 import com.calvinnor.core.extensions.setLoading
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.viewmodel.BaseViewModel
@@ -25,12 +26,16 @@ class SearchMoviesViewModel(
     val searchMovies: LiveData<Result<Pagination.Result<MovieUiModel>>> = _searchMovies
 
     fun searchMovies(searchQuery: String) {
+        if (_searchMovies.isLoading()) return
+
         _searchMovies.setLoading()
         searchMoviesIntl(searchQuery, isNewSearch = true)
     }
 
     fun paginateMovies(searchQuery: String) {
-        _searchMovies.setLoading()
+        if (_searchMovies.isLoading()) return
+
+        _searchMovies.setLoading(postValue = true)
         searchMoviesIntl(searchQuery, isNewSearch = false)
     }
 

@@ -131,6 +131,9 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
         // Title is bold
         bold { append(uiModel.title) }
 
+        // If we don't have a Release Year, don't show the brackets either
+        if (uiModel.releaseYear.isEmpty()) return@buildSpannedString
+
         // Space after the title
         append(" ")
 

@@ -1,6 +1,7 @@
 package com.calvinnor.movie.details.model
 
 import com.calvinnor.core.extensions.yearAsString
+import com.calvinnor.core.utils.emptyString
 import com.calvinnor.data.movie.local.entities.MovieL
 import com.calvinnor.data.movie.remote.api.MovieR
 import com.calvinnor.movie.commons.business.buildImagePath
@@ -19,7 +20,7 @@ data class MovieDetailsUiModel(
         description = movie.overview,
         backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
         posterImage = buildImagePath(movie.posterPath).orEmpty(),
-        releaseYear = movie.releaseDate.yearAsString()
+        releaseYear = movie.releaseDate?.yearAsString() ?: emptyString()
     )
 
     constructor(movie: MovieL) : this(
@@ -27,6 +28,6 @@ data class MovieDetailsUiModel(
         description = movie.overview,
         backdropImage = buildImagePath(movie.backdropPath).orEmpty(),
         posterImage = buildImagePath(movie.posterPath).orEmpty(),
-        releaseYear = movie.releaseDate.yearAsString()
+        releaseYear = movie.releaseDate?.yearAsString() ?: emptyString()
     )
 }

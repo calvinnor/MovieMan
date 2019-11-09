@@ -1,5 +1,6 @@
 package com.calvinnor.core.networking.adapters
 
+import com.calvinnor.core.utils.emptyString
 import com.squareup.moshi.FromJson
 import com.squareup.moshi.ToJson
 import java.text.SimpleDateFormat
@@ -16,15 +17,17 @@ private val dateFormat = SimpleDateFormat(DATE_TIME_FORMAT, Locale.ENGLISH)
 class DateTimeAdapter {
 
     @ToJson
-    fun toJson(date: Date): String = dateToString(date)
+    fun toJson(date: Date?): String = dateToString(date)
 
     @FromJson
-    fun fromJson(date: String): Date = stringToDate(date)
+    fun fromJson(date: String): Date? = stringToDate(date)
 
     companion object {
 
-        fun dateToString(date: Date): String = dateFormat.format(date)
+        fun dateToString(date: Date?): String =
+            if (date == null) emptyString() else dateFormat.format(date)
 
-        fun stringToDate(date: String): Date = dateFormat.parse(date)
+        fun stringToDate(date: String): Date? =
+            if (date.isNotEmpty()) dateFormat.parse(date) else null
     }
 }

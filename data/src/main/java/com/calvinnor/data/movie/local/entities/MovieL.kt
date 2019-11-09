@@ -12,7 +12,7 @@ data class MovieL(
     val overview: String,
     val backdropPath: String,
     val posterPath: String,
-    val releaseDate: Date
+    val releaseDate: Date?
 
 ) {
 

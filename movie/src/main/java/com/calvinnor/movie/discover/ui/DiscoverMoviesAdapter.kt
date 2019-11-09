@@ -3,16 +3,13 @@ package com.calvinnor.movie.discover.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import com.calvinnor.core.extensions.ScaleType
-import com.calvinnor.core.extensions.defaultImage
-import com.calvinnor.core.extensions.inflate
-import com.calvinnor.core.extensions.setImage
+import com.calvinnor.core.extensions.*
 import com.calvinnor.core.pagination.BottomPaginationAdapter
 import com.calvinnor.core.pagination.PaginationListener
 import com.calvinnor.core.pagination.PaginationViewHolder
 import com.calvinnor.movie.R
-import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
 import com.calvinnor.movie.commons.model.MovieUiModel
+import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class DiscoverMoviesAdapter(listener: PaginationListener) :
@@ -40,7 +37,7 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
             )
 
             tvTitle.text = uiModel.title
-            tvRelease.text = uiModel.releaseDate
+            tvRelease.setTextOrGone(uiModel.releaseDate)
 
             clRoot.setOnClickListener {
 

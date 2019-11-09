@@ -11,5 +11,5 @@ data class MovieR(
     @Json(name = "overview") val overview: String,
     @Json(name = "backdrop_path") val backdropPath: String?,
     @Json(name = "poster_path") val posterPath: String,
-    @Json(name = "release_date") val releaseDate: Date
+    @Json(name = "release_date") val releaseDate: Date?
 )
