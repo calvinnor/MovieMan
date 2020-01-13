@@ -26,6 +26,7 @@
             android:id="@+id/rvSearch"
             style="@style/LinearVerticalRecyclerView"
             android:layout_marginTop="@dimen/margin_medium"
+            android:layoutAnimation="@anim/layout_animation_fall_down"
             app:layout_constraintTop_toBottomOf="@id/svMovies"
             tools:listitem="@layout/item_movie" />
 

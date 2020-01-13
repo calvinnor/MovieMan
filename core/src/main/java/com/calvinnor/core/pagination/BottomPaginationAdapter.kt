@@ -133,6 +133,7 @@ abstract class BottomPaginationAdapter<DataItem : PaginatedItem>(
 
     private fun replaceAll(newItems: List<DataItem>) {
         dataItems.clear(); dataItems.addAll(newItems); notifyDataSetChanged()
+        listener.onReplacedData()
     }
 
     private fun clearAllItems() {
