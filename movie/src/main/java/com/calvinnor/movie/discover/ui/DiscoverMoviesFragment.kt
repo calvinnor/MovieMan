@@ -49,6 +49,10 @@ class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies), 
         viewModel.getMoreMovies()
     }
 
+    override fun onReplacedData() {
+        rvDiscover.scheduleLayoutAnimation()
+    }
+
     private fun setupAdapter() {
         rvDiscover.adapter = discoverMoviesAdapter
     }
