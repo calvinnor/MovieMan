@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
+import androidx.transition.TransitionInflater
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
@@ -35,13 +36,28 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     override fun loadDependencies() = MovieDetailsModule.load()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupInitialUi()
         setPosterHeight()
         setupForInsets()
         setupListeners()
         fetchData()
+    }
+
+    private fun setupInitialUi() {
+        navArgs.posterUrl.let {
+            if (it.isNullOrEmpty()) return
+            else ivBackdrop.setImage(imageUrl = it)
+        }
     }
 
     /* Avoid "Overview" title jumping while poster image loads */

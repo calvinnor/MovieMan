@@ -3,6 +3,7 @@ package com.calvinnor.movie.discover.ui
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.pagination.BottomPaginationAdapter
 import com.calvinnor.core.pagination.PaginationListener
@@ -43,7 +44,14 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
 
                 findNavController().navigate(
                     R.id.navigateFromHomeToMovieDetails,
-                    MovieDetailsFragmentArgs(movieId = uiModel.id).toBundle()
+                    MovieDetailsFragmentArgs(
+                        movieId = uiModel.id,
+                        posterUrl = uiModel.backdropImage
+                    ).toBundle(),
+                    null,
+                    FragmentNavigatorExtras(
+                        ivBackdrop to "transition_image"
+                    )
                 )
             }
         }
