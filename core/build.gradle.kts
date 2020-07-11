@@ -37,6 +37,7 @@ dependencies {
     api(Dependencies.appCompat)
     api(Dependencies.constraintLayout)
     api(Dependencies.recyclerView)
+    api(Dependencies.swipeRefreshLayout)
     api(Dependencies.materialComponents)
     api(Dependencies.palette)
 
