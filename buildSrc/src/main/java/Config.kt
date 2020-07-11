@@ -18,7 +18,7 @@ object Plugins {
     const val plugin_gradleGoogleServices =
         "com.google.gms:google-services:${Versions.plugin_Firebase}"
     const val plugin_safeArgs =
-        "android.arch.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
     const val plugin_fabricGradle = "io.fabric.tools:gradle:${Versions.plugin_fabricCrashlytics}"
 }
 
@@ -65,7 +65,7 @@ object Versions {
     const val materialComponents = "1.1.0"
     const val constraintLayout = "1.1.3"
     const val palette = "1.0.0"
-    const val navigationComponent = "1.0.0"
+    const val navigationComponent = "2.3.0"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.2.0"
@@ -149,9 +149,9 @@ object Dependencies {
 
     // Navigation
     const val navigationFragment =
-        "android.arch.navigation:navigation-fragment-ktx:${Versions.navigationComponent}"
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigationComponent}"
     const val navigationUi =
-        "android.arch.navigation:navigation-ui-ktx:${Versions.navigationComponent}"
+        "androidx.navigation:navigation-ui-ktx:${Versions.navigationComponent}"
 
     // Moshi
     const val moshi = "com.squareup.moshi:moshi:${Versions.moshi}"
