@@ -15,6 +15,10 @@ android {
         targetSdkVersion(App.targetSdk)
 
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
