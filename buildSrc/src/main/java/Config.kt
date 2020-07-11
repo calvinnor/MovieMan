@@ -40,7 +40,7 @@ object Modules {
 
 object App {
 
-    const val compileSdk = 28
+    const val compileSdk = 29
     const val targetSdk = compileSdk
     const val minSdk = 21
 
@@ -53,10 +53,10 @@ object Versions {
 
     // Gradle
     const val gradleTools = "4.0.0"
-    const val dependencyUpdates = "0.27.0"
+    const val dependencyUpdates = "0.28.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.61"
+    const val kotlinVersion = "1.3.72"
 
     // AndroidX
     const val appCompat = "1.1.0"
@@ -68,33 +68,34 @@ object Versions {
     const val navigationComponent = "1.0.0"
 
     // ViewModel + LiveData
-    const val arch_viewModelLiveData = "2.1.0"
-    const val arch_Room = "2.2.3"
+    const val arch_viewModelLiveData = "2.2.0"
+    const val arch_coreTesting = "2.1.0"
+    const val arch_Room = "2.2.5"
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.9.2"
-    const val moshiRetrofitConverter = "2.7.1"
+    const val moshi = "1.9.3"
+    const val moshiRetrofitConverter = "2.9.0"
 
     // Coroutines
     const val coroutines = "1.3.2"
 
     // Retrofit
-    const val retrofit = "2.6.2"
+    const val retrofit = "2.9.0"
     const val retrofitCoroutinesAdapter = "0.9.2"
 
     // Stetho
     const val stetho = "1.5.1"
 
     // Glide
-    const val glide = "4.10.0"
+    const val glide = "4.11.0"
 
     // Koin
     const val koin = "2.0.1"
 
     // KTX
-    const val ktx_Core = "1.0.2"
-    const val ktx_Fragment = "1.0.0"
+    const val ktx_Core = "1.3.0"
+    const val ktx_Fragment = "1.2.5"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
     const val ktx_LifecycleViewModel = "2.1.0"
@@ -102,7 +103,7 @@ object Versions {
 
     // Firebase
     const val plugin_Firebase = "4.3.3"
-    const val deps_Firebase = "17.2.1"
+    const val deps_Firebase = "17.4.4"
 
     // Crashlytics
     const val plugin_fabricCrashlytics = "1.31.2"
@@ -199,7 +200,7 @@ object Dependencies {
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"
     const val test_JUnitRunner = "androidx.test.ext.junit.runners.AndroidJUnit4"
-    const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_viewModelLiveData}"
+    const val test_LiveData = "androidx.arch.core:core-testing:${Versions.arch_coreTesting}"
     const val test_Room = "androidx.room:room-testing:${Versions.arch_Room}"
     const val test_coRoutines =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"

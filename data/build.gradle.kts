@@ -15,6 +15,10 @@ android {
 
         testInstrumentationRunner = Dependencies.test_JUnitRunner
     }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 dependencies {
