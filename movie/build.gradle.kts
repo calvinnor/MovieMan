@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.androidFeature)
+    id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)

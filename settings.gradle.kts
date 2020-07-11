@@ -1,1 +1,4 @@
-include(*Modules.allModules)
+include(":app")
+include(":core")
+include(":data")
+include(":movie")

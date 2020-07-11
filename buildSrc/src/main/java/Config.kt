@@ -2,7 +2,6 @@ object Plugins {
 
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
-    const val androidFeature = "com.android.feature"
 
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
@@ -53,7 +52,7 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "3.3.1"
+    const val gradleTools = "4.0.0"
     const val dependencyUpdates = "0.27.0"
 
     // Kotlin
