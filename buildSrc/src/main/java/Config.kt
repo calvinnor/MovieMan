@@ -2,7 +2,6 @@ object Plugins {
 
     const val androidApplication = "com.android.application"
     const val androidLibrary = "com.android.library"
-    const val androidFeature = "com.android.feature"
 
     const val kotlinAndroid = "kotlin-android"
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
@@ -53,11 +52,11 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "3.3.1"
+    const val gradleTools = "4.0.0"
     const val dependencyUpdates = "0.27.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.50"
+    const val kotlinVersion = "1.3.61"
 
     // AndroidX
     const val appCompat = "1.1.0"
@@ -69,12 +68,12 @@ object Versions {
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.1.0"
-    const val arch_Room = "2.2.1"
+    const val arch_Room = "2.2.3"
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.9.1"
-    const val moshiRetrofitConverter = "2.6.2"
+    const val moshi = "1.9.2"
+    const val moshiRetrofitConverter = "2.7.1"
 
     // Coroutines
     const val coroutines = "1.3.2"
@@ -101,7 +100,7 @@ object Versions {
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.3.2"
+    const val plugin_Firebase = "4.3.3"
     const val deps_Firebase = "17.2.1"
 
     // Crashlytics
@@ -109,7 +108,7 @@ object Versions {
     const val deps_fabricCrashlytics = "2.10.1"
 
     // Testing
-    const val test_JUnit = "4.12"
+    const val test_JUnit = "4.13"
 
     // Mockito
     const val mockitoKotlin = "2.1.0"

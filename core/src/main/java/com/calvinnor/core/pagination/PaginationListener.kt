@@ -8,4 +8,6 @@ interface PaginationListener {
 
     fun onNewRequest(request: Pagination.Request)
 
+    fun onReplacedData()
+
 }

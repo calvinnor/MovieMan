@@ -38,6 +38,10 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
         viewModel.paginateMovies(searchQuery = svMovies.query.toString())
     }
 
+    override fun onReplacedData() {
+        rvSearch.scheduleLayoutAnimation()
+    }
+
     private fun setupUi() {
         svMovies.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
