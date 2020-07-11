@@ -32,6 +32,7 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
         setupUi()
         setupAdapter()
         setupListeners()
+        focusOnSearch()
     }
 
     override fun onNewRequest(request: Pagination.Request) {
@@ -73,6 +74,8 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
             }
         }
     }
+
+    private fun focusOnSearch() = svMovies.requestFocus()
 
     private fun showError(ex: Throwable) {
         // TODO
