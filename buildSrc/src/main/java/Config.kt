@@ -60,8 +60,9 @@ object Versions {
 
     // AndroidX
     const val appCompat = "1.1.0"
-    const val recyclerView = "1.0.0"
-    const val materialComponents = "1.0.0"
+    const val recyclerView = "1.1.0"
+    const val swipeRefreshLayout = "1.1.0"
+    const val materialComponents = "1.1.0"
     const val constraintLayout = "1.1.3"
     const val palette = "1.0.0"
     const val navigationComponent = "1.0.0"
@@ -131,6 +132,7 @@ object Dependencies {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefreshLayout}"
     const val materialComponents =
         "com.google.android.material:material:${Versions.materialComponents}"
     const val palette = "androidx.palette:palette:${Versions.palette}"
