@@ -14,7 +14,9 @@
 
         <action
             android:id="@+id/navigateFromSearchToMovieDetails"
-            app:destination="@id/nav_movie_details" />
+            app:destination="@id/nav_movie_details"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
 
     </fragment>
 

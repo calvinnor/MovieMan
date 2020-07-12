@@ -8,8 +8,11 @@
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clBackground"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="@color/black_full">
 
         <View
             android:id="@+id/crNewBackground"
@@ -61,8 +64,7 @@
             app:layout_constraintBottom_toBottomOf="@id/ivBackdrop"
             app:layout_constraintEnd_toStartOf="@id/gl30"
             app:layout_constraintStart_toEndOf="@id/glLeft"
-            app:layout_constraintTop_toBottomOf="@id/ivBackdrop"
-            tools:srcCompat="@drawable/ic_image" />
+            app:layout_constraintTop_toBottomOf="@id/ivBackdrop" />
 
         <TextView
             android:id="@+id/tvTitle"
@@ -90,10 +92,8 @@
             android:text="@string/movie_details_overview"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/text_medium_small"
-            android:visibility="gone"
             app:layout_constraintStart_toEndOf="@id/glLeft"
-            app:layout_constraintTop_toBottomOf="@id/ivPoster"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@id/ivPoster" />
 
         <TextView
             android:id="@+id/tvOverviewDesc"
@@ -128,6 +128,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvOverviewDesc" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupDetails"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:constraint_referenced_ids="tvTitle,tvOverviewTitle,tvOverviewDesc"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,5 +1,6 @@
 package com.calvinnor.core.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
@@ -18,6 +19,9 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
     companion object {
         private const val NO_LAYOUT = 0
     }
+
+    protected val contextNonNull: Context
+        get() = requireContext()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
