@@ -1,5 +1,7 @@
 package com.calvinnor.core.extensions
 
+import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
@@ -9,7 +11,9 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
 import com.calvinnor.core.R
 
 fun ImageView.defaultImage() {
@@ -72,6 +76,22 @@ fun ImageView.setImage(
 
         })
         .into(this)
+}
+
+fun Context.getBitmapDrawable(imageUrl: String, onSuccess: (drawable: Bitmap) -> Unit = {}) {
+    Glide.with(this)
+        .asBitmap()
+        .load(imageUrl)
+        .into(object : CustomTarget<Bitmap>() {
+
+            override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
+                onSuccess(resource)
+            }
+
+            override fun onLoadCleared(placeholder: Drawable?) {
+                // NO-OP
+            }
+        })
 }
 
 enum class ScaleType {

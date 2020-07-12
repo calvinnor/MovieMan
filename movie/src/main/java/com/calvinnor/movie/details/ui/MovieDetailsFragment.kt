@@ -4,8 +4,6 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.View
 import android.view.ViewAnimationUtils
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.text.color
@@ -15,10 +13,15 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.navigation.fragment.navArgs
 import androidx.palette.graphics.Palette
+import androidx.transition.Transition
+import androidx.transition.TransitionInflater
+import androidx.transition.TransitionListenerAdapter
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
+import com.calvinnor.movie.commons.util.getBackdropImageTransitionName
+import com.calvinnor.movie.commons.util.getBackgroundTransitionName
 import com.calvinnor.movie.details.di.MovieDetailsModule
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
@@ -35,13 +38,30 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     override fun loadDependencies() = MovieDetailsModule.load()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setupSharedElementTransition()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setPosterHeight()
         setupForInsets()
-        setupListeners()
+        setupInitialUi()
         fetchData()
+    }
+
+    private fun setupInitialUi() = navArgs.movieUiModel.let { uiModel ->
+        val movieId = uiModel.id
+        uiModel.backdropImage.let { backdropImageUrl ->
+            if (backdropImageUrl.isNotEmpty()) ivBackdrop.run {
+                transitionName = getBackdropImageTransitionName(movieId)
+                setImage(imageUrl = backdropImageUrl, fadeIn = false)
+            }
+        }
+
+        clBackground.transitionName = getBackgroundTransitionName(movieId)
     }
 
     /* Avoid "Overview" title jumping while poster image loads */
@@ -76,7 +96,20 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
     }
 
     private fun fetchData() {
-        viewModel.getMovieDetails(movieId = navArgs.movieId)
+        viewModel.getMovieDetails(movieId = navArgs.movieUiModel.id)
+    }
+
+    private fun setupSharedElementTransition() {
+        sharedElementEnterTransition =
+            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+                .addListener(onTransitionEndListener())
+    }
+
+    private fun onTransitionEndListener() = object : TransitionListenerAdapter() {
+        override fun onTransitionEnd(transition: Transition) {
+            super.onTransitionEnd(transition)
+            setupListeners()
+        }
     }
 
     private fun showError(ex: Throwable) {
@@ -84,30 +117,25 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        tvOverviewTitle.isVisible = !isLoading
         cpbMovie.isVisible = isLoading
     }
 
     private fun setData(uiModel: MovieDetailsUiModel) = with(uiModel) {
         tvTitle.text = buildTitleWithReleaseDate(uiModel)
         tvOverviewDesc.text = description
-        ivBackdrop.setImage(
-            imageUrl = backdropImage,
-            scaleType = ScaleType.CENTER_CROP,
-            onSuccess = { extractDarkColorAndCircularReveal(it.toBitmap()) },
-            onFailure = { ivBackdrop.defaultImage() },
-            fadeIn = false
-        )
+        contextNonNull.getBitmapDrawable(backdropImage) { extractDarkColorAndCircularReveal(it) }
 
         ivPoster.setImage(
             imageUrl = posterImage,
             scaleType = ScaleType.FIT_CENTER
         )
+
+        groupDetails.isVisible = true
     }
 
     private fun extractDarkColorAndCircularReveal(bitmap: Bitmap) {
         Palette.from(bitmap).generate { palette ->
-            palette?.getDarkVibrantColor(ContextCompat.getColor(context!!, R.color.black_65))?.let {
+            palette?.getDarkVibrantColor(colorFrom(R.color.black_65))?.let {
                 circularReveal(it)
             }
         }

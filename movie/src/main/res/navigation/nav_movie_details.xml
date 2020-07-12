@@ -11,8 +11,8 @@
         tools:layout="@layout/fragment_movie_details">
 
         <argument
-            android:name="movieId"
-            app:argType="string" />
+            android:name="movieUiModel"
+            app:argType="com.calvinnor.movie.commons.model.MovieUiModel" />
 
     </fragment>
 
