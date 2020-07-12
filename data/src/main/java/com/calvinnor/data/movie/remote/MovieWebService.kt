@@ -15,7 +15,7 @@ interface MovieWebService {
 
     ): Deferred<MovieR>
 
-    @GET("/3/discover/movie?sort_by=popularity.desc")
+    @GET("/3/movie/popular")
     fun discoverPopularMovies(
         @Query("page") requestPage: Int
 
