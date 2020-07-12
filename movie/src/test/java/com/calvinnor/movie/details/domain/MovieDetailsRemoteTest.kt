@@ -3,11 +3,10 @@ package com.calvinnor.movie.details.domain
 import com.calvinnor.core.networking.DataResult
 import com.calvinnor.data.movie.remote.MovieWebService
 import com.calvinnor.data.movie.remote.api.MovieR
+import com.nhaarman.mockitokotlin2.doAnswer
 import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.doThrow
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
-import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -39,8 +38,7 @@ class MovieDetailsRemoteTest {
             assertEquals(TEST_MOVIE, apiResult.data)
     }
 
-    // TODO: Find how to mock an Exception throw
-    // @Test
+    @Test
     fun whenGetMovie_thenReturnFailure() = runBlocking {
         mockApiFailure()
 
@@ -52,15 +50,15 @@ class MovieDetailsRemoteTest {
 
         // With the correct exception
         if (apiResult is DataResult.Failure)
-            assertEquals(IOException("Bad Network"), apiResult.ex)
+            assertEquals(NETWORK_EXCEPTION, apiResult.ex)
     }
 
-    private fun mockApiSuccess() {
-        whenever(webService.getMovie("2")) doReturn (CompletableDeferred(TEST_MOVIE))
+    private suspend fun mockApiSuccess() {
+        whenever(webService.getMovieAsync("2")) doReturn TEST_MOVIE
     }
 
-    private fun mockApiFailure() = runBlocking {
-        whenever(webService.getMovie("2")) doThrow (NETWORK_EXCEPTION)
+    private suspend fun mockApiFailure() {
+        whenever(webService.getMovieAsync("2")) doAnswer { throw NETWORK_EXCEPTION }
     }
 
     companion object {
