@@ -9,6 +9,6 @@ class MovieDetailsRemote(
 ) : MovieDetailsC.Remote {
 
     override suspend fun getMovieDetails(movieId: String) =
-        callApi(movieWebService.getMovie(movieId = movieId))
+        callApi { movieWebService.getMovieAsync(movieId = movieId) }
 
 }

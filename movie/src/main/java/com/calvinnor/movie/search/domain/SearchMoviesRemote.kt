@@ -14,11 +14,11 @@ class SearchMoviesRemote(
         searchQuery: String,
         requestPage: Int
     ): DataResult<MovieListingEnvelope> =
-        callApi(
-            movieWebService.searchMovies(
+        callApi {
+            movieWebService.searchMoviesAsync(
                 searchQuery = searchQuery,
                 requestPage = requestPage
             )
-        )
+        }
 
 }

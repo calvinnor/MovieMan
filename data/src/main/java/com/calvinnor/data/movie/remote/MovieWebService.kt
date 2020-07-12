@@ -2,7 +2,6 @@ package com.calvinnor.data.movie.remote
 
 import com.calvinnor.data.movie.remote.api.MovieListingEnvelope
 import com.calvinnor.data.movie.remote.api.MovieR
-import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -10,22 +9,22 @@ import retrofit2.http.Query
 interface MovieWebService {
 
     @GET("/3/movie/{movieId}")
-    fun getMovie(
+    suspend fun getMovieAsync(
         @Path("movieId") movieId: String
 
-    ): Deferred<MovieR>
+    ): MovieR
 
     @GET("/3/movie/popular")
-    fun discoverPopularMovies(
+    suspend fun discoverPopularMoviesAsync(
         @Query("page") requestPage: Int
 
-    ): Deferred<MovieListingEnvelope>
+    ): MovieListingEnvelope
 
     @GET("/3/search/movie")
-    fun searchMovies(
+    suspend fun searchMoviesAsync(
         @Query("query") searchQuery: String,
         @Query("page") requestPage: Int
 
-    ): Deferred<MovieListingEnvelope>
+    ): MovieListingEnvelope
 
 }

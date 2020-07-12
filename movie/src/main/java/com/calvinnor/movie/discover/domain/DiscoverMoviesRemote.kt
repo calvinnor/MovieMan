@@ -9,6 +9,6 @@ class DiscoverMoviesRemote(
 ) : DiscoverMoviesC.Remote {
 
     override suspend fun getPopularMovies(requestPage: Int) =
-        callApi(movieWebService.discoverPopularMovies(requestPage))
+        callApi { movieWebService.discoverPopularMoviesAsync(requestPage) }
 
 }
