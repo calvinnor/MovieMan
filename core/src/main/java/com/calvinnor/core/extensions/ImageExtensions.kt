@@ -1,10 +1,13 @@
 package com.calvinnor.core.extensions
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
+import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
+import androidx.core.widget.ImageViewCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -93,6 +96,9 @@ fun Context.getBitmapDrawable(imageUrl: String, onSuccess: (drawable: Bitmap) ->
             }
         })
 }
+
+fun ImageView.setTint(@ColorRes colorRes: Int) =
+    ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(context.colorFrom(colorRes)));
 
 enum class ScaleType {
 

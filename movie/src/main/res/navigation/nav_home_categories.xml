@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_home_categories"
+    app:startDestination="@id/movieCategory">
+
+    <fragment
+        android:id="@+id/movieCategory"
+        android:name="com.calvinnor.movie.listing.ui.MoviesListingFragment"
+        tools:layout="@layout/fragment_movies_listing">
+
+        <argument
+            android:name="selectedSection"
+            android:defaultValue="POPULAR"
+            app:argType="com.calvinnor.movie.commons.model.MoviesSection" />
+
+        <action
+            android:id="@+id/navigateToMoviesListing"
+            app:destination="@id/movieCategory" />
+
+    </fragment>
+
+</navigation>

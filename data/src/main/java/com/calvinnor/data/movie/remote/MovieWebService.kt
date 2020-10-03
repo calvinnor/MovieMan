@@ -15,10 +15,16 @@ interface MovieWebService {
     ): MovieR
 
     @GET("/3/movie/popular")
-    suspend fun discoverPopularMoviesAsync(
-        @Query("page") requestPage: Int
+    suspend fun getPopularMovies(@Query("page") requestPage: Int): MovieListingEnvelope
 
-    ): MovieListingEnvelope
+    @GET("/3/movie/top_rated")
+    suspend fun getTopRatedMovies(@Query("page") requestPage: Int): MovieListingEnvelope
+
+    @GET("/3/movie/now_playing")
+    suspend fun getNowPlayingMovies(@Query("page") requestPage: Int): MovieListingEnvelope
+
+    @GET("/3/movie/upcoming")
+    suspend fun getUpcomingMovies(@Query("page") requestPage: Int): MovieListingEnvelope
 
     @GET("/3/search/movie")
     suspend fun searchMoviesAsync(

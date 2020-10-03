@@ -14,6 +14,8 @@
     <dimen name="margin_tiny">2dp</dimen>
 
     <!-- Paddings -->
+    <dimen name="padding_massive">32dp</dimen>
+    <dimen name="padding_large_massive">24dp</dimen>
     <dimen name="padding_large">16dp</dimen>
     <dimen name="padding_medium_large">12dp</dimen>
     <dimen name="padding_medium">8dp</dimen>
@@ -23,5 +25,11 @@
     <!-- Line Spacing -->
     <dimen name="line_spacing_small">2dp</dimen>
     <dimen name="line_spacing_tiny">1.5dp</dimen>
+
+    <!-- Icon Size -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_small_medium">24dp</dimen>
+    <dimen name="icon_size_medium">32dp</dimen>
+    <dimen name="icon_size_large">64dp</dimen>
 
 </resources>
