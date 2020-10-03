@@ -1,8 +1,8 @@
-package com.calvinnor.movie.discover.ui
+package com.calvinnor.movie.listing.ui
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.pagination.BottomPaginationAdapter
@@ -12,18 +12,17 @@ import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.commons.util.getBackdropImageTransitionName
 import com.calvinnor.movie.commons.util.getBackgroundTransitionName
-import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
 import kotlinx.android.synthetic.main.item_movie.view.*
 
-class DiscoverMoviesAdapter(listener: PaginationListener) :
-    BottomPaginationAdapter<MovieUiModel>(listener) {
+class MoviesListingAdapter(private val interactions: MoviesListingInteractions) :
+    BottomPaginationAdapter<MovieUiModel>(interactions) {
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int) = MovieViewHolder(
         parent.inflate(R.layout.item_movie)
     )
 
     override fun onBindVH(holder: PaginationViewHolder, position: Int) {
-        if (holder is MovieViewHolder) holder.bind(dataItems[position])
+        if (holder is MovieViewHolder) holder.bind(dataItems[position], interactions)
     }
 
     override fun areItemsSame(oldItem: MovieUiModel, newItem: MovieUiModel) =
@@ -31,7 +30,7 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
 
     class MovieViewHolder(rootView: View) : PaginationViewHolder(rootView) {
 
-        fun bind(uiModel: MovieUiModel) = with(itemView) {
+        fun bind(uiModel: MovieUiModel, interactions: MoviesListingInteractions) = with(itemView) {
             val movieId = uiModel.id
             val backgroundTransitionName = getBackgroundTransitionName(movieId)
             val backdropTransitionName = getBackdropImageTransitionName(movieId)
@@ -52,11 +51,8 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
             clRoot.apply {
                 transitionName = backgroundTransitionName
                 setOnClickListener {
-                    findNavController().navigate(
-                        R.id.navigateFromHomeToMovieDetails,
-                        MovieDetailsFragmentArgs(uiModel).toBundle(),
-                        null,
-                        FragmentNavigatorExtras(
+                    interactions.onMovieSelected(
+                        uiModel, FragmentNavigatorExtras(
                             ivBackdrop to backdropTransitionName,
                             clRoot to backgroundTransitionName
                         )
@@ -64,5 +60,9 @@ class DiscoverMoviesAdapter(listener: PaginationListener) :
                 }
             }
         }
+    }
+
+    interface MoviesListingInteractions : PaginationListener {
+        fun onMovieSelected(model: MovieUiModel, navigatorExtras: FragmentNavigator.Extras)
     }
 }

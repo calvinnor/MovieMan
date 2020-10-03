@@ -2,87 +2,98 @@ package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
-import com.calvinnor.core.domain.Result
-import com.calvinnor.core.extensions.observe
-import com.calvinnor.core.pagination.Pagination
-import com.calvinnor.core.pagination.PaginationListener
 import com.calvinnor.core.ui.BaseFragment
 import com.calvinnor.movie.R
-import com.calvinnor.movie.discover.di.DiscoverMoviesModule
-import com.calvinnor.movie.discover.viewmodel.DiscoverMoviesViewModel
-import kotlinx.android.synthetic.main.activity_home.*
+import com.calvinnor.movie.commons.model.MovieUiModel
+import com.calvinnor.movie.commons.model.MoviesSection
+import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
+import com.calvinnor.movie.listing.ui.MoviesListingFragment
+import com.calvinnor.movie.listing.ui.MoviesListingFragmentArgs
 import kotlinx.android.synthetic.main.fragment_discover_movies.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies), PaginationListener {
+class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
+    MoviesSectionBottomDialogFragment.Companion.NavigationInteractions,
+    MoviesListingFragment.MoviesListingInteractions {
 
     override val fragmentTag = TAG
 
-    private val viewModel: DiscoverMoviesViewModel by viewModel()
-    private val discoverMoviesAdapter = DiscoverMoviesAdapter(this)
-
-    override fun loadDependencies() = DiscoverMoviesModule.load()
+    private var selectedSection: MoviesSection = MoviesSection.POPULAR
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        savedInstanceState?.let { restoreSelectedSection(it) }
         setupToolbar()
-        setupAdapter()
-        setupListeners()
-        fetchData()
+        setupBottomAppBar()
     }
 
-    private fun setupToolbar() = toolbar.run {
-        setTitle(R.string.title_discover)
-        inflateMenu(R.menu.menu_discover)
+    private fun setupToolbar() = tvToolbarTitle.setText(
+        when (selectedSection) {
+            MoviesSection.POPULAR -> R.string.bottom_nav_popular
+            MoviesSection.NOW_PLAYING -> R.string.bottom_nav_now_playing
+            MoviesSection.TOP_RATED -> R.string.bottom_nav_top_rated
+            MoviesSection.UPCOMING -> R.string.bottom_nav_upcoming
+        }
+    )
+
+    private fun setupBottomAppBar() = bottomAppBar.run {
+        replaceMenu(R.menu.menu_discover)
         setOnMenuItemClickListener {
             if (it.itemId == R.id.menu_search) {
-                navHost.findNavController().navigate(R.id.navigateToSearch)
+                navigateToSearch()
                 true
 
             } else false
         }
+
+        setNavigationOnClickListener { showBottomNavigationOptions() }
     }
 
-    override fun onNewRequest(request: Pagination.Request) {
-        viewModel.getMoreMovies()
+    private fun navigateToSearch() {
+        findNavController().navigate(R.id.navigateToSearch)
     }
 
-    override fun onReplacedData() {
-        rvDiscover.scheduleLayoutAnimation()
+    private fun showBottomNavigationOptions() {
+        MoviesSectionBottomDialogFragment.newInstance(selectedSection)
+            .show(childFragmentManager, MoviesSectionBottomDialogFragment.TAG)
     }
 
-    private fun setupAdapter() {
-        rvDiscover.adapter = discoverMoviesAdapter
+    private fun restoreSelectedSection(savedInstanceState: Bundle) {
+        selectedSection = savedInstanceState.getSerializable(SAVE_SELECTED_SECTION) as MoviesSection
     }
 
-    private fun setupListeners() {
-        observe(viewModel.discoverMovies) {
-            when (it) {
-
-                is Result.Loading -> {
-                    discoverMoviesAdapter.showLoading()
-                }
-
-                is Result.Success -> {
-                    discoverMoviesAdapter.setResult(it.data)
-                }
-
-                is Result.Failure -> showError(it.ex)
-            }
-        }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putSerializable(SAVE_SELECTED_SECTION, selectedSection)
     }
 
-    private fun fetchData() {
-        viewModel.getMovies()
-    }
+    override fun onNavigationItemPicked(moviesSection: MoviesSection) {
+        selectedSection = moviesSection
+        setupToolbar()
 
-    private fun showError(ex: Throwable) {
-        // TODO
+
+        fcvSection.findNavController()
+            .navigate(
+                R.id.navigateToMoviesListing,
+                MoviesListingFragmentArgs(moviesSection).toBundle()
+            )
     }
 
     companion object {
         const val TAG = "DiscoverMoviesFragment"
+
+        private const val SAVE_SELECTED_SECTION = "save_selected_section"
+    }
+
+    override fun onMovieSelected(model: MovieUiModel, navigatorExtras: FragmentNavigator.Extras) {
+        findNavController().navigate(
+            R.id.navigateFromHomeToMovieDetails,
+            MovieDetailsFragmentArgs(model).toBundle(),
+            null,
+            navigatorExtras
+        )
     }
 }
