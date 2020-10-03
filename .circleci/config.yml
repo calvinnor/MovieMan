@@ -24,7 +24,7 @@ jobs:
       # Approve Android Studio SDK Licenses
       - run:
           name: Approve license for build tools
-          command: (echo y; echo y; echo y; echo y; echo y; echo y) | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+          command: yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || if [ $? -ne '141' ]; then exit $?; fi;
 
       # Gradle Sync
       - run:

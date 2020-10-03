@@ -102,3 +102,7 @@
 -keep class kotlinx.coroutines.android.AndroidDispatcherFactory
 
 -dontwarn kotlinx.coroutines.flow.**inlined**
+
+##### Navigation #####
+
+-keepnames class androidx.navigation.fragment.NavHostFragment
