@@ -19,6 +19,8 @@ import androidx.transition.TransitionListenerAdapter
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.*
 import com.calvinnor.core.ui.BaseFragment
+import com.calvinnor.core.utils.Theme
+import com.calvinnor.core.utils.uiTheme
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.util.getBackdropImageTransitionName
 import com.calvinnor.movie.commons.util.getBackgroundTransitionName
@@ -57,7 +59,11 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
         uiModel.backdropImage.let { backdropImageUrl ->
             if (backdropImageUrl.isNotEmpty()) ivBackdrop.run {
                 transitionName = getBackdropImageTransitionName(movieId)
-                setImage(imageUrl = backdropImageUrl, fadeIn = false)
+                setImage(
+                    imageUrl = backdropImageUrl,
+                    fadeIn = false,
+                    scaleType = ScaleType.CENTER_CROP
+                )
             }
         }
 
@@ -135,9 +141,13 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     private fun extractDarkColorAndCircularReveal(bitmap: Bitmap) {
         Palette.from(bitmap).generate { palette ->
-            palette?.getDarkVibrantColor(colorFrom(R.color.black_65))?.let {
-                circularReveal(it)
+            if (palette == null) return@generate
+            val defaultColor = colorFrom(R.color.colorPrimaryDark)
+            val vibrantColor = when (uiTheme) {
+                Theme.NIGHT -> palette.getDarkVibrantColor(defaultColor)
+                Theme.LIGHT -> palette.getLightMutedColor(defaultColor)
             }
+            circularReveal(vibrantColor)
         }
     }
 

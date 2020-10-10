@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/padding_large"
     android:paddingVertical="@dimen/padding_medium_large"
-    tools:background="@color/black_full">
+    tools:background="@color/colorPrimary">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivNavIcon"

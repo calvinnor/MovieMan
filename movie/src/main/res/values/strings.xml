@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <!-- Bottom Navigation -->
     <string name="bottom_nav_popular">Popular</string>
     <string name="bottom_nav_now_playing">Now Playing</string>
     <string name="bottom_nav_upcoming">Upcoming</string>
     <string name="bottom_nav_top_rated">Top Rated</string>
+
+    <!-- Menu -->
+    <string name="menu_more">More</string>
+    <string name="menu_toggle_theme">Toggle Theme</string>
+    <string name="menu_about">App Info</string>
 
     <!-- Movie Details -->
     <string name="movie_details_overview">Overview</string>
