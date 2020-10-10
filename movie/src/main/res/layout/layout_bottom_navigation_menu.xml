@@ -3,7 +3,7 @@
     android:id="@+id/llNavigationBottomSheet"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black_full"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
-    android:paddingHorizontal="@dimen/padding_large"
-    android:paddingVertical="@dimen/padding_large_massive" />
+    android:paddingHorizontal="@dimen/padding_medium_large"
+    android:paddingVertical="@dimen/padding_large" />

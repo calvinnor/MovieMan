@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <item
         android:id="@+id/menu_search"
         android:icon="@drawable/ic_search"
         android:title="@android:string/search_go"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_overflow"
+        android:icon="@drawable/ic_menu_more"
+        android:title="@string/menu_more"
+        app:showAsAction="always">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_toggle_theme"
+                android:title="@string/menu_toggle_theme"
+                app:showAsAction="always|withText"
+                tools:icon="@drawable/ic_theme_night" />
+
+            <item
+                android:id="@+id/menu_about"
+                android:icon="@drawable/ic_menu_info"
+                android:title="@string/menu_about"
+                app:showAsAction="always|withText" />
+
+        </menu>
+
+    </item>
 
 </menu>

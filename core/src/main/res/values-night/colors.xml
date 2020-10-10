@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#000</color>
+    <color name="colorPrimaryDark">#222</color>
+    <color name="colorAccentLight">#1A01b4e4</color>
+    <color name="colorAccent">#01b4e4</color>
+    <color name="colorPrimaryReverse">#FFF</color>
+
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B3FFFFFF</color>
+    <color name="text_hint">#80FFFFFF</color>
+    <color name="text_disabled">@color/text_hint</color>
+
+    <color name="window_background">#222</color>
+
+</resources>
