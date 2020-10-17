@@ -111,7 +111,7 @@ class MovieDetailsViewModelTest {
     }
 
     private fun mockRepoFailure() = runBlockingTest {
-        whenever(repo.getMovieDetails("2")) doReturn flow { emitFailure(TEST_EXCEPTION) }
+        whenever(repo.getMovieDetails("2")) doReturn flow { emitFailure<MovieDetailsUiModel>(TEST_EXCEPTION) }
     }
 
     companion object {

@@ -40,7 +40,7 @@ object Modules {
 
 object App {
 
-    const val compileSdk = 29
+    const val compileSdk = 30
     const val targetSdk = compileSdk
     const val minSdk = 21
 
@@ -53,19 +53,19 @@ object Versions {
 
     // Gradle
     const val gradleTools = "4.0.0"
-    const val dependencyUpdates = "0.28.0"
+    const val dependencyUpdates = "0.33.0"
 
     // Kotlin
-    const val kotlinVersion = "1.3.72"
+    const val kotlinVersion = "1.4.10"
 
     // AndroidX
-    const val appCompat = "1.1.0"
+    const val appCompat = "1.2.0"
     const val recyclerView = "1.1.0"
     const val swipeRefreshLayout = "1.1.0"
-    const val materialComponents = "1.1.0"
-    const val constraintLayout = "1.1.3"
+    const val materialComponents = "1.2.1"
+    const val constraintLayout = "2.0.2"
     const val palette = "1.0.0"
-    const val navigationComponent = "2.3.0"
+    const val navigationComponent = "2.3.1"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.2.0"
@@ -74,7 +74,7 @@ object Versions {
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.9.3"
+    const val moshi = "1.11.0"
     const val moshiRetrofitConverter = "2.9.0"
 
     // Coroutines
@@ -91,26 +91,26 @@ object Versions {
     const val glide = "4.11.0"
 
     // Koin
-    const val koin = "2.0.1"
+    const val koin = "2.2.0-rc-3"
 
     // KTX
-    const val ktx_Core = "1.3.0"
+    const val ktx_Core = "1.3.2"
     const val ktx_Fragment = "1.2.5"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
-    const val ktx_LifecycleViewModel = "2.1.0"
+    const val ktx_LifecycleViewModel = "2.2.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.3.3"
-    const val deps_Firebase = "17.4.4"
+    const val plugin_Firebase = "4.3.4"
+    const val deps_Firebase = "17.5.1"
 
     // Crashlytics
     const val plugin_fabricCrashlytics = "1.31.2"
     const val deps_fabricCrashlytics = "2.10.1"
 
     // Testing
-    const val test_JUnit = "4.13"
+    const val test_JUnit = "4.13.1"
 
     // Mockito
     const val mockitoKotlin = "2.1.0"
