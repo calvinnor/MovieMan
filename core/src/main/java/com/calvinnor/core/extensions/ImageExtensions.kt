@@ -98,7 +98,7 @@ fun Context.getBitmapDrawable(imageUrl: String, onSuccess: (drawable: Bitmap) ->
 }
 
 fun ImageView.setTint(@ColorRes colorRes: Int) =
-    ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(context.colorFrom(colorRes)));
+    ImageViewCompat.setImageTintList(this, ColorStateList.valueOf(context.colorFrom(colorRes)))
 
 enum class ScaleType {
 
