@@ -1,4 +1,5 @@
 # MovieMan
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/CalvinNor/MovieMan?label=Download)](https://github.com/CalvinNor/MovieMan/releases)
 [![CircleCI](https://circleci.com/gh/CalvinNor/MovieMan.svg?style=svg)](https://circleci.com/gh/CalvinNor/MovieMan)
 
 An open-source Android app for viewing Movies / TV information.
