@@ -5,6 +5,7 @@ import android.view.View
 import androidx.appcompat.widget.SearchView
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.closeKeyboard
+import com.calvinnor.core.extensions.focusAndOpenKeyboard
 import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.pagination.PaginationListener
@@ -76,7 +77,7 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
         }
     }
 
-    private fun focusOnSearch() = svMovies.requestFocus()
+    private fun focusOnSearch() = svMovies.focusAndOpenKeyboard()
 
     private fun showError(ex: Throwable) {
         // TODO
