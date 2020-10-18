@@ -1,6 +1,8 @@
 package com.calvinnor.movie.details.ui
 
+import android.content.Intent
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.ViewAnimationUtils
@@ -137,6 +139,8 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
         )
 
         groupDetails.isVisible = true
+
+        llOpenInTmdb.setOnClickListener { openMovieOnTmdb() }
     }
 
     private fun extractDarkColorAndCircularReveal(bitmap: Bitmap) {
@@ -181,6 +185,15 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
                 append(getString(R.string.movie_details_year, uiModel.releaseYear))
             }
         }
+    }
+
+    private fun openMovieOnTmdb() {
+        startActivity(
+            Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://www.themoviedb.org/movie/${navArgs.movieUiModel.id}")
+            )
+        )
     }
 
     companion object {

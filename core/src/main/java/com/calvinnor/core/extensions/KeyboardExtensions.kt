@@ -18,3 +18,9 @@ fun View.closeKeyboard() {
     getSystemService(context, InputMethodManager::class.java)
         ?.hideSoftInputFromWindow(windowToken, 0)
 }
+
+fun View.focusAndOpenKeyboard() {
+    this.requestFocus()
+    getSystemService(context, InputMethodManager::class.java)
+        ?.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0)
+}

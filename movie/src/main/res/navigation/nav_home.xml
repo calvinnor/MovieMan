@@ -7,6 +7,7 @@
 
     <include app:graph="@navigation/nav_search" />
     <include app:graph="@navigation/nav_movie_details" />
+    <include app:graph="@navigation/nav_settings" />
 
     <fragment
         android:id="@+id/discoverMovies"
@@ -15,13 +16,20 @@
 
         <action
             android:id="@+id/navigateToSearch"
-            app:destination="@id/nav_search" />
+            app:destination="@id/nav_search"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
 
         <action
             android:id="@+id/navigateFromHomeToMovieDetails"
             app:destination="@id/nav_movie_details"
-            app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out" />
+
+        <action
+            android:id="@+id/navigateToSettings"
+            app:destination="@id/nav_settings"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
 
     </fragment>
 

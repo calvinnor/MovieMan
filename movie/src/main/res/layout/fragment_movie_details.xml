@@ -110,6 +110,39 @@
             app:layout_constraintTop_toBottomOf="@id/tvOverviewTitle"
             tools:text="This is some long overview text for the movie description." />
 
+        <LinearLayout
+            android:id="@+id/llOpenInTmdb"
+            style="@style/ClickableView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_xl"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/padding_medium"
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/padding_medium"
+            app:layout_constraintEnd_toEndOf="@id/glRight"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="@id/glLeft"
+            app:layout_constraintTop_toBottomOf="@id/tvOverviewDesc">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_open_tmdb"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_medium_small"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="@dimen/icon_size_small"
+                android:layout_height="@dimen/icon_size_small"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/ic_open_in_new" />
+
+        </LinearLayout>
+
         <ProgressBar
             android:id="@+id/cpbMovie"
             android:layout_width="wrap_content"
@@ -127,14 +160,14 @@
             android:layout_marginTop="@dimen/margin_large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvOverviewDesc" />
+            app:layout_constraintTop_toBottomOf="@id/llOpenInTmdb" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupDetails"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="gone"
-            app:constraint_referenced_ids="tvTitle,tvOverviewTitle,tvOverviewDesc"
+            app:constraint_referenced_ids="tvTitle,tvOverviewTitle,tvOverviewDesc,llOpenInTmdb"
             tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

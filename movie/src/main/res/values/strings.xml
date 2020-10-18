@@ -16,6 +16,7 @@
     <string name="movie_details_overview">Overview</string>
     <string name="title_movie">Module Title</string>
     <string name="movie_details_year">(%1$s)</string>
+    <string name="btn_open_tmdb">Open in TheMovieDB</string>
 
     <!-- Discover -->
     <string name="title_discover">Discover</string>
