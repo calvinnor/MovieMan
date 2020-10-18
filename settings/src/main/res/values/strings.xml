@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="menu_settings">Settings</string>
+
+    <!-- Preferences -->
+    <string name="pref_theme_title">App Theme</string>
+    <string name="pref_theme_summary">Switch the app theme to light or dark palettes. Or default to Android\'s theme</string>
+    <string name="pref_theme_auto_value">Device theme</string>
+    <string name="pref_theme_auto_summary">Respect Android\'s theme. For Android 10+</string>
+    <string name="pref_theme_light_value">Light</string>
+    <string name="pref_theme_light_summary">Bright color palette with dark text</string>
+    <string name="pref_theme_night_value">Night</string>
+    <string name="pref_theme_night_summary">Dark color palette with light text</string>
+
+</resources>

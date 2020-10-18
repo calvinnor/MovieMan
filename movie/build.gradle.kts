@@ -25,6 +25,7 @@ dependencies {
 
     implementation(project(Modules.core))
     implementation(project(Modules.data))
+    implementation(project(Modules.settings))
 
     // TODO: Move to a Gradle script to be imported from all features
 

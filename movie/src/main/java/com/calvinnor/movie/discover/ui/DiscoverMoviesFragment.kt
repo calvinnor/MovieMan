@@ -2,12 +2,11 @@ package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
 import com.calvinnor.core.ui.BaseFragment
-import com.calvinnor.core.utils.*
+import com.calvinnor.core.utils.showToast
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.commons.model.MoviesSection
@@ -43,20 +42,13 @@ class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
 
     private fun setupBottomAppBar() = bottomAppBar.run {
         replaceMenu(R.menu.menu_discover)
-        menu.findItem(R.id.menu_toggle_theme).setIcon(
-            when (uiTheme) {
-                Theme.NIGHT -> R.drawable.ic_theme_night
-                Theme.LIGHT -> R.drawable.ic_theme_light
-            }
-        )
         setOnMenuItemClickListener {
             return@setOnMenuItemClickListener when (it.itemId) {
                 R.id.menu_search -> {
                     navigateToSearch(); true
                 }
-                R.id.menu_toggle_theme -> {
-                    AppCompatDelegate.setDefaultNightMode(uiTheme.invert().appCompatMode)
-                    true
+                R.id.menu_settings -> {
+                    findNavController().navigate(R.id.navigateToSettings); true
                 }
                 R.id.menu_about -> {
                     // TODO(calvinnor): Pick up from BuildConfig

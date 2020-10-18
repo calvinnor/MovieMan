@@ -11,6 +11,6 @@
     <color name="text_hint">#80FFFFFF</color>
     <color name="text_disabled">@color/text_hint</color>
 
-    <color name="window_background">#222</color>
+    <color name="windowBackground">#0F0F0F</color>
 
 </resources>

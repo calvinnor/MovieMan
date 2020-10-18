@@ -34,8 +34,9 @@ object Modules {
     const val core = ":core"
     const val data = ":data"
     const val movie = ":movie"
+    const val settings = ":settings"
 
-    val allModules = arrayOf(app, core, data, movie)
+    val allModules = arrayOf(app, core, data, movie, settings)
 }
 
 object App {
@@ -66,6 +67,7 @@ object Versions {
     const val constraintLayout = "2.0.2"
     const val palette = "1.0.0"
     const val navigationComponent = "2.3.1"
+    const val preferenceKtx = "1.1.1"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.2.0"
@@ -137,6 +139,7 @@ object Dependencies {
     const val materialComponents =
         "com.google.android.material:material:${Versions.materialComponents}"
     const val palette = "androidx.palette:palette:${Versions.palette}"
+    const val preferenceKtx = "androidx.preference:preference-ktx:${Versions.preferenceKtx}"
 
     // ViewModel + Lifecycle
     const val arch_ViewModelLiveData =
