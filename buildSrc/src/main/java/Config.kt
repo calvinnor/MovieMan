@@ -7,7 +7,7 @@ object Plugins {
     const val kotlinAndroidExtensions = "kotlin-android-extensions"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
     const val plugin_GoogleServices = "com.google.gms.google-services"
-    const val plugin_fabric = "io.fabric"
+    const val plugin_crashlytics = "com.google.firebase.crashlytics"
     const val safeArgs = "androidx.navigation.safeargs.kotlin"
 
     const val dependencyUpdates = "com.github.ben-manes.versions"
@@ -19,7 +19,7 @@ object Plugins {
         "com.google.gms:google-services:${Versions.plugin_Firebase}"
     const val plugin_safeArgs =
         "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigationComponent}"
-    const val plugin_fabricGradle = "io.fabric.tools:gradle:${Versions.plugin_fabricCrashlytics}"
+    const val plugin_crashlyticsGradle = "com.google.firebase:firebase-crashlytics-gradle:${Versions.deps_crashlyticsGradle}"
 }
 
 object Config {
@@ -53,7 +53,7 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "4.0.0"
+    const val gradleTools = "4.1.2"
     const val dependencyUpdates = "0.33.0"
 
     // Kotlin
@@ -66,7 +66,7 @@ object Versions {
     const val materialComponents = "1.2.1"
     const val constraintLayout = "2.0.2"
     const val palette = "1.0.0"
-    const val navigationComponent = "2.3.1"
+    const val navigationComponent = "2.3.4"
     const val preferenceKtx = "1.1.1"
 
     // ViewModel + LiveData
@@ -90,7 +90,7 @@ object Versions {
     const val stetho = "1.5.1"
 
     // Glide
-    const val glide = "4.11.0"
+    const val glide = "4.12.0"
 
     // Koin
     const val koin = "2.2.0-rc-3"
@@ -100,19 +100,19 @@ object Versions {
     const val ktx_Fragment = "1.2.5"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
-    const val ktx_LifecycleViewModel = "2.2.0"
+    const val ktx_LifecycleViewModel = "2.3.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.3.4"
+    const val plugin_Firebase = "4.3.5"
     const val deps_Firebase = "17.5.1"
 
     // Crashlytics
-    const val plugin_fabricCrashlytics = "1.31.2"
-    const val deps_fabricCrashlytics = "2.10.1"
+    const val deps_crashlyticsGradle = "2.5.1"
+    const val deps_CrashlyticsBom = "26.6.0"
 
-    // Testing
-    const val test_JUnit = "4.13.1"
+    // Testing0
+    const val test_JUnit = "4.13.2"
 
     // Mockito
     const val mockitoKotlin = "2.1.0"
@@ -197,8 +197,9 @@ object Dependencies {
     const val firebase_Core = "com.google.firebase:firebase-core:${Versions.deps_Firebase}"
 
     // Crashlytics
-    const val firebase_Crashlytics =
-        "com.crashlytics.sdk.android:crashlytics:${Versions.deps_fabricCrashlytics}"
+    const val firebase_Bom = "com.google.firebase:firebase-bom:${Versions.deps_CrashlyticsBom}"
+    const val firebase_Crashlytics = "com.google.firebase:firebase-crashlytics"
+    const val firebase_Analytics = "com.google.firebase:firebase-analytics"
 
     // Testing
     const val test_JUnit = "junit:junit:${Versions.test_JUnit}"

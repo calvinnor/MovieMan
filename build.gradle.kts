@@ -16,7 +16,7 @@ buildscript {
         classpath(Plugins.plugin_gradleTools)
         classpath(Plugins.plugin_gradleKotlin)
         classpath(Plugins.plugin_gradleGoogleServices)
-        classpath(Plugins.plugin_fabricGradle)
+        classpath(Plugins.plugin_crashlyticsGradle)
         classpath(Plugins.plugin_safeArgs)
     }
 }

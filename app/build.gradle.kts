@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.androidApplication)
-    id(Plugins.plugin_fabric)
+    id(Plugins.plugin_GoogleServices)
+    id(Plugins.plugin_crashlytics)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
@@ -67,9 +68,8 @@ dependencies {
 
     // Dependencies
     implementation(Dependencies.firebase_Core)
+    implementation(platform(Dependencies.firebase_Bom))
     implementation(Dependencies.firebase_Crashlytics)
+    implementation(Dependencies.firebase_Analytics)
 
 }
-
-// Must be at EOF
-apply(plugin = Plugins.plugin_GoogleServices)
