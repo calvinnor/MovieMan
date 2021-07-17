@@ -43,7 +43,7 @@ object App {
 
     const val compileSdk = 30
     const val targetSdk = compileSdk
-    const val minSdk = 21
+    const val minSdk = 23
 
     const val appId = "com.calvinnor.movieman"
     const val appVersion = "1.0"
@@ -57,7 +57,7 @@ object Versions {
     const val dependencyUpdates = "0.39.0"
 
     // Kotlin
-    const val kotlinVersion = "1.4.10"
+    const val kotlinVersion = "1.5.21"
 
     // AndroidX
     const val appCompat = "1.2.0"
@@ -93,11 +93,11 @@ object Versions {
     const val glide = "4.12.0"
 
     // Koin
-    const val koin = "2.2.2"
+    const val koin = "3.1.2"
 
     // KTX
     const val ktx_Core = "1.3.2"
-    const val ktx_Fragment = "1.2.5"
+    const val ktx_Fragment = "1.3.5"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
     const val ktx_LifecycleViewModel = "2.3.0"
@@ -179,9 +179,7 @@ object Dependencies {
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 
     // Koin
-    const val koin = "org.koin:koin-android:${Versions.koin}"
-    const val koinAndroidX = "org.koin:koin-androidx-scope:${Versions.koin}"
-    const val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
 
     // KTX
     const val ktx_Core = "androidx.core:core-ktx:${Versions.ktx_Core}"

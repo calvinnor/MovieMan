@@ -83,8 +83,6 @@ dependencies {
 
     // Koin
     api(Dependencies.koin)
-    api(Dependencies.koinAndroidX)
-    api(Dependencies.koinViewModel)
 
     // Testing
     testImplementation(Dependencies.test_JUnit)
