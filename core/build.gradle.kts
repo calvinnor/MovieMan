@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
@@ -15,7 +17,8 @@ android {
 
         testInstrumentationRunner = Dependencies.test_JUnitRunner
 
-        buildConfigField("String", "API_KEY", "\"${TMDB.API_KEY}\"")
+        val tmdbApiKey = TMDB.getApiKeyFromEnvironmentOrProperties(gradleLocalProperties(rootDir))
+        buildConfigField("String", "API_KEY", "\"${tmdbApiKey}\"")
         buildConfigField("String", "BASE_URL", "\"${TMDB.BASE_URL}\"")
     }
 

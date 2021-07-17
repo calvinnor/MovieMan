@@ -10,6 +10,7 @@ import com.facebook.stetho.Stetho
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import org.koin.core.module.Module
 
 /**
@@ -33,7 +34,7 @@ abstract class CoreApp : Application() {
         startKoin {
 
             // Logger for Android
-            androidLogger()
+            androidLogger(Level.NONE)
 
             // Set the Android Context
             androidContext(this@CoreApp)

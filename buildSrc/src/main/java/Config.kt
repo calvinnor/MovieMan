@@ -53,15 +53,15 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "4.1.2"
-    const val dependencyUpdates = "0.33.0"
+    const val gradleTools = "4.2.0"
+    const val dependencyUpdates = "0.39.0"
 
     // Kotlin
     const val kotlinVersion = "1.4.10"
 
     // AndroidX
     const val appCompat = "1.2.0"
-    const val recyclerView = "1.1.0"
+    const val recyclerView = "1.2.1"
     const val swipeRefreshLayout = "1.1.0"
     const val materialComponents = "1.2.1"
     const val constraintLayout = "2.0.2"
@@ -76,24 +76,24 @@ object Versions {
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.11.0"
+    const val moshi = "1.12.0"
     const val moshiRetrofitConverter = "2.9.0"
 
     // Coroutines
-    const val coroutines = "1.3.2"
+    const val coroutines = "1.5.1"
 
     // Retrofit
     const val retrofit = "2.9.0"
     const val retrofitCoroutinesAdapter = "0.9.2"
 
     // Stetho
-    const val stetho = "1.5.1"
+    const val stetho = "1.6.0"
 
     // Glide
     const val glide = "4.12.0"
 
     // Koin
-    const val koin = "2.2.0-rc-3"
+    const val koin = "2.2.2"
 
     // KTX
     const val ktx_Core = "1.3.2"
@@ -104,8 +104,8 @@ object Versions {
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.3.5"
-    const val deps_Firebase = "17.5.1"
+    const val plugin_Firebase = "4.3.8"
+    const val deps_Firebase = "19.0.0"
 
     // Crashlytics
     const val deps_crashlyticsGradle = "2.5.1"
@@ -118,8 +118,8 @@ object Versions {
     const val mockitoKotlin = "2.1.0"
 
     // Android Testing
-    const val androidTest_runner = "1.1.1"
-    const val androidTest_espresso = "3.2.0"
+    const val androidTest_runner = "1.1.3"
+    const val androidTest_espresso = "3.4.0"
 }
 
 object Dependencies {
