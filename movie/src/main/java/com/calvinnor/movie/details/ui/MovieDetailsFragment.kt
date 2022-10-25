@@ -109,7 +109,7 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
 
     private fun setupSharedElementTransition() {
         sharedElementEnterTransition =
-            TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+            TransitionInflater.from(contextNonNull).inflateTransition(android.R.transition.move)
                 .addListener(onTransitionEndListener())
     }
 

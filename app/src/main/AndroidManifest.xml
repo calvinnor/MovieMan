@@ -11,7 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.calvinnor.movie.commons.ui.HomeActivity">
+        <activity
+            android:name="com.calvinnor.movie.commons.ui.HomeActivity"
+            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

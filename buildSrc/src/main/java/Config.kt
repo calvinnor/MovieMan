@@ -41,7 +41,7 @@ object Modules {
 
 object App {
 
-    const val compileSdk = 30
+    const val compileSdk = 33
     const val targetSdk = compileSdk
     const val minSdk = 23
 
@@ -53,34 +53,34 @@ object App {
 object Versions {
 
     // Gradle
-    const val gradleTools = "4.2.0"
-    const val dependencyUpdates = "0.39.0"
+    const val gradleTools = "7.3.1"
+    const val dependencyUpdates = "0.43.0"
 
     // Kotlin
-    const val kotlinVersion = "1.5.21"
+    const val kotlinVersion = "1.7.20"
 
     // AndroidX
-    const val appCompat = "1.2.0"
+    const val appCompat = "1.5.1"
     const val recyclerView = "1.2.1"
     const val swipeRefreshLayout = "1.1.0"
-    const val materialComponents = "1.2.1"
+    const val materialComponents = "1.7.0"
     const val constraintLayout = "2.0.2"
     const val palette = "1.0.0"
-    const val navigationComponent = "2.3.4"
-    const val preferenceKtx = "1.1.1"
+    const val navigationComponent = "2.5.3"
+    const val preferenceKtx = "1.2.0"
 
     // ViewModel + LiveData
     const val arch_viewModelLiveData = "2.2.0"
     const val arch_coreTesting = "2.1.0"
-    const val arch_Room = "2.2.5"
+    const val arch_Room = "2.4.3"
     const val arch_RoomCoroutines = "2.1.0-alpha04"
 
     // Moshi
-    const val moshi = "1.12.0"
+    const val moshi = "1.14.0"
     const val moshiRetrofitConverter = "2.9.0"
 
     // Coroutines
-    const val coroutines = "1.5.1"
+    const val coroutines = "1.6.4"
 
     // Retrofit
     const val retrofit = "2.9.0"
@@ -90,32 +90,32 @@ object Versions {
     const val stetho = "1.6.0"
 
     // Glide
-    const val glide = "4.12.0"
+    const val glide = "4.14.2"
 
     // Koin
-    const val koin = "3.1.2"
+    const val koin = "3.3.0"
 
     // KTX
-    const val ktx_Core = "1.3.2"
-    const val ktx_Fragment = "1.3.5"
+    const val ktx_Core = "1.9.0"
+    const val ktx_Fragment = "1.5.3"
     const val ktx_Palette = "1.0.0"
     const val ktx_Collections = "1.1.0"
     const val ktx_LifecycleViewModel = "2.3.0"
     const val ktx_ReactiveStreams = ktx_LifecycleViewModel
 
     // Firebase
-    const val plugin_Firebase = "4.3.8"
-    const val deps_Firebase = "19.0.0"
+    const val plugin_Firebase = "4.3.14"
+    const val deps_Firebase = "21.1.1"
 
     // Crashlytics
-    const val deps_crashlyticsGradle = "2.5.1"
-    const val deps_CrashlyticsBom = "26.6.0"
+    const val deps_crashlyticsGradle = "2.9.2"
+    const val deps_CrashlyticsBom = "31.0.1"
 
     // Testing0
     const val test_JUnit = "4.13.2"
 
     // Mockito
-    const val mockitoKotlin = "2.1.0"
+    const val mockitoKotlin = "2.2.0"
 
     // Android Testing
     const val androidTest_runner = "1.1.3"
