@@ -3,12 +3,15 @@ plugins {
     id(Plugins.plugin_GoogleServices)
     id(Plugins.plugin_crashlytics)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
 }
 
 android {
-    compileSdkVersion(App.compileSdk)
+    compileSdk = App.compileSdk
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     signingConfigs {
         getByName("debug") {
@@ -27,9 +30,8 @@ android {
     }
 
     defaultConfig {
-
-        minSdkVersion(App.minSdk)
-        targetSdkVersion(App.targetSdk)
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
 
         applicationId = App.appId
         versionCode = App.appCode

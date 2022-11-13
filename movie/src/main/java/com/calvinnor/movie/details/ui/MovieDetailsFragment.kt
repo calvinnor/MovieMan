@@ -4,8 +4,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewAnimationUtils
+import android.view.ViewGroup
 import androidx.core.text.bold
 import androidx.core.text.buildSpannedString
 import androidx.core.text.color
@@ -26,14 +28,14 @@ import com.calvinnor.core.utils.uiTheme
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.util.getBackdropImageTransitionName
 import com.calvinnor.movie.commons.util.getBackgroundTransitionName
+import com.calvinnor.movie.databinding.FragmentMovieDetailsBinding
 import com.calvinnor.movie.details.di.MovieDetailsModule
 import com.calvinnor.movie.details.model.MovieDetailsUiModel
 import com.calvinnor.movie.details.viewmodel.MovieDetailsViewModel
-import kotlinx.android.synthetic.main.fragment_movie_details.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.roundToInt
 
-class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
+class MovieDetailsFragment : BaseFragment<FragmentMovieDetailsBinding>() {
 
     override val fragmentTag = TAG
 
@@ -47,6 +49,11 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
         setupSharedElementTransition()
     }
 
+    override fun inflateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentMovieDetailsBinding.inflate(inflater, container, false)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -59,7 +66,7 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
     private fun setupInitialUi() = navArgs.movieUiModel.let { uiModel ->
         val movieId = uiModel.id
         uiModel.backdropImage.let { backdropImageUrl ->
-            if (backdropImageUrl.isNotEmpty()) ivBackdrop.run {
+            if (backdropImageUrl.isNotEmpty()) viewBinding.ivBackdrop.run {
                 transitionName = getBackdropImageTransitionName(movieId)
                 setImage(
                     imageUrl = backdropImageUrl,
@@ -69,15 +76,15 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
             }
         }
 
-        clBackground.transitionName = getBackgroundTransitionName(movieId)
+        viewBinding.clBackground.transitionName = getBackgroundTransitionName(movieId)
     }
 
     /* Avoid "Overview" title jumping while poster image loads */
-    private fun setPosterHeight() = ivPoster.doOnPreDraw {
+    private fun setPosterHeight() = viewBinding.ivPoster.doOnPreDraw {
         it.setDimensions(newHeight = (it.measuredWidth * ASPECT_RATIO).roundToInt())
     }
 
-    private fun setupForInsets() {
+    private fun setupForInsets() = with(viewBinding) {
         nsvParent.setOnApplyWindowInsetsListener { v, insets ->
             vNavigationBarScrollSpace.updateLayoutParams {
                 height = insets.systemWindowInsetBottom
@@ -125,22 +132,22 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
     }
 
     private fun showLoading(isLoading: Boolean) {
-        cpbMovie.isVisible = isLoading
+        viewBinding.cpbMovie.isVisible = isLoading
     }
 
     private fun setData(uiModel: MovieDetailsUiModel) = with(uiModel) {
-        tvTitle.text = buildTitleWithReleaseDate(uiModel)
-        tvOverviewDesc.text = description
+        viewBinding.tvTitle.text = buildTitleWithReleaseDate(uiModel)
+        viewBinding.tvOverviewDesc.text = description
         contextNonNull.getBitmapDrawable(backdropImage) { extractDarkColorAndCircularReveal(it) }
 
-        ivPoster.setImage(
+        viewBinding.ivPoster.setImage(
             imageUrl = posterImage,
             scaleType = ScaleType.FIT_CENTER
         )
 
-        groupDetails.isVisible = true
+        viewBinding.groupDetails.isVisible = true
 
-        llOpenInTmdb.setOnClickListener { openMovieOnTmdb() }
+        viewBinding.llOpenInTmdb.setOnClickListener { openMovieOnTmdb() }
     }
 
     private fun extractDarkColorAndCircularReveal(bitmap: Bitmap) {
@@ -155,9 +162,8 @@ class MovieDetailsFragment : BaseFragment(R.layout.fragment_movie_details) {
         }
     }
 
-    private fun circularReveal(newColor: Int) {
+    private fun circularReveal(newColor: Int) = with(viewBinding) {
         crNewBackground.setBackgroundColor(newColor)
-
         ViewAnimationUtils.createCircularReveal(
             crNewBackground,
             ivBackdrop.measuredWidth / 2,

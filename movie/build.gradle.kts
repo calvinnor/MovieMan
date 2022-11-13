@@ -1,19 +1,21 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
+    id(Plugins.kotlinParcelize)
     id(Plugins.kotlinAnnotationProcessor)
     id(Plugins.safeArgs)
 }
 
 android {
-    compileSdkVersion(App.compileSdk)
+    compileSdk = App.compileSdk
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
-
-        minSdkVersion(App.minSdk)
-        targetSdkVersion(App.targetSdk)
-
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
     }
 
     kotlinOptions {

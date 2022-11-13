@@ -1,17 +1,15 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
 }
 
 android {
-    compileSdkVersion(App.compileSdk)
+    compileSdk = App.compileSdk
 
     defaultConfig {
-
-        minSdkVersion(App.minSdk)
-        targetSdkVersion(App.targetSdk)
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
 
         testInstrumentationRunner = Dependencies.test_JUnitRunner
     }

@@ -6,7 +6,7 @@ import com.calvinnor.core.pagination.PaginatedItem
 import com.calvinnor.core.utils.emptyString
 import com.calvinnor.data.movie.remote.api.MovieListing
 import com.calvinnor.movie.commons.business.buildImagePath
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class MovieUiModel(

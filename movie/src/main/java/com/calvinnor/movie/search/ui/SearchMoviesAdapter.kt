@@ -1,6 +1,5 @@
 package com.calvinnor.movie.search.ui
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
@@ -12,14 +11,14 @@ import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.commons.util.getBackdropImageTransitionName
 import com.calvinnor.movie.commons.util.getBackgroundTransitionName
+import com.calvinnor.movie.databinding.ItemMovieBinding
 import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
-import kotlinx.android.synthetic.main.item_movie.view.*
 
 class SearchMoviesAdapter(listener: PaginationListener) :
     BottomPaginationAdapter<MovieUiModel>(listener) {
 
     override fun onCreateVH(parent: ViewGroup, viewType: Int) = MovieViewHolder(
-        parent.inflate(R.layout.item_movie)
+        ItemMovieBinding.inflate(parent.layoutInflater(), parent, false)
     )
 
     override fun onBindVH(holder: PaginationViewHolder, position: Int) {
@@ -29,27 +28,28 @@ class SearchMoviesAdapter(listener: PaginationListener) :
     override fun areItemsSame(oldItem: MovieUiModel, newItem: MovieUiModel) =
         oldItem.id == newItem.id
 
-    class MovieViewHolder(rootView: View) : PaginationViewHolder(rootView) {
+    class MovieViewHolder(private val viewBinding: ItemMovieBinding) :
+        PaginationViewHolder(viewBinding.root) {
 
         fun bind(uiModel: MovieUiModel) = with(itemView) {
             val movieId = uiModel.id
             val backgroundTransitionName = getBackgroundTransitionName(movieId)
             val backdropTransitionName = getBackdropImageTransitionName(movieId)
 
-            ivBackdrop.apply {
+            viewBinding.ivBackdrop.apply {
                 transitionName = backdropTransitionName
                 setImage(
                     uiModel.backdropImage,
                     scaleType = ScaleType.CENTER_CROP,
-                    onFailure = { ivBackdrop.defaultImage() },
+                    onFailure = { viewBinding.ivBackdrop.defaultImage() },
                     fadeIn = false
                 )
             }
 
-            tvTitle.text = uiModel.title
-            tvRelease.setTextOrGone(uiModel.releaseDate)
+            viewBinding.tvTitle.text = uiModel.title
+            viewBinding.tvRelease.setTextOrGone(uiModel.releaseDate)
 
-            clRoot.apply {
+            viewBinding.clRoot.apply {
                 transitionName = backgroundTransitionName
                 setOnClickListener {
                     findNavController().navigate(
@@ -57,8 +57,8 @@ class SearchMoviesAdapter(listener: PaginationListener) :
                         MovieDetailsFragmentArgs(uiModel).toBundle(),
                         null,
                         FragmentNavigatorExtras(
-                            ivBackdrop to backdropTransitionName,
-                            clRoot to backgroundTransitionName
+                            viewBinding.ivBackdrop to backdropTransitionName,
+                            viewBinding.clRoot to backgroundTransitionName
                         )
                     )
                 }

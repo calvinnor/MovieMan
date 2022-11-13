@@ -1,7 +1,9 @@
 package com.calvinnor.movie.discover.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigator
 import androidx.navigation.fragment.findNavController
@@ -10,18 +12,23 @@ import com.calvinnor.core.utils.showToast
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.commons.model.MoviesSection
+import com.calvinnor.movie.databinding.FragmentDiscoverMoviesBinding
 import com.calvinnor.movie.details.ui.MovieDetailsFragmentArgs
 import com.calvinnor.movie.listing.ui.MoviesListingFragment
 import com.calvinnor.movie.listing.ui.MoviesListingFragmentArgs
-import kotlinx.android.synthetic.main.fragment_discover_movies.*
 
-class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
+class DiscoverMoviesFragment : BaseFragment<FragmentDiscoverMoviesBinding>(),
     MoviesSectionBottomDialogFragment.Companion.NavigationInteractions,
     MoviesListingFragment.MoviesListingInteractions {
 
     override val fragmentTag = TAG
 
     private var selectedSection: MoviesSection = MoviesSection.POPULAR
+
+    override fun inflateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentDiscoverMoviesBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,7 +38,7 @@ class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
         setupBottomAppBar()
     }
 
-    private fun setupToolbar() = tvToolbarTitle.setText(
+    private fun setupToolbar() = viewBinding.tvToolbarTitle.setText(
         when (selectedSection) {
             MoviesSection.POPULAR -> R.string.bottom_nav_popular
             MoviesSection.NOW_PLAYING -> R.string.bottom_nav_now_playing
@@ -40,7 +47,7 @@ class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
         }
     )
 
-    private fun setupBottomAppBar() = bottomAppBar.run {
+    private fun setupBottomAppBar() = viewBinding.bottomAppBar.run {
         replaceMenu(R.menu.menu_discover)
         setOnMenuItemClickListener {
             return@setOnMenuItemClickListener when (it.itemId) {
@@ -83,8 +90,7 @@ class DiscoverMoviesFragment : BaseFragment(R.layout.fragment_discover_movies),
         selectedSection = moviesSection
         setupToolbar()
 
-
-        fcvSection.findNavController()
+        viewBinding.fcvSection.findNavController()
             .navigate(
                 R.id.navigateToMoviesListing,
                 MoviesListingFragmentArgs(moviesSection).toBundle()

@@ -1,7 +1,9 @@
 package com.calvinnor.movie.search.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.closeKeyboard
@@ -10,13 +12,12 @@ import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.pagination.PaginationListener
 import com.calvinnor.core.ui.BaseFragment
-import com.calvinnor.movie.R
+import com.calvinnor.movie.databinding.FragmentSearchMoviesBinding
 import com.calvinnor.movie.search.di.SearchMoviesModule
 import com.calvinnor.movie.search.viewmodel.SearchMoviesViewModel
-import kotlinx.android.synthetic.main.fragment_search_movies.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), PaginationListener {
+class SearchMoviesFragment : BaseFragment<FragmentSearchMoviesBinding>(), PaginationListener {
 
     override val fragmentTag = TAG
 
@@ -26,6 +27,11 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
     init {
         SearchMoviesModule.load()
     }
+
+    override fun inflateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentSearchMoviesBinding.inflate(inflater, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,14 +43,14 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
     }
 
     override fun onNewRequest(request: Pagination.Request) {
-        viewModel.paginateMovies(searchQuery = svMovies.query.toString())
+        viewModel.paginateMovies(searchQuery = viewBinding.svMovies.query.toString())
     }
 
     override fun onReplacedData() {
-        rvSearch.scheduleLayoutAnimation()
+        viewBinding.rvSearch.scheduleLayoutAnimation()
     }
 
-    private fun setupUi() {
+    private fun setupUi() = with(viewBinding) {
         svMovies.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextChange(newText: String?) = true
@@ -57,7 +63,7 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
     }
 
     private fun setupAdapter() {
-        rvSearch.adapter = searchMoviesAdapter
+        viewBinding.rvSearch.adapter = searchMoviesAdapter
     }
 
     private fun setupListeners() {
@@ -77,7 +83,7 @@ class SearchMoviesFragment : BaseFragment(R.layout.fragment_search_movies), Pagi
         }
     }
 
-    private fun focusOnSearch() = svMovies.focusAndOpenKeyboard()
+    private fun focusOnSearch() = viewBinding.svMovies.focusAndOpenKeyboard()
 
     private fun showError(ex: Throwable) {
         // TODO

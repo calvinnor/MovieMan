@@ -1,16 +1,19 @@
 plugins {
     id(Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinAndroidExtensions)
     id(Plugins.kotlinAnnotationProcessor)
 }
 
 android {
-    compileSdkVersion(App.compileSdk)
+    compileSdk = App.compileSdk
+
+    buildFeatures {
+        viewBinding = true
+    }
 
     defaultConfig {
-        minSdkVersion(App.minSdk)
-        targetSdkVersion(App.targetSdk)
+        minSdk = App.minSdk
+        targetSdk = App.targetSdk
     }
 
     kotlinOptions {

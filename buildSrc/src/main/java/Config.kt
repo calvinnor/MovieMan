@@ -4,7 +4,7 @@ object Plugins {
     const val androidLibrary = "com.android.library"
 
     const val kotlinAndroid = "kotlin-android"
-    const val kotlinAndroidExtensions = "kotlin-android-extensions"
+    const val kotlinParcelize = "kotlin-parcelize"
     const val kotlinAnnotationProcessor = "kotlin-kapt"
     const val plugin_GoogleServices = "com.google.gms.google-services"
     const val plugin_crashlytics = "com.google.firebase.crashlytics"

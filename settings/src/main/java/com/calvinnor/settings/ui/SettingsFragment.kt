@@ -1,13 +1,26 @@
 package com.calvinnor.settings.ui
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.calvinnor.settings.R
-import kotlinx.android.synthetic.main.fragment_settings.*
+import com.calvinnor.settings.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
+
+    private var _binding: FragmentSettingsBinding? = null
+    private val viewBinding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View {
+        val fragmentSettingsBinding = FragmentSettingsBinding.inflate(inflater, container, false)
+        _binding = fragmentSettingsBinding
+        return fragmentSettingsBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -20,6 +33,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun setupBackPressListener() {
-        mtToolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+        viewBinding.mtToolbar.setNavigationOnClickListener { activity?.onBackPressed() }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 }

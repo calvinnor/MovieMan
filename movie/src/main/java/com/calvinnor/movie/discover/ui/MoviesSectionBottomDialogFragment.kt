@@ -9,13 +9,12 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
 import com.calvinnor.core.extensions.colorFrom
-import com.calvinnor.core.extensions.inflateDefault
 import com.calvinnor.core.extensions.setTint
 import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MoviesSection
+import com.calvinnor.movie.databinding.ItemBottomNavigationBinding
+import com.calvinnor.movie.databinding.LayoutBottomNavigationMenuBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.item_bottom_navigation.view.*
-import kotlinx.android.synthetic.main.layout_bottom_navigation_menu.*
 
 /**
  * Shows the bottom sheet to select Movie Section.
@@ -23,6 +22,9 @@ import kotlinx.android.synthetic.main.layout_bottom_navigation_menu.*
 class MoviesSectionBottomDialogFragment : BottomSheetDialogFragment() {
 
     private lateinit var interactions: NavigationInteractions
+
+    private var _binding: LayoutBottomNavigationMenuBinding? = null
+    private val viewBinding get() = _binding!!
 
     private val selectedSection by lazy {
         arguments?.getSerializable(ARGS_SELECTED_SECTION)
@@ -42,20 +44,25 @@ class MoviesSectionBottomDialogFragment : BottomSheetDialogFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.layout_bottom_navigation_menu, container, false)
+    ): View {
+        val layoutBottomNavigationMenuBinding =
+            LayoutBottomNavigationMenuBinding.inflate(inflater, container, false)
+        _binding = layoutBottomNavigationMenuBinding
+        return layoutBottomNavigationMenuBinding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         addNavigationItems()
     }
 
-    private fun addNavigationItems() = llNavigationBottomSheet.run {
+    private fun addNavigationItems() = viewBinding.llNavigationBottomSheet.run {
         removeAllViews()
-        getNavigationItems().forEach { addView(buildBottomNavigationView(it)) }
+        getNavigationItems().forEach { addView(buildBottomNavigationView(it).root) }
     }
 
     private fun buildBottomNavigationView(itemData: NavigationItemData) =
-        layoutInflater.inflateDefault(R.layout.item_bottom_navigation).apply {
+        ItemBottomNavigationBinding.inflate(layoutInflater).apply {
             ivNavIcon.setImageResource(itemData.icon)
             tvNavTitle.setText(itemData.title)
 
@@ -64,7 +71,7 @@ class MoviesSectionBottomDialogFragment : BottomSheetDialogFragment() {
                 llNavItemContainer.setBackgroundColor(colorFrom(R.color.colorAccentLight))
                 ivNavIcon.setTint(R.color.colorAccent)
                 tvNavTitle.setTextColor(colorFrom(R.color.colorAccent))
-            } else setOnClickListener {
+            } else root.setOnClickListener {
                 dismiss()
                 interactions.onNavigationItemPicked(itemData.moviesSection)
             }

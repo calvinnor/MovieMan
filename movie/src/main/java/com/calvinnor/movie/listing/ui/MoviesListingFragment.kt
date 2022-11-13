@@ -2,22 +2,23 @@ package com.calvinnor.movie.listing.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.updatePadding
 import androidx.navigation.fragment.FragmentNavigator
 import com.calvinnor.core.domain.Result
 import com.calvinnor.core.extensions.observe
 import com.calvinnor.core.pagination.Pagination
 import com.calvinnor.core.ui.BaseFragment
-import com.calvinnor.movie.R
 import com.calvinnor.movie.commons.model.MovieUiModel
 import com.calvinnor.movie.commons.model.MoviesSection
+import com.calvinnor.movie.databinding.FragmentMoviesListingBinding
 import com.calvinnor.movie.listing.di.SectionMoviesModule
 import com.calvinnor.movie.listing.viewmodel.MoviesListingViewModel
-import kotlinx.android.synthetic.main.fragment_movies_listing.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MoviesListingFragment : BaseFragment(R.layout.fragment_movies_listing),
+class MoviesListingFragment : BaseFragment<FragmentMoviesListingBinding>(),
     MoviesListingAdapter.MoviesListingInteractions {
 
     override val fragmentTag = TAG
@@ -43,6 +44,11 @@ class MoviesListingFragment : BaseFragment(R.layout.fragment_movies_listing),
 
     override fun loadDependencies() = SectionMoviesModule.load()
 
+    override fun inflateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?
+    ) = FragmentMoviesListingBinding.inflate(inflater, container, false)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -61,7 +67,7 @@ class MoviesListingFragment : BaseFragment(R.layout.fragment_movies_listing),
     }
 
     override fun onReplacedData() {
-        rvDiscover.scheduleLayoutAnimation()
+        viewBinding.rvDiscover.scheduleLayoutAnimation()
     }
 
     private fun applyStatusBarInsets(rootView: View) = with(rootView) {
@@ -73,7 +79,7 @@ class MoviesListingFragment : BaseFragment(R.layout.fragment_movies_listing),
     }
 
     private fun setupAdapter() {
-        rvDiscover.adapter = moviesListingAdapter
+        viewBinding.rvDiscover.adapter = moviesListingAdapter
     }
 
     private fun setupListeners() {
